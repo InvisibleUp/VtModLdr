@@ -130,6 +130,8 @@ void ErrNo2ErrCode(){
 		CURRERROR = errNOERR;
 		break;
 	}
+	errno = 0;
+    return;
 }
 
 /* 
@@ -380,11 +382,16 @@ void memcpy_rev(unsigned char *dst, const unsigned char *src, size_t n)
  * =====================================================================================
  */
 BOOL SQL_Load(){
+    char *DBPath = NULL;
 	CURRERROR = errNOERR;
-	chdir(CONFIG.CURRDIR);
+	//chdir(CONFIG.CURRDIR);
+    
+    asprintf(&DBPath, "%s/mods.db", CONFIG.CURRDIR);
+    
 	if(SQL_HandleErrors(__FILE__, __LINE__, 
-		sqlite3_open("mods.db", &CURRDB)
-	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
+		sqlite3_open(DBPath, &CURRDB) |
+        sqlite3_extended_result_codes(CURRDB, 1)
+	) != 0 || SQL_HandleErrors(__FILE__, __LINE__,                       
 		sqlite3_exec(CURRDB, 
 			"CREATE TABLE IF NOT EXISTS 'Spaces'( "
 			"`ID`           	TEXT NOT NULL,"
@@ -451,11 +458,12 @@ BOOL SQL_Load(){
 			NULL, NULL, NULL
 		)
 	) != 0){
+        safe_free(DBPath);
 		CURRERROR = errCRIT_DBASE;
 		return FALSE;
 	}
 	
-	sqlite3_extended_result_codes(CURRDB, 1);
+	safe_free(DBPath);
 	
 	//Add mod loader version var
 	{
@@ -634,7 +642,7 @@ BOOL SQL_Populate(json_t *GameCfg)
 		safe_free(FilePath);
 		ProgDialog_Update(ProgDialog, 1);
 	}
-	json_decref(out);
+	//json_decref(out);
 
 	if(SQL_HandleErrors(__FILE__, __LINE__, 
 		sqlite3_exec(CURRDB, query4, NULL, NULL, NULL)
@@ -746,6 +754,7 @@ int main(int argc, char *argv[])
 	int result;
 
 	// Init globals
+    errno = 0;
 	memset(&CONFIG, 0, sizeof(CONFIG));
 	result = Interface_Init(argc, argv);
 	if(result != 0) {

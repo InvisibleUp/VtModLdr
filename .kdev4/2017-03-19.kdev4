@@ -1,0 +1,35 @@
+[CMake]
+Build Directory Count=1
+Current Build Directory Index=0
+
+[CMake][CMake Build Directory 0]
+Build Directory Path=/home/aaron/Documents/Sonic R/Mod Loader/bin 2017-03-19
+Build Type=Debug
+CMake Binary=/usr/bin/cmake
+Environment Profile=
+Extra Arguments=
+Install Directory=/usr/local
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=SrModLdr
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=_InitSeq.c
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00\x14\x002\x000\x001\x007\x00-\x000\x003\x00-\x001\x009\x00\x00\x00\x10\x00S\x00r\x00M\x00o\x00d\x00L\x00d\x00r)
+Dependency Action=Build
+EnvironmentGroup=
+Executable=file:///home/aaron/Documents/Sonic R/Mod Loader/bin 2017-03-19/bin/SrModLdr
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=2017-03-19,SrModLdr
+Use External Terminal=false
+Working Directory=
+isExecutable=true
+
+[Project]
+VersionControlSupport=kdevgit

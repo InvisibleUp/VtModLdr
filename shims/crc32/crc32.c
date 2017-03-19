@@ -1,9 +1,11 @@
 /* crc32.c -- compute the CRC-32 of a data stream
  * Copyright (C) 1995-1998 Mark Adler
- * Modified 2015 by InvisibleUp
+ * Modified 2015-2017 by InvisibleUp
  * For conditions of distribution and use, see copyright notice in zlib.h (not included)
  */
 #include "crc32.h"
+#include "../../includes.h"
+#include "../../funcproto.h"
  
 #ifdef __unix__
 #include <sys/mman.h>	//Map memory to file
@@ -103,19 +105,33 @@ unsigned long crc32File(const char *filename)
 	unsigned char *input = NULL;
 	
 	#ifdef __unix__
-	/* TODO */
+        int fd = _open(filename, _O_RDONLY);
+        if(fd == -1){
+            ErrNo2ErrCode();
+            return 0L;
+        
+        }
+        
+        len = filesize(filename);
+        
+        input = mmap(NULL, len, PROT_READ, MAP_SHARED, fd, 0);
+        if(input == MAP_FAILED){
+            ErrNo2ErrCode();
+            close(fd);
+            return 0L;
+        }
 	#endif
 	
 	#ifdef _WIN32
 		HANDLE File2CRC = INVALID_HANDLE_VALUE;
-		HANDLE File2CRC_Map = NULL;
+		HANDLE File2CRC_INVALID_FILE_SIZEMap = NULL;
 	
 		/* Open file */	
 		File2CRC = CreateFile(filename, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if(File2CRC == INVALID_HANDLE_VALUE){return 0UL;}
 		
 		/* Get file size */
-		len = GetFileSize(File2CRC, NULL);
+		len = filesize(File2CRC, NULL);
 		if(len == INVALID_FILE_SIZE){CloseHandle(File2CRC); return 0UL;}
 		
 		/* Map to memory */
@@ -131,7 +147,8 @@ unsigned long crc32File(const char *filename)
 	
 
 	#ifdef __unix__
-	/* TODO */
+        munmap(input, len);
+        close(fd);
 	#endif
 	
 	#ifdef _WIN32

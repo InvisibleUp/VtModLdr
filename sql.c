@@ -176,6 +176,12 @@ char * SQL_GetStr(sqlite3_stmt *stmt)
 int SQL_HandleErrors(const char *filename, int lineno, int SQLResult)
 {
 	char *message = NULL;
+    
+    if(errno == ENOENT){
+        // ENOENT: No file or directory
+        // For some reason SQLite loves to set this. This is bad.
+        errno = 0;
+    }
 	
 	if(
 		SQLResult == SQLITE_OK ||

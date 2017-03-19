@@ -55,7 +55,25 @@ int Interface_Init(int argc, char *argv[])
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 #endif
-	File_Delete("mods.db"); // Refresh mod db
+    /*{
+        char *FilePath = NULL;
+        char WorkingDir[256];
+        
+        getcwd(WorkingDir, 255);
+        
+        asprintf(&FilePath, "%s/mods.db", WorkingDir);
+        File_Delete(FilePath); // Refresh mod db
+        safe_free(FilePath);
+    }*/
+    
+    File_Delete("mods.db");
+    
+    ErrNo2ErrCode();
+    if(CURRERROR == errWNG_BADFILE){
+        // Can't delete something that doesn't exist
+        CURRERROR = errNOERR;
+    }
+    
 	return 0;
 }
 
@@ -85,6 +103,7 @@ int Interface_EditConfig(void)
 {
 	struct ProgConfig *LocalConfig = malloc(sizeof(struct ProgConfig));
 	const char *fpath = "test_profile.json";
+    char *TestBin = NULL;
 	memset(LocalConfig, 0, sizeof(struct ProgConfig));
 
 	// Record paths
@@ -93,16 +112,23 @@ int Interface_EditConfig(void)
 	//LocalConfig->CURRDIR = strdup(CONFIG.CURRDIR);
 	LocalConfig->CURRDIR = malloc(255);
 	getcwd(LocalConfig->CURRDIR, 255);
+    
+    // Get test.bin path
+    asprintf(&TestBin, "%s/test.bin", LocalConfig->CURRDIR);
 
 	// Create dummy "game", 256 KB in size
-	if (!File_Exists("test.bin", FALSE, FALSE)) {
-		File_Delete("test.bin");
-		if (!File_Create("test.bin", 256 * 1024)) {
+	if (!File_Exists(TestBin, FALSE, FALSE)) {
+        CURRERROR = errNOERR;
+		File_Delete(TestBin);
+        
+		if (!File_Create(TestBin, 256 * 1024)) {
 			puts("Could not create test.bin!");
 			ErrCracker(CURRERROR);
+            safe_free(TestBin);
 			return 1;
 		}
 	}
+	safe_free(TestBin);
 
 	// Set dummy game info
 	asprintf(&LocalConfig->GAMECONFIG, "%s/games/test.json", LocalConfig->PROGDIR);
@@ -114,6 +140,7 @@ int Interface_EditConfig(void)
 	// Copy all of this to CONFIG
 	Profile_EmptyStruct(&CONFIG);
 	memcpy(&CONFIG, LocalConfig, sizeof(struct ProgConfig));
+    safe_free(LocalConfig);
 
 	return 0;
 }

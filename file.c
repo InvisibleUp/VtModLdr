@@ -504,13 +504,17 @@ BOOL File_Exists(const char *file, BOOL InFolder, BOOL ReadOnly)
 	int mode = ReadOnly ? (R_OK) : (R_OK | W_OK);
 	CURRERROR = errNOERR;
 	if (access(file, mode) != 0){
+        
 		switch(errno){
 		case ENOENT: //File/Folder does not exist
 			if(InFolder){CURRERROR = errWNG_BADDIR;}
 			else{CURRERROR = errWNG_BADFILE;}
+			errno = 0;
 			return FALSE;
+            
 		case EACCES: // Read only error
 			CURRERROR = errWNG_READONLY;
+            errno = 0;
 			return FALSE;
 		}
 	}
@@ -769,7 +773,7 @@ BOOL File_MovTree(char *srcPath, char *dstPath)
  */
 BOOL File_Create(char *FilePath, int FileLen)
 {
-	int handle = _creat(FilePath, S_IWRITE);
+	int handle = _creat(FilePath, S_IREAD | S_IWRITE);
 	const char *pattern = "\0";
 	
 	if(handle == -1){

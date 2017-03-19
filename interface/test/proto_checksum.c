@@ -20,13 +20,10 @@ int Proto_Checksum(
 	free(FilePath);
 	
 	if (result != expected) {
-		char *msg;
-
-		asprintf(
-			&msg,
+		printf(
 			"Checksum of %s failed.\n"
-			"Expected %X\n"
-			"Got %X",
+			"Expected %X \n"
+			"Got %X\n\n",
 			filename, expected, result
 		);
 	}
