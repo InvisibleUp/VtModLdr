@@ -1,0 +1,61 @@
+SPLIT/MERGE spaces
+------------------
+We may actually need to do this. How strange. Wasn't expecting to add more ops and especially not more space types at this point, but it seems like the simplest way forwards.
+
+I need this for these reasons:
+	1. If a ADD space is added to an oversized CLEAR space, we need to indicate that SPLIT so we can undo on uninstall.
+	2. To combine free spaces, we need to MERGE them together.
+	3. When creating a file, we need a CLEAR base so that everything else works as expected. Add things via SPLIT.
+
+SPLIT problems:
+	1. How do we store in SQL what the head and tail spaces are?
+	A: * We could have "start" and "end" store the patch IDs for the head and tail. Feels elegant enough.
+	
+	2. How do we store where the split takes place?
+	A: Could store in ID? (It'd be unique, but cryptic and prone to possible reuse)
+	B: Len isn't used by anything. Have that store the length of ...?
+	C: * We might not need to. If we know head and tail IDs, we know where they start and end.
+
+	3. What will the ID be set to? (It has to be unique)
+	A: Random letters/numbers. Nobody cares what the value is.
+	B: Same start->ID conversion as usual (but what is start?)
+	C: Combo of head and tail ID names. (Yeah. That makes sense.)
+	D: * We're already splitting something. Use ID of that something
+
+	4: There exists a function space and a subroutine space within that function space. The function is split within the subroutine. What do?
+	A: Disallow overlapping (not possible; REPL relies on this behavior)
+	B: Ban splits of spaces with subspaces. (Can't tell if that's the case)
+	C: * Who cares? Start is still intact and nobody's going to CLEAR something blatantly in use.
+
+MERGE problems:
+	1: What's the ID?
+	A: * Same as split: fusion of two IDs.
+	B: ID of head (who cares about tail?)
+
+	2: How do we store what got merged?
+	A: * Start/End like SPLIT
+
+	3: How would one reference a merged space? (Aka if I want to ADD onto the merged space?)
+	A: Add a [type] space with ID of head?
+	B: * Add two spaces, one to describe merge (postfix ~oldx), one to describe space
+
+	4: What if we merge two different patch types? (Add/Clear? Merge/Add?)
+	A: * Ban merging of Merge or Split types. They are control types not expected to be publicly known.
+	B: * Ban merging of Add/Clear?
+
+	5: What if a user references the old spaces pre-merge?
+	A: Ban usage via SQL check on dereference?
+	B: Thunk head space to new [type] space made by 3A? (But what about tail?)
+	C: Create SPLIT into original form upon dereference? (How?)
+	D: * Rename old spaces to ~old variants (ban usage)
+	
+	6: Assume 5C and 3A. 3A creates a new space, used by patch. 5C causes split. What do?
+	A: Move existing space? (But what if other mods point to it?)
+	B: * Fail. (User shouldn't be referencing Clear spaces by ID.)
+
+	7: A MERGE is SPLIT by 5C. What is the ID of the SPLIT?
+	A: * Append an ~oldx to MERGE like the CLEAR op already does.
+
+SO HOW THE HELL DO WE IMPLEMENT THIS THING?
+
+See ModOps-simplified.txt

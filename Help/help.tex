@@ -1,0 +1,862 @@
+\documentclass[12pt,a4paper,notitlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{tabulary}
+\usepackage[table]{xcolor}
+
+\title{Help for Sonic R Mod Loader 1.0.0}
+\author{InvisibleUp}
+
+\newcommand{\warning}[1]{
+    \begin{tabular}{m{1.1cm}  m{11cm}}
+    &\\
+    \includegraphics[width=1.1cm, height=1.1cm]{warning} & #1
+    \\&\\
+    \end{tabular}
+}
+
+\definecolor{light-gray}{gray}{0.95}
+%\setlength{\parskip}{\baselineskip}
+
+\begin{document}
+\maketitle
+This is the documentation for the Sonic R Mod Loader. It covers 4 main areas:
+\begin{description}
+\item[{\hyperref[sec:using]{Using the Mod Loader}}] \hfill \\ 
+    This section deals with how to operate the mod loader, installing and uninstalling mods.
+\item[{\hyperref[sec:works]{How the Mod Loader Works}}] \hfill \\
+    This section describes the mechanics of the basic functionality of the mod loader. It explains how mods are stored and installed.
+\item[{\hyperref[sec:create]{Creating Mods}}] \hfill \\
+    This section describes how to create a mod and the files that comprise a mod.
+\item[{\hyperref[sec:games]{Adding Support for Additional Games}}] \hfill \\
+    This section describes how to extend the functionality of the Sonic R Mod Loader to support other games. This section assumes you either have access to or are comfortable creating a disassembly of the game you wish to add.
+\end{description} 
+
+\pagebreak
+\section{Using the Mod Loader}
+\label{sec:using}
+Note: The documentation for this section is written assuming you're using the Windows GUI. If you're using an interface for another operating system or a command line interface, refer to the documentation that came with that version of the program for specific details on how to operate it.
+
+\subsection{System Requirements}
+The Sonic R Mod Loader has extremely modest system requirements. So modest, it will run on anything Sonic R will run on, and then some. The program has been confirmed to work out of the box with the following system:
+
+\begin{description}
+    \item[Operating System] Windows 98/NT 4.0 or greater
+    \item[CPU] Pentium (i586) processor or greater
+    \item[RAM] 16MB or greater
+    \item[Disk] 2MB free space plus at least 10MB for mods.
+    \item[Display] SVGA display (800x600x16)
+%	\item[Shared Libraries] \hfill
+%		\begin{itemize}
+%			\item Microsoft Visual C++ Runtime (msvcr100.dll)
+%			\item SQLite 3 (sqlite3.dll)
+%			\item Jansson 2.5 or greater (jansson.dll)
+%			\item libArchive (archive.dll)
+%			\item zLib (zlib.dll)
+%		\end{itemize}
+\end{description}
+
+%With the exception of the Visual C++ library, which comes with just about everything, all the DLL files you will need are included.
+
+\subsection{Creating a Profile}
+\label{subsec:using-profile}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{profile.png}
+    \caption{The profile editor dialog}
+    \label{fig:profile}
+\end{figure}
+
+Profiles are a simple way of keeping different game installations from mingling and messing your mods up. (Note, however, that there can only be one set of mods per game directory.)  You will need to create a profile when you start the program for the first time. 
+
+Click the ``New" button next to ``Profile" to add a new profile. The program will prompt you for a place to save your profile. When you want to load it up later (using the ``Browse" button), select this file.
+
+After that, you will need to set the installation path of your game. Use the ``Broswe" button next to ``Game" to select the folder where your game is installed. The program will automatically detect which game and version is installed.
+
+\warning{The mod loader will need write permissions to the game, so it will not work with programs installed in the ``Program Files" folder unless you manually change it's permissions.}
+
+The Run Path is the program launched when you press the ``Run" button in the main window. By default, the ``Run Path" is set to the game's executable.  If you need to change this for, ex: compatibility reasons, edit this text box.
+
+Once you are done, press ``OK" to save your profile to the file listed in the ``Profile" textbox.
+
+\subsection{The Mod Loader Interface}
+\label{subsec:using-interface}
+Once the process is complete, a screen should appear showing a list of installed mods. This is the where most actions within the program will take place.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{interface-3.png}
+    \caption{The primary interface of the Sonic R Mod Loader}
+    \label{fig:interface}
+\end{figure}
+
+\begin{description}
+\item[1. List] \hfill \\
+If a profile has just been created, the list will be blank. You will have to install some mods to fill the list. Clicking on an item in the list will change the Preview and the Details panes to show information about that mod. The ``Remove Mod..." button will also remove whichever mod is selected.
+
+\item[2. Preview] \hfill \\
+This is an optional picture provided by the mod's developer meant to quickly identify the mod. It is usually a picture of the content added, if it is a level, a character, or something of the sort. Sometimes, like this example, no content is being added, so a distinctive icon is used instead.
+
+\item[3. Details] \hfill \\
+This is a list of some details about who made the mod and what the mod does. The following things will be listed:
+
+\begin{description}
+\item[Name] \hfill \\ 
+    The name of the mod. It should be short, descriptive, and telling of what the mod offers. 
+\item[Author] \hfill \\
+    The name of the person or team who created the mod. If you're having a trouble with a mod, ask the mod's author, NOT the developer of the mod loader.
+\item[Category] \hfill \\
+    This is the role that the mod takes on. A list of valid category types can be found at \ref{subsubsec:create-meta-cat}.
+\item[Version] \hfill \\
+    The version number of the mod. Some mods may require that a mod of a certain version is installed.
+\item[Description] \hfill \\
+    A brief outline of the mod's contents and purpose. Useful if you forget what it does.
+\item[EXE Space] \hfill \\
+    The amount of space freed or used by the mod in the game's main executable file. If you run out of space, use this to determine what to dump.
+\item[Disk Space] \hfill \\
+    The amount of space used or freed by the mod in other files. This includes files the mod creates or deletes.
+\end{description}
+\end{description}
+
+There are also 4 buttons that allow the user to preform various tasks. These buttons can also be found in the top menu bar, if that is preferred.
+
+\begin{description}
+\item[Load Mod...] \hfill \\ 
+    Lets the user select a mod for installation. See \ref{subsec:using-install} for information.
+\item[Remove Mod] \hfill \\
+    Uninstalls the currently selected mod. See \ref{subsec:using-uninstall} for more information.
+\item[Options...] \hfill \\
+    Shows a list of all public variables that the user can customize. See \ref{subsec:using-config} for details.
+\item[Run] \hfill \\
+    Runs the game's main executable. Make sure that if you need a program like DXWnd to make the game work properly that you run it before you press this button.
+
+\end{description}
+
+
+\subsection{Installing Mods}
+\label{subsec:using-install}
+Installing a mod is a relatively simple process. Make sure the desired mod is already downloaded, as the mod loader does not support directly downloading mod.
+
+\warning{Make absolutely certain that the mod came from a trusted source. Because the mods typically modify executable files, there is nothing preventing a malicious mod maker from sneaking a virus into a mod. If in doubt, ask others on the site you got it from before installing it.}
+
+To install a mod, click on the button labeled ``Load Mod...". Alternatively the mod may also be installed from the ``Load Mod...'' option in the ``File'' menu or by dragging and dropping the mod onto the mod list.
+
+At this point a file browser window will appear asking for the location of the mod to install. Find and select the mod that is to be installed. This will be a ZIP file.
+
+There is a chance that a message will appear saying that other mods are required. If this message appears, you will not be able to install the mod until the dependencies are found and installed. There is no mechanism built into the mod loader to handle this automatically. The names and authors of the mods are provided so you can search for them on the Internet.
+
+If the selected mod is already installed, the loader will alert you and installation will stop. If a newer version of an already installed mod is selected, the mod loader will ask the user if it is okay to upgrade the mod. Answering yes will cause the old version to be uninstalled and the new version to be installed in it's place. Selecting no will stop the installation.
+
+At this point the installation should start. You will not need to take any action during the installation progress.
+
+If, during the installation, the file to be patched runs out of free space, the installation will stop and any parts of the mod that have been installed will be uninstalled. If this occurs, you will need to either uninstall some mods or install a special type of mod designed to free up some space. See \ref{subsec:works-spaces} for details.
+
+
+\subsection{Configuring Mods}
+\label{subsec:using-config}
+Mods have the ability to set ``variables", some of which can be set by the user. (See \ref{subsec:works-var} for details on how exactly they work.) Variables that can be set by the user are known as ``public varibles". These are useful for options that would be too difficult or obscure to be worth placing in the game itself.
+
+Public variables can take on 3 forms.
+
+\begin{description}
+\item[Numeric] \hfill \\ 
+    These are numbers. They have a minimum and a maximum range. Note that these ranges may be very high or very low, so if a large number is needed it is best to input it with the keyboard. Examples of such would be menu transition speed, character jump height, density of rain, etc. 
+\item[Dropdown List] \hfill \\
+    These are multiple options for an object or function in a mod that can chosen from. These are options that would be not be well represented as numbers or as checkboxes. Examples would include menu color, character outfit, time of day, etc.
+\item[Checkbox] \hfill \\
+    These are values can be toggled on or off. Examples of such would be an option to always randomize courses, a switch to display dust behind a character, a rain toggle, etc.
+\end{description} 
+
+All public variables are always enabled and displayed independently, but keep in mind a mod developer could make it so that some are selectively ignored depending on the value of another.
+
+Keep in mind that some public variables require the mod to be reinstalled after they are changed. This will be done automatically, but if there is no free space the variable will not be able to be changed until more space is cleared.
+
+\subsection{Removing Mods}
+\label{subsec:using-uninstall}
+Removing mods is a very simple process. Simply select the mod you wish to remove and press ``Remove". The mod will then be removed.
+
+If a mod depends on the mod you are trying to remove, the mod loader will alert you. If this happens, you will need to remove those mods.
+
+If it is found that a mod required free space offered by the mod you are removing, removal will stop and your mod list will be unaltered. Add another space-removing mod or remove any mods that take up a lot of space if this happens.
+
+\pagebreak
+\section{How the Loader Works}
+\label{sec:works}
+This section describes a highly simplified model of the inner workings of the Sonic R Mod Loader. This will be useful reading if you're planning on making a mod, working on the source of the mod loader or are just plain curious to see how it works.
+
+\subsection{How Mods are Stored}
+\label{subsec:works-store}
+Mods are usually delivered to the user in a .ZIP archive. Inside the archive is a .JSON file defining the patches and other information needed to install the mod. Any other file in the archive is simply data that the mod uses during patches. This .ZIP archive is extracted by the user before installation, for the sake of simplifying the program. Support for installing from .ZIP files may be added in the future.
+
+The contents of the .ZIP file is described in detail in section \ref{sec:create}.
+
+\subsection{Introduction to Spaces}
+\label{subsec:works-spaces}
+The mod loader is unique in that it operates much like your system's memory or hard disk works. It fits it's data wherever there is room, and nowhere else. Of course, there has to be a way for the mod loader to keep track of what data is being used. Spaces are the mod loader's way of dealing with this.
+
+There are three types of spaces: `Add', `Clear', and `Split'. The first two act as you'd expect. `Add' spaces are sections in the file that are used by a mod or by the game itself. `Clear' spaces are spaces that are not used by anything and are free for use by any mod that needs it. 
+
+`Split' spaces record the ``head" and ``tail" spaces after a space has been split by an internal mod loader process. They are created when an `Add' space is spliced into into a larger `Clear' space. This causes only the portion of the `Clear' space required by the new `Add' space to be used. The remainder is seperated into new `Clear' spaces. `Split' spaces exist so that the mod loader can "rewind" and merge the spaces back together during mod uninstallation.
+
+When a profile is first created some spaces are filled in corresponding to the already existing subroutines. This allows mod developers to either easily replace existing subroutines or to call existing subroutines in the mod's code.
+
+\subsection{Patches}
+\label{subsec:works-patch}
+Patches are the commands issued to modify parts of a file or to change the status of spaces. Patches include a a unique identifier, an operation type and (depnding on the type) a range of source bytes, the source file, a range of destination bytes and file, and a data value for insertion.
+
+\subsubsection{Operations}
+\label{subsubsec:works-patch-op}
+There are 6 different operations a patch can preform: 
+
+\begin{description}
+\item[ADD] \hfill \\ 
+    Splices an `Add' space containing the given data into an existing `Clear' space.
+\item[CLEAR] \hfill \\
+    Moves the given range of bytes to a new `Clear' space.
+\item[RESERVE] \hfill \\
+    Splices an `Add' space spanning the given range of bytes into an existing `Clear' space.
+\item[REPL] \hfill \\
+    Replaces the contents of the given range of bytes with a different value.
+\item[COPY] \hfill \\
+    Copies the contents of the given range of bytes to a new location.
+\item[MOVE] \hfill \\
+    Moves the contents of the given range of bytes to a new location, leaving a `Clear' space behind.
+\end{description}
+
+These 6 operations should accomplish just about anything you would need to do. Any advanced operations should be possible with a sequence of these operations. (If not, feel free to send a feature request to the project's GitHub page.)
+
+\warning{Note that the mod loader does not yet support adding or deleting bytes from a file. The types of files the Sonic R Mod Loader was created to work on have very strict binary formats and will break spectacularly if the file size changes.}
+
+The Sonic R Mod Loader is not just limited to operating on one file at a time. A mod developer can create patches that work on multiple files. This is useful for games that have their code or data split across many different files, or mods with assets that must be loaded. This is done by specifying a source and destination file for each operation.
+
+\subsubsection{Whole-File Operations}
+\label{subsubsec:works-patch-wholefile}
+The Sonic R Mod Loader is best suited for altering small parts of a file, but it can also work with whole files. 
+
+\subsection{Variables}
+\label{subsec:works-var}
+Variables are bits of data defined by mods than can be altered by other mods or users. The game cannot modify or read these directly. Variables exist so that another mod or an user can alter how a mod functions. They are a very powerful feature, and it can lead to a lot of neat possibilities for mods. Without variables, these settings would likely have to be read and written from a file, which would cause a lot of overhead and would make some features impossible.
+
+In addition, all spaces are given a variable that contains their starting address. Custom code can use this to call functions or use data from other mods or the base game.
+
+All variables are numbers. No matter how they may appear in the configuration window, they are all internally represented as numbers. Check boxes simply toggle between 0 and 1 and drop down lists choose a number corresponding to the location of the option on the list.
+
+Variables can be used by a mod in one of two ways:
+
+\begin{description}
+\item[Mini-Patch] \hfill \\ 
+    When a variable is set to be a mini-patch, it automatically replaces whatever the given location is with the value of the variable. Code added by the mod can then test the number and branch to a certain subroutine or it can use the number directly in a calculation.
+\item[Install Condition] \hfill \\
+    During the installation of a mod, the variable is compared to another value. If the condition is true, the patch is processed normally. If the condition is false, the patch is skipped.
+\end{description}
+
+Variables are considered global. Any mod can use a variable set by another mod. For example, a level mod can see if the ``enable weather effects" variable of another mod is set, and if it not decide to not waste space installing code for rendering it's weather effects.
+
+Variables are set or altered before any patches are installed. As an example of how this would work, a mod for a custom level menu can define a certain variable for level mods to increment so that the menu knows how many entries to display.
+
+\subsection{Installation and Removal}
+Mods are installed sequentially. When a mod is installed, it first calculates the new values for any variables. After that, it goes through every patch in order and runs the operations described in \ref{subsubsec:works-patch-op}. To assist in removing it later, it also takes some extra precautions. Specifically...
+
+\begin{itemize}
+    \item When a part of a file is overwritten by a patch, the previous contents of that part of the file are recorded along with the unique identifier and version of the space that used that space.
+    \item When a space is replaced, it is marked as ``used" and a new space is created with a higher version number. Only the highest version number is considered during installation.
+    \item If a space only takes up part of a CLEAR space, a SPLIT psuedo-space is created that documents what space got split up.
+\end{itemize}
+
+Mods are also removed sequentially. When a mod other than the most recently installed is removed, every mod installed afterwards is removed and then reinstalled. This simplifies the implementation of the mod loader compared to a random-access method.
+
+During removal, the loader runs through the spaces in reverse. For pretty much every space, this just means removing the higher versioned space and writing the stored contents back to the file.
+
+\pagebreak
+\section{Creating Mods}
+\label{sec:create}
+This section describes how to compose the .JSON files that defines your mod. Note that you'll still need to do the hard part of creating content for the mod. (This manual can  not and will not teach you how to do that.)
+
+There are a couple very important things to note here:
+
+\begin{itemize}
+    \item Numbers can either be in quotes or out of quotes. If they are out of quotes they must be in base 10. If they are in quotes, they can either be in base 10, base 8 (prefix with 0), or base 16 (prefix with 0x).
+    \item The order of the elements does not matter, but the structure of objects and arrays does.
+\end{itemize}
+
+\subsection{Files}
+\label{subsec:create-files}
+The structure of your ZIP file must be as listed:
+\begin{description}
+\item[info.json] All patch and metadata information. The only required file. The rest of this section will deal solely with this file.
+\item[preview.bmp] Optional preview to be displayed in the interface. MUST be in Windows BMP format, although bit depth does not matter. Recommended size is 235x135. Any excess space in the preview window will be filled with the color of the top-leftmost pixel.
+\item[(any other files)] You can include other files for use in your patches. The mod loader does not care how these are stored.
+\end{description}
+
+\subsection{Expressions}
+\label{subsec:create-expr}
+Many numerical fields within the mod metadata are actually parsed expressions. This allows for some neat stuff, like setting variables based on other variables (including itself!) or several other things I couldn't possibly think of.
+
+Here are some examples:
+\begin{lstlisting}[breaklines=true]
+    35
+    36 + 78
+    (1 + 2) * (3 + 4) * 6 + 7
+    $ var.mod@user
+    (len @ list.bin) / 4
+    $ var1 == 0
+    0x4567 ^ 0x1234
+\end{lstlisting}
+
+\subsubsection{Numbers and References}
+You can have just plain old numbers, in base 10, 16, or 8. Nothing special here.
+
+You can also refer to either the value of a variable or certain properties of a file. To do this, enter a dereferencing operator (listed below) followed by the name of a file or variable.
+
+\subsubsection{Operators}
+Operators for expressions follow standard infix notation, separated by EXACTLY ONE space. Below is a table of supported operators.
+
+\rowcolors{1}{white}{light-gray}
+\begin{center}
+\noindent{
+\begin{tabulary}{\textwidth}{CLLC}
+    \mbox{Op}  & Description        & Notes                                    & \mbox{Order} \\ 
+    \verb|+|  & Addition & ~                                                                     & 3  \\ 
+    \verb|-|  & Subtraction  & ~                                                                  & 3  \\ 
+    \verb|*|  & Multiplication   & ~                                                              & 2  \\ 
+    \verb|/|  & Division.     & ~                                                                 & 2  \\ 
+    \%        & Modulo. & Integers only.                                     & 2  \\ 
+%    ~         & ~                                                                            & ~  \\ 
+    \textbar  & Bitwise OR. & Integers only.                                 & 7  \\ 
+    \&        & Bitwise AND. & Integers only.                                & 7  \\ 
+    \^{}      & Bitwise XOR. & Integers only.                                & 7  \\
+    \verb|~|  & Bitwise NOT. & Integers only.                                & 1  \\	
+    \verb|<<| & Right shift. & Integers only.                                & 4  \\ 
+    \verb|>>| & Left shift. & Integers only.                                 & 4  \\ 
+%    ~         & ~                                                                            & ~  \\ 
+    \verb|==| & Equal. & Gives 0 if true, 1 if false.                                           & 6  \\
+    \verb|!=| & Not equal. & Gives 0 if true, 1 if false.                                       & 6  \\ 	
+    \verb|<=| & Less than or equal. & Gives 0 if true, 1 if false.                              & 5  \\ 
+    \verb|>=| & Greater than or equal. & Gives 0 if true, 1 if false.                           & 5  \\ 
+    \verb|<|  & Greater than. & Gives 0 if true, 1 if false.                                    & 5  \\ 
+    \verb|>|  & Less than. & Gives 0 if true, 1 if false.                                       & 5  \\ 
+%    ~         & ~                                                                            & ~  \\ 
+    \&\&      & Logical AND. & 0 if both sides 0, 1 if not.                        & 8  \\ 
+    \textbar\textbar & Logical OR. & 0 if any side 0, 1 if not.                           & 8  \\  
+%    ~         & ~                                                                            & ~  \\ 
+    \$        & Value of variable name. & Type will be ignored                       & 1  \\ 
+    @         & Deref file from game directory. & Must follow `len' or `crc32'                  & 1  \\ 
+    \#        & Deref file from mod directory. & Must follow `len' or `crc32'                   & 1  \\ 
+    crc32     & CRC32 checksum of file. & Must precede @ or \#.                                 & 1  \\ 
+    len       & Length of file in bytes. & Must precede @ or \#.                                & 1  \\
+    \mbox{exists}    & 0 if variable or file exists. & Must precede \$, @, or \#.               & 1  \\
+%    ~         & ~                                                                            & ~  \\ 
+    (         & Left grouping parenthesis  & ~                                                   & 0  \\ 
+    )         & Right grouping parenthesis & ~                                                   & 0  \\
+\end{tabulary}
+}
+\end{center}
+\rowcolors{1}{white}{white}
+\clearpage
+
+Operators are grouped in order of decreasing precedence. Ex: (4 + 5 * 4) = 4 + (5 * 4). All operators excluding `\verb|~|' are left-associative. The operators `\verb|~|', `crc32', `len', `exists', `\$', `@', and `\#' are all unary instead of binary. No short-cicruting for logical or is implemented. (Generally speaking, if you follow the rules of the C programming language, you'll be fine.)
+
+File dereferences will return an error unless they're immediately preceded by the 'len' or 'crc32' operators. This may change in future versions. Also 'exists' must be followed by a dereferenced file or variable name.
+
+Some operators only work on integer types. You'll be fine in most circumstances, as expressions are only evaluated as (double-precision) floating point when they're the value of a floating point variable. Otherwise values are internally parsed as an Int32 or uInt32, depending on whatever is needed. All variations will be noted in the field descriptions.
+
+\subsection{Defining Mod Metadata}
+\label{subsec:create-meta}
+Mod metadata is the bit of the mod that defines what it is. All the entries are places in the root object. An example of valid mod metadata is the following:
+
+\begin{lstlisting}[breaklines=true]
+{
+    "UUID": "CpuStartupFix@invisibleup",
+    "Name": "CPU Startup Crash Fix",
+    "Desc": "Fixes the crashing error that occurs when launching the game on modern systems.",
+    "Auth": "InvisibleUp",
+    "Ver": 1,
+    "Date": "2015-05-06",
+    "Cat": "Compatibility",
+    "ML_Ver": "1.0.0",
+    "Game": "SonicR_PC_1998"
+    ...
+}
+\end{lstlisting}
+
+\subsubsection{UUID}
+\label{subsubsec:create-meta-uuid}
+A unique identifier for your mod. It does not matter what format it's in, but it is recommended that it's either a standard GUID (EX: {AE28AAD8-2B2F-11E5-AD96-2484B6C90E9A}) or in the format (modname)@(author). Either of those options should prevent duplicates from generic names.
+
+\subsubsection{Name}
+\label{subsubsec:create-meta-name}
+The name of your mod. Try to keep it short enough to fit in the mod loader's list but descriptive enough so that it won't be mixed up with other mods. For the above example, a bad name would be ``CPU Fix'' or ``Crash Fix'', as it's not certain what's being fixed with the CPU or what's causing the crash.
+
+\subsubsection{Desc}
+\label{subsubsec:create-meta-desc}
+An informative description of what your mod does. It can be as long as you wish, but keep in mind that this is not a good place for a README file or documentation. The user needs to be able to read these and determine relatively quickly what the mod does without scrolling through an entire license agreement or list of system requirements.
+
+\subsubsection{Auth}
+\label{subsubsec:create-meta-auth}
+The person or team responsible for creating the mod. You may use either your real name, or if you prefer you could use a username you use often on the internet. Whatever you decide to put down, make sure that an internet search for it can lead to information about you and your other mods. Do not, for example, put down ``John Doe" as the author, as it will be impossible to trace to you in case an user needs support or is interested in other things you've made. (And definitely do not steal another person's name. Like ``InvisibleUp". That's my name. I'd be very upset if you stole my name.)
+
+\subsubsection{Ver}
+\label{subsubsec:create-meta-ver}
+The version of your mod. It must be a whole number. It is suggested that you start at 1 and increment whenever you put out a new release. This allows users with an old version of your mod to upgrade using the mod loader without first uninstalling your mod. If you produce a release with functions that are binary-incompatible (different arguments for calling, etc.) with previous versions, you should change the UUID to prevent program crashes and other nastiness.
+
+\subsubsection{Date}
+\label{subsubsec:create-meta-date}
+The date your mod was created in ISO 8601 format. (YYYY-MM-DD) This can be used by the user to determine if a mod needs updating or would be compatible with mods produced at a much later date. (As of version 1.0.0, this isn't actually listed in the interface. This is likely to change in future versions.)
+
+\subsubsection{Cat}
+\label{subsubsec:create-meta-cat}
+This is the role your mod takes. While the mod loader does not check what the value of this is, having this filled out allows users to easily sort mods by functionality. Recommended values for this are:
+
+\begin{description}
+\item[Essential] Mods that add features that would be considered mandatory in a more modern game. Examples include widescreen support, analog control, 60FPS support, etc. 
+\item[Compatibility] Mods whose sole purpose is to allow the game to run on more hardware configurations.
+\item[Code] Mods that add new subroutines for other mods to use or replace existing subroutines.
+\item[Level] Mods that add new levels to the game.
+\item[Character] Mods that add new playable characters to the game.
+\item[Graphics] Mods that add or replace graphical elements for menus, existing levels, etc.
+\item[Music] Mods that add or replace music.
+\item[Sound] Mods that add or replace sound effects.
+\item[Gameplay] Mods that change gameplay elements, altering the way the game is played.
+\item[Total Conversion] Mods that completely replace a large portion of the game and introduce brand new graphics, levels, characters, etc.
+
+\end{description}
+Some of these are not mutually exclusive. For example, a character mod is likely to include graphics for the character and custom code for the character's abilities. In this case choose the category that describes the primary reason a person would install your mod. (A person is not going to install your character for it's textures. They will install it becuase they want to play as your character.)
+
+\subsubsection{MLVer}
+\label{subsubsec:create-meta-mlver}
+The lowest version of the mod loader your mod targets. This documentation describes version 1.0.0 of the Sonic R Mod Loader, so make sure that this value is equal to 1.0.0.
+
+This value follows the pattern [MAJOR].[MINOR].[BUGFIX]. Increases in the major number represent compatibility-breaking enhancements or a major shift in the focus of the application's development. Increases in the minor number indicate the addition of new features, either in the user interface or in this specification. Increases in the bugfix number add no new features; they just include stability or interface fixes.
+
+If you plan on using features from later versions while still being compatible with an older version, use install consditions against the predefined variable ``Version.MODLOADER@invisibleup".
+
+\subsection{Dependencies}
+\label{subsec:create-depend}
+If you are creating a mod in a well-established mod ecosystem, there is a good chance that you may wish to use code or resources from another mod. In this case you'll want to declare a dependency on that other mod. Declaring a dependency states that your mod will not function without the presence of the other mod. Do not use dependencies for optional features; use install conditions and the predefined variable ``Active.(mod-uuid)" instead. Likewise, do not declare a dependency if all you need is free space or a bugfix to be installed. There may be a reason that particular mod is not installed.
+
+Dependecies are declared in an array named ``dependencies'' in the root object, which contains objects which contain the keys and values.
+
+\begin{lstlisting}[breaklines=true]
+``dependencies": [
+    {	``Name": ``Joe's Mod Framework",
+        ``Ver": 14,
+        ``Auth": ``Team Joe & Co.",
+        ``UUID": ``{AE28AAD8-2B2F-11E5-AD96-2484B6C90E9A}"
+    }
+],
+\end{lstlisting}
+
+\subsubsection{Name}
+\label{subsubsec:create-depend-name}
+The name displayed to the user when the dependency is missing. Make sure it matches the name of the actual dependency.
+
+\subsubsection{Ver}
+\label{subsubsec:create-depend-ver}
+The minimum version of the dependency that your mod will work with. Do not set the minimum to the absolute newest version of the dependency, if it will run on a lower version. If functionality changes in earlier versions and you want to support them, use installation conditions and the predefined variable ``Version.(mod-uuid)'' to add code to support those versions.
+
+\subsubsection{Auth}
+The author name displayed to the user when the dependency is missing. Make sure it matches the author of the actual dependency.
+
+\subsubsection{UUID}
+The UUID of the dependency. This is what is looked for when checking if dependencies are met, so make sure this matches the dependency's UUID exactly.
+
+\subsection{Variables}
+\label{subsec:create-var}
+Variables are arguably the most powerful feature of the Sonic R Mod Loader. Mastering their use is the key to creating great, powerful mods.
+
+Variables are defined in an array named ``variables" in the root object, which contains objects which contain the keys and values.
+
+\begin{lstlisting}[breaklines=true]
+"variables": [
+    {	
+    "UUID": "dresscolor.amyrose@invisibleup",
+    "Type": "uInt32",
+    "Default": "0x00FF0000",
+    "Update": "0x0000FF00",
+    "Desc": "Color of Amy Rose's dress"
+    "PublicType": "list",
+    "PublicList": [
+        { "Value": "0x00FF0000",
+        "Label": Red  },
+        { "Value": "0x0000FF00",
+        "Label": Green  },
+        { "Value": "0x000000FF",
+        "Label": Blue  }
+    ] }
+],
+\end{lstlisting}
+(This is a rather contrived example, but it gets the point across)
+
+\subsubsection{UUID}
+\label{subsubsec:create-var-uuid}
+This is a simple string containing a unique identifier for your mod.
+If a variable already exists with this UUID, it will be skipped over. (Do not rely on the behavior; the variable may suddenly change values when mods are reinstalled.)
+
+\warning{Make certain your variables are named uniquely and descriptively. Variables are considered global; any mod can access a variable from any other mod. A good idea is to name your variables (variable-name).(mod-uuid) to avoid conflict.}
+
+\subsubsection{Desc}
+A description of the variable. If the variable is public, this will be the text label that accompanies the control for the variable. Keep it short and use sentence case without an ending period.
+
+\subsubsection{Default}
+[EXPRESSION, type dependent on Type field]
+
+If the variable is not yet defined, the Default expression is parse and set as the variable's new value.
+
+\subsubsection{Update}
+[EXPRESSION, type dependent on Type field]
+
+If the value already exists, it's value will be set to the value of this expression. If this field is omitted, the variable will keep it's current value.
+
+\subsubsection{Type}
+\label{subsubsec:create-var-type}
+Variables are always stored as numbers, but you can define how many bytes they use and in what format they're stored in. Possible values for this property include the following:
+
+\begin{description}
+\item[Int8] \hfill \\ 
+    This is a signed 8-bit integer. It has a range of -127 to 128. Use this for binary values or dropdown lists.
+\item[uInt8] \hfill \\ 
+    This is an unsigned 8-bit integer. It has a range of 0 to 255. Use this for small non-negative numerical values.
+\item[Int16] \hfill \\
+    This is a signed 16-bit integer. It has a range of -32768 to 32767. Use this for larger numerical values.
+\item[uInt16] \hfill \\
+    This is an unsigned 16-bit integer. It has a range of 0 to 65535. Use this for larger numerical values.
+\item[Int32] \hfill \\
+    This is a signed 32-bit integer. It has a range of -2147483648 to 2147483647. Use this for very large values. Note that at this size you may need to load the value into a register instead of using it as an immediate operand.
+\item[uInt32] \hfill \\
+    This is an unsigned 32-bit integer. It has a range of 0 to 4294967295. Use this for pointers or very large values. Note that at this size you may need to load the value into a register instead of using it as an immediate operand.
+\item[IEEE32] \hfill \\
+    This is an IEEE-754 32-bit float value. It supports a decimal with a significant figure of roughly 6 to 9 places. This cannot be used directly by most x86 operations, including cmp and the arithmetic functions. You must load this into an x87 FPU register in order to do anything meaningful with it.
+\item[IEEE64] \hfill \\
+    This is an IEEE-754 64-bit double-precision float value. It supports a decimal with a significant figure of roughly 15 to 17 places. This cannot be used directly by most x86 operations, including cmp and the arithmetic functions. You must load this into an x87 FPU register in order to do anything meaningful with it.
+\end{description}
+
+\subsubsection{PublicType}
+\label{subsubsec:create-var-public}
+Optional value describing how the variable is displayed on the mod's Options window. If omitted, the variable will not be displayed on the Options window. Possible values for this property are the following:
+
+\begin{description}
+\item[Numeric] Represents a number. Displayed using the up-down numerical control. (Windows: IEEE and Int32 values are displayed as textboxes)
+\item[List] Like an C enum; represents a list of labels that corresponds with numbers. Displayed using a drop-down selector.
+\item[Checkbox] Represents a value that can be toggle on (0) or off (1). Displayed using a checkbox.
+\end{description}
+
+\subsubsection{PublicList Array}
+\label{subsubsec:create-var-listarr}
+Optional array listing the values for the listbox displayed on the mod's configuration screen. Ignored unless PublicType is ``list".
+\begin{description}
+\item[Value] [EXPRESSION, type dependent on Type field] The number associated with the value in the list.
+\item[Label] A description of what the entry in the list corresponds to in the mod's code or installation routine.
+\end{description}
+
+
+\subsubsection{Predefined Variables}
+\label{subsubsec:create-var-predef}
+For your convenience, a few variables are automatically defined for you.
+
+\begin{description}
+\item[Version.MODLOADER@invisibleup] uInt32. Set to the mod loader's version number in the format [0x00MMmmbb], where M = Major Version, m = Minor Version and b = Bugfix version.
+\item[Active.(mod-uuid)] uInt8. Set to 0 if (mod-uuid) is installed. Use to determine the presence of a mod.
+\item[Version.(mod-uuid)] uInt32. Set to the version number of (mod-uuid). Use to branch installation or code on different versions of a mod with different features.
+\item[Start.(patch-uuid).(mod-uuid)] uInt32. Equal to the patch's (Start) value. If the add space refers to a Win32 EXE or DLL, the value is a location in memory when the executable is loaded. Otherwise it is a simple file offset.
+\item[End.(patch-uuid).(mod-uuid)] uInt32. Equal to the patch's (End) value.
+\end{description}
+
+If a variable is undefined, it's value will be reported as 0.
+
+\warning{Be careful with undefined Checkbox variables. This will default to On, so make sure that whatever `On' corresponds to is non-destructive.}
+
+\subsection{Patches}
+\label{subsec:create-patch}
+Patches are the actual operations that your mod applies on the game's files.
+
+Patches are defined in an array named ``patches'' in the root object, which contains objects which contain the keys and values. This may look like a lot, but most the arguments are optional depending on the contents of Mode.
+
+\clearpage
+\begin{lstlisting}[breaklines=true]
+"patches": [
+    {	
+        "ID": "TimerNOP.cpufix@invisibleup",
+        "Comment": "NOPs out timer code",
+        
+        "Mode": "REPL",
+        "File": "SONICR.EXE",
+        "FileType": "PE",
+        "Start": 460164,
+        "End": 460170,
+        "Len": 6,
+        
+        "SrcFile": "data.bin",
+        "SrcFileType": null,
+        "SrcFileLoc": "Mod",
+        "SrcStart": "0x0000",
+        "SrcEnd": "0x0100",
+        
+        "AddType": "Bytes",
+        "Value": "B8310000009090",
+        
+        "Condition": "$ timerdisable.cpucrashfix@invisibleup != 0",
+        
+        "MiniPatches": [
+            {
+                "Var": "example.mod@invisibleup",
+                "MaxLen": "2"
+                "Pos": "0x03"
+            },
+            ...
+        ]
+    }
+],
+...
+\end{lstlisting}
+Note that the above patch contains many fields that will never be looked at or are otherwise nonsensical. It's merely an example of syntax, not how to write a good patch.
+
+\subsubsection{ID}
+This is a unique identifier for your patch. It is optional, as if you don't provide an ID one will be automatically generated for you for internal bookeeping purposes. You should provide one if you wish for other mods (or other patches within your mod) to call or reference the content added by the current patch.
+
+Omit this for REPL operations.
+
+\subsubsection{Mode}
+What the patch does. The value of this is referred to as the ``operation". Can be one of the six following values:
+
+\begin{description}
+\item[ADD] \hfill \\ 
+    Searches for a CLEAR space in the range of (Start) to (End) of the length of the patch's (Value) argument. If it is found, bytes are filled in starting from the beginning of the clear space. The used portion is turned into an add space with the ID of (ID), or an autogenerated one if (ID) is not present, and the remainder is kept as CLEAR. Aborts installation if there is no clear space.
+\item[CLEAR] \hfill \\
+    Creates a CLEAR space from the range (Start) to (End). This marks the space as ready to be used by any mod, and can no longer be referenced by ID.
+\item[RESERVE] \hfill \\
+    Searches for a clear space in the range of (Start) to (End) of the length (End) - (Start). If found, the space is marked as add with the UUID in (UUID) if present, or the old one if not, and no further action is taken. Fails on the same conditions that ADD fails. Mostly useful for reserving chunks in the special file dedicated for RAM for you mod's code.
+\item[REPL] \hfill \\
+    Applies a CLEAR operation from (Start) to the length of (Value), and then immediately applies an ADD operation on the newly cleared space. Fails on the same conditions CLEAR fails.
+\item[COPY] \hfill \\
+    Takes the bytes from (SrcStart) to (SrcEnd) as (Value) and applies an ADD operation from (Start) to (End). Fails on the same conditions that ADD fails.
+\item[MOVE] \hfill \\
+    Applies an (ADD) operation from (Start) to (End) with the contents of (SrcStart) to (SrcEnd), then applies a CLEAR operation from (SrcStart) to (SrcEnd). Fails on the same conditions that CLEAR and ADD fails.
+\end{description}
+
+When the patch specifies (File) and/or (SrcFile), but not (Start), (End), (SrcStart) or (SrcEnd), (Start) is assumed to be 0, (End) the end of (File), and similar for (Src*).
+
+% \begin{description}
+% \item[ADD] \hfill \\ 
+%     Takes the contents of (SrcFile) and creates a new file at (File) with those contents. An add space for that file is also created that is the size of that file. Aborts if the file already exists.
+% \item[CLEAR] \hfill \\
+%     Deletes the file at (SrcFile). All associated spaces are still stored for recovery when the mod is uninstalled.
+% \item[RESERVE] \hfill \\
+%     Creates an ADD space spanning all of (File). Will fail if (File) is occupied.
+% \item[REPL] \hfill \\
+%     Copies (SrcFile) to (File) and, if (File) does not already exist, creates an CLEAR space spanning the entire file. Otherwise existing spaces are left intact.
+% \item[COPY] \hfill \\
+%     Copies (SrcFile) to (File) and creates a ADD space spanning the entire file. Will fail if (File) is occupied.
+% \item[MOVE] \hfill \\
+%     Moves (SrcFile) to (File), deleting (SrcFile) in the process. Also creates a CLEAR space spanning the entire file.
+% \end{description}
+
+\subsubsection{File}
+The path to a file within the game's directory, relative to the main EXE's location. It can also be the special path ``:memory:" to access a virtual file of infinite length dedicated to storing RAM. For MOVE and COPY this is the destination file.
+
+\subsubsection{FileType}
+The type of file that (File) points to. The value of this will transform (Start) and (End) for internal use.
+
+\begin{description}
+\item[PE] \hfill \\ 
+    Compute (Start) and (End) as memory locations when a Windows executable is loaded. Relocation tables are not currently supported.
+\item[(anything else)] \hfill \\
+    Raw file offset as viewed in a hex editor.
+\end{description}
+
+\subsubsection{Start}
+[EXPRESSION, uInt32]
+
+For every operation except ADD, this is the lowest byte that will be modified. For ADD, this is the lowest byte to look for a clear space.
+
+If this value and (End) are omitted, the operation is considered to be whole-file. See \ref{subsubsec:works-patch-wholefile} for more information.
+
+\subsubsection{End}
+[EXPRESSION, uInt32]
+For every operation except ADD, this is the highest byte that will be modified. For ADD, this is the highest byte to look for a clear space.
+
+\subsubsection{Len}
+[EXPRESSION, uInt32]
+
+The length to allocate for an ADD or RESERVE operation. If (Len) is not long enough to fit all the bytes in (Value), the length required by (Value) will be used instead. 
+
+\subsubsection{SrcFile}
+The file to transfer values from during a COPY or MOVE operation.
+
+\subsubsection{SrcFileType}
+The type of file that (SrcFile) points to. See entry for (FileType) for details.
+
+\subsubsection{SrcFileLoc}
+Determines where (SrcFile) is located.
+
+\begin{description}
+\item[Mod] \hfill \\ 
+    Pull (SrcFile) from the mod's installation .ZIP.
+\item[(anything else)] \hfill \\
+    (SrcFile) is in the game's installation directory.
+\end{description}
+
+\subsubsection{SrcStart}
+[EXPRESSION, uInt32]
+
+The location of the lowest possible byte to COPY or MOVE from in SrcFile (or File, is SrcFile is missing). Omit this if using any operation other than COPY or MOVE.
+
+\subsubsection{SrcEnd}
+[EXPRESSION, uInt32]
+
+The location of the highest possible byte to MOVE or COPY from in SrcFile (or File, is SrcFile is missing). Omit this if using any operation other than COPY or MOVE.
+
+\subsubsection{AddType}
+For ADD and REPL operations, indicates the format the contents of Value. Possible values are the following:
+
+\begin{description}
+\item[Bytes] \hfill \\ 
+    Raw bytes in hexadecimal form to be inserted into the given space.
+    
+%\item[UUIDPointer] \hfill \\
+%	The location of an add space. The data to be added is a 32-bit pointer corresponding with a space's (Start) value. If the add space refers to a Win32 EXE or DLL, the value is a location in memory when the executable is loaded. Otherwise it is a simple file offset. This allows you to call subroutines or access memory variables located in other patches, and perhaps from other mods entirely.
+    
+%	This can also be postfixed by a number to add or subtract. To do so, directly after the UUID add a + or a -, and then the number to add or subtract by.
+\item[VarValue] \hfill \\
+    The UUID of a variable. The data to be added is the contents of the variable, in the datatype specified when the variable was first created. Use for calculations or code branching that is dependent on the status of other installed mods.
+
+\item[Expression] \hfill \\
+    Parse an expression as a uInt32. If the value is greater than the allotted length allows for, the most significant bits will be dropped. Exercise caution when using with floating point variables.
+
+\end{description}
+
+Omit this for all other operations. To add the contents of another file, use the COPY operator and set SrcFile to the file to add from.
+
+\subsubsection{Value}
+The content to be added, in the format indicated by the AddType value. See the AddType listing for what to insert here.
+
+\subsubsection{Comment}
+A comment describing what the patch does. Never displayed; for mod creator's reference only.
+
+\subsubsection{Condition}
+[EXPRESSION, uInt32]
+
+Installs the variable if and only if the condition evaluates to 0. This value is optional. To do an `else' statement, create another patch with the opposite condition set.
+
+\warning{If a variable is undefined, it will be equal to 0 and therefore evaluate as True. Same if the variable is defined, but is equal to 0. Use the idiom ``exists \$ varname \&\& \$ varname" to return true if and only if the variable is defined as 0.}
+
+\subsubsection{MiniPatches}
+Array of places to replace a chosen section of a path.
+
+Each item of the array is an object. Within each object are the following values:
+\begin{description}
+\item[Var] \hfill \\ 
+    ID of the Variable to splice in
+\item[Expression] \hfill \\
+    Expression to parse and splice in. If both `Var' and `Expression' are defined, `Expression' will be used.
+\item[MaxLen] \hfill \\
+    Maximum length of the data, in bytes. If it is over this limit, the most significant bits will be dropped.
+\item[Pos] \hfill \\
+    Offset from the patch where the data is to be spliced in.
+\end{description}
+
+
+\pagebreak
+\section{Adding Support for Additional Games}
+\label{sec:games}
+Despite being called the Sonic R Mod Loader, this program can load mods for games that aren't Sonic R. (It was a rather short-sighted name, but I haven't come up with anything better in the past year...) The program was explicitly designed so that defining custom games or applications would be easy. Game definitions can be shared as easily as mods. Also, only one version of the mod loader will need to be maintained for every game possible.
+
+\subsection{Game Metadata}
+\label{subsec:games-meta}
+The information required to load a game is stored in a .JSON fie that shares a lot of similarities with a mod.
+
+\begin{lstlisting}[breaklines=true]
+{
+"GameName": "Sonic R [PC] (1998)"
+"GameUUID": "SonicR_PC_1998",
+"GameEXE": "SONICR.EXE",
+...
+}
+\end{lstlisting}
+
+\subsubsection{GameName}
+A human-readable name for the game. If you can, keep it in the following format:
+
+\begin{lstlisting}[breaklines=true]
+GameName Version [Platform] (Publisher, Year, Country)
+EX: Shinobi REV1 [Amiga] (Sega, 1989, JPN)
+\end{lstlisting}
+
+Do not include information that is not required. If there was only one worldwide release on one year on one platform by one publisher with no revisions, you should only put the title.
+
+\subsubsection{GameUUID}
+A unique identifier for the game. This will need to be entered any time anyone makes a mod for the game, so keep it typeable. Also do not put the author name after an @ like you would with a mod. Our recommendation is to copy the ``GameName" value and replace all punctuation with underscores. (EX: Shinobi\_REV1\_Amiga\_Sega\_1989\_JPN)
+
+\subsubsection{GameEXE}
+This value, referred throughout the documentation as the ``main file", is the file that will be executed when the ``run" button is pressed in the loader interface. It is also the file that will be checked to determine the game's version and validity. Even if another file stores most of the game's data, make sure the program that is launched is set as the main file.
+
+\subsection{Whitelist}
+The whitelist is a list of the filesize and checksums of all valid main files. For slightly altered versions (common anti-piracy hacks, commonly-applied bugfixes, etc.) you can define several different valid files, along with the UUID of a patch that would enable that functionality on an otherwise ``vanilla", or unmodded, file.
+
+If there is a major change (file size gets cut in half, all functions get relocated, or even if just a couple of functions get relocated) create a new game definition instead.
+
+\begin{lstlisting}[breaklines=true]
+...
+``Whitelist": [
+    ...
+    {
+        "Desc": "CPU Startup Crash fix",
+        "Size": 1263104,
+        "ChkSum": "0xe251e7fc",
+        "Mods": ["cpufix@invisibleup"]
+    }
+],
+    ...
+\end{lstlisting}
+
+\subsubsection{Desc}
+A human-readable description of the variant.
+
+Keep it short and sweet. If it's the vanilla EXE, call it ``Vanilla EXE". If it's an anti-piracy hack by Bob, call it ``Bob's Anti-Piracy Hack". Don't overthink it.
+
+\subsubsection{Size}
+The size of the file in bytes. In theory these should be the same for all variants, but some games can append or subtract data from the end. If the different file causes the functions to be in different locations, create a seperate game definition file for it.
+
+\subsubsection{ChkSum}
+The checksum of the file, in CRC32 format. You can calculate this with many different programs, including 7-Zip on Windows and `crc32' on Mac/Linux.
+
+\subsubsection{Mods}
+A list of ``installed" mods. These will not be granted entries on the mod loader screen, but their installation will be blocked. Technically you could keep this blank and not have any consequences, but it's nice insurance.
+
+\subsection{KnownSpaces}
+Here's the useful part. KnownSpaces is a list of every known subroutine, resource or memory block that a mod developer can access. You provide this. These entries are directly translated into Add spaces that mods can use later. (Effectively these are patches that are always parsed with the RESERVE operation.)
+
+Typically this information is derived from a disassembly. If you're using IDA to disassemble, a BASH script is provided that takes an .IDC dump as an input and compiles it (because surprisingly enough an .IDC file is valid C) against a dummy library that produces a JSON object to copy/paste into your game configuration.
+
+\begin{lstlisting}
+...
+``KnownSpaces": [
+    {
+        "Start": 76948,
+        "End": 77212,
+        "File": "SONICR.EXE",
+        "UUID": "Game_RenderFog"
+    },
+    ...
+],
+...
+\end{lstlisting}
+
+\subsubsection{Start}
+The first byte of the space. Must be a number less than the length of the file.
+
+\subsubsection{End}
+The last byte of the space. Must be a number less than the length of the file.
+
+\subsubsection{File}
+The path to the file this space applies to, realtive to the main file. It can also be the virtual file ``:memory:``, an infintely large file that represents the non-allocated memory.
+
+\subsubsection{UUID}
+A unique identifier for the space. If you're making this list from a disassembly, just use the function name.
+
+\end{document}

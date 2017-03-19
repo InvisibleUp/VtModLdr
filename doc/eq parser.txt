@@ -1,0 +1,81 @@
+SRMODLDR Numeric Equation Syntax & Logic
+(Was hoping I could wait on this, but the init hook mod requries it. Eh.)
+
+The JSON_NumValue or w/e function should be expanded to support equations.
+(Or perhaps we make a new function and only allow certain fields to use this power? Hmm...)
+
+We'll also need to provide some functionality to know if a mod needs to be reinstalled.
+During reinstallation, we should keep the altered variable constant somehow.
+The thing is, though, if we do that we need to ensure that forwards propagation won't change the value of it. Hmmm...
+
+SYNTAX
+========
+We're going to use standard infix, because that feels logical compared to RPN or Lisp or whatever.
+It will be a chaining of values and arguments. Here's the values we have.
+	- Numbers (parse as-is)
+	- Variables ( $ var-name )
+	- File contents [game dir] ( @ path )
+	- File contents [mod dir]  ( # path )
+	- ... as it turns out, that's all you need. Hah!
+
+Here's some supported arguments (# denotes things I can wait on.)
+	- Addition (+)
+	- Subtraction (-)
+	- Multiplication (*)
+	# Division (/)
+	- Modulo (%)
+	- Grouping ( () )
+	- Bitshift (<<, >>)
+	# XOR (^)
+	# AND (&)
+	# OR (|)
+Unary operators
+	# NOT (~) << Bitwise, not logical
+	# CRC32 (crc32)
+	- LEN (len)
+
+Examples
+	3 + $ ThingCount.mod@person
+	$ key ^ $ input
+	(len # model.bin + len # texture01.raw ) * 16
+
+We'll probably going to use the shunting-yard algo to do this.
+When we see a $ followed by a {, we should get that variable's value.
+We also need to deal with hex numbers as well.
+Also negative numbers
+
+This will be fun.
+
+ALGO
+======
+As all we have are unary and binary operators, the shunting yard trick should work.
+There's also a "Pratt Parser", which is interesting, but probably overkill.
+
+Also crap I lost my internet connection. This might be rather hard.
+
+ARCHITECTURE
+==============
+JSON_ParseNum
+	Calls Eq_Parse if value is a string
+JSON_ParseDouble
+	Also calls Eq_Parse, but a double version instead
+
+Eq_Parse
+	Calls Eq_Tokenize
+	Calls Eq_Reorder
+	Calls Eq_Compute
+
+Eq_Tokenize
+	Takes string input and returns array of strings split on each space
+	Future versions may use advanced logic to omit spaces, but let's stay simple for now.
+
+Eq_Reorder
+	Applies the shunting-yard algorithm to reorder the tokenized list into RPN.
+	NEED: C stack implementation (this actually won't be too hard as we know the length ahead of time.)
+
+Eq_Compute
+	Gets all values and applies the operators on them in order.
+	This is probably the easiest part, honestly.
+	(No it's not.)
+	Needs an Int and a Double variant.
+

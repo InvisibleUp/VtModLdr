@@ -1,0 +1,54 @@
+X Splicer is returning space with end one lower than it should be
+
+X Program icon still only works on Borland C++ for some reason.
+	- Ah. The icon ID was defined in octal. THAT WOULD DO IT.
+
+X Variables need a mechanism to re-write to file without reinstalling mod
+	X Create a "NeedsReinstall" field in SQL. 
+		(Canned, just going to base off new table)
+		(If variables want both, well, they're getting reinstalled anyways. Meh.)
+		Uncanned. Need it for calculations during reinstall.
+	X When exiting the variable dialog... 
+		X If ANY variables are modified and require reinstall, set a reinstall flag
+		X Else, just do a WriteBytes to recorded position
+	X On that note, make a new table for variable writeout positions
+		X VarID | Start | File (pull End from variable type)
+		X Make code that writes to table as well (pull from JSON)
+			X When a MiniPatch is encountered, write to the SQL table.
+X Add "Diff" functionality for variables (see manual)
+
+X Split functions into files by prefix
+
+- Clean up function definitions
+	- Add Win16-style header (working on it...)
+	X Make sure all functions are represented in FunctProto
+	- Maybe clean up your comments? They're kind of weird
+
+- Update documentation
+	- Specifically all those notes in the /doc folder on the functions. 
+	  (MERGE doesn't even exist anymore, among other things.)
+
+X For the love of Pete, GET THIS OFF THE VM.
+	- Supposedly the Visual Studio license runs out in 12 days (out of 30).
+	- Windows only has 3 re-arms left (read as ~40 days)
+	- Also, you know, making sure this still runs in Win2K would be nice...
+
+- Test on Windows 95 (NOT NT 4.0!)
+	- You worked hard to earn that bullet point on the back of the box.
+	  Don't let your efforts go to waste.
+	X ...do you even have a Win95 ISO still? (Check LappyBackup)
+	  Found it!
+	X Also, you know, make the VM.
+	- Program works, libraries don't
+		- SQLite3 will never work. ...yeah. Dammit.
+	- At least tell me it works on NT 4.0
+
+- Add WinMain -> main redirect
+	- Then we can at least pretend we have support for alt. interfaces.
+	X Also, rename ShowModList to, say, MainLoop
+
+- Change RESERVE operator to have length attribute
+	- (Otherwise a "reserve me anything" won't work at all!)
+
+- Allow any numeric field to be an equation
+	- You'll need to keep track of what numeric fields use which variables

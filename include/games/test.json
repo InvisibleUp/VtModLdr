@@ -1,0 +1,34 @@
+{
+  "GameName": "Unit Testing Sample File",
+  "GameUUID": "testuuid",
+  "GameEXE": "test.bin",
+  "Whitelist": [
+    {
+      "Name": "testver",
+      "Desc": "256KB Null",
+      "Size": 262144,
+      "ChkSum": "0xE20EEA22",
+      "Mods": ["usedmod@test"]
+    }
+  ],
+  "KnownSpaces": [
+    {
+      "Name": "SectorA",
+      "Start": 0,
+      "End": 65536,
+      "File": "test.bin"
+    },
+	{
+      "Name": "SectorB",
+      "Start": 65536,
+      "End": 131072,
+      "File": "test.bin"
+    },
+	{
+      "Name": "SectorC",
+      "Start": 131072,
+      "End": 262144,
+      "File": "test.bin"
+    }
+  ]
+}

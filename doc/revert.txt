@@ -1,0 +1,13 @@
+HOW TO PROPERLY REVERT
+
+Current revert:
+For each patch (mod config entry) ID, we record it's ID, the bytes effected, and their new value
+On uninstallation, we trawl through space (SQL DB entry) IDs and try to apply the revert data.
+
+As it turns out, due to splitting and stuff, that doesn't work.
+
+The simplest solution would probably be to just include the Patch ID in the space's SQL entires and, 
+for each unique Patch ID encountered, do the revert. I like this.
+
+Also we'll need to add the starting position to the REVERT table, due to spliting and stuff.
+(Currently it is very, very broken. Related to that start field you just added.)
