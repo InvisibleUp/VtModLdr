@@ -237,6 +237,7 @@ devenv /Build "Release|Win32" ALL_BUILD.vcxproj
 cp libarchive/Release/archive.lib ../../../../lib/archive.lib
 cd ..
 cp libarchive/archive.h ../../../include/archive.h
+cp libarchive/archive_entry.h ../../../include/archive_entry.h
 # (TODO: Figure out how to build DLL)
 
 cd ../../../

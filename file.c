@@ -99,7 +99,7 @@ char * File_GetPath(int input)
 		return NULL;
 	}
 
-	asprintf(&output, "%s\\%s", CONFIG.CURRDIR, FileName);
+	asprintf(&output, "%s/%s", CONFIG.CURRDIR, FileName);
 	safe_free(FileName);
 
 	return output;
@@ -774,7 +774,7 @@ BOOL File_MovTree(char *srcPath, char *dstPath)
 BOOL File_Create(char *FilePath, int FileLen)
 {
 	int handle = _creat(FilePath, S_IREAD | S_IWRITE);
-	const char *pattern = "\0";
+	const unsigned char *pattern = (unsigned char *)"\0";
 	
 	if(handle == -1){
 		ErrNo2ErrCode();

@@ -1,3 +1,4 @@
+#pragma once
 int Test_Test_Caller(void);
 int Test_Eq_Parse_Int_ConstDec(void);
 int Test_Eq_Parse_Int_ConstHex(void);
@@ -15,5 +16,5 @@ int Test_Mod_CheckDep_Pass(void);
 int Test_Mod_CheckDep_Fail(void);
 int Test_Mod_PatchKeyExists_Pass(void);
 int Test_Mod_PatchKeyExists_Fail(void);
-
-
+int Test_Mod_InstallPatch_Repl();
+int Test_Mod_GetPatchInfo_ClearExisting();

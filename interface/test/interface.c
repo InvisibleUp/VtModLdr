@@ -24,6 +24,7 @@ ProgDialog_Handle ProgDialog_Init(int max, const char *label) {
     retval->max = max;
     retval->val = 0;
     retval->msg = strdup(label);
+    return retval;
 }
 void ProgDialog_Update(ProgDialog_Handle ProgDialog, int Delta) {
 	if (!ProgDialog) { return; }
@@ -135,7 +136,6 @@ int Interface_EditConfig(void)
 	// Record paths
 	LocalConfig->PROGDIR = strdup(CONFIG.PROGDIR);
 	LocalConfig->CURRPROF = strdup(fpath);
-	//LocalConfig->CURRDIR = strdup(CONFIG.CURRDIR);
 	LocalConfig->CURRDIR = malloc(255);
 	getcwd(LocalConfig->CURRDIR, 255);
     

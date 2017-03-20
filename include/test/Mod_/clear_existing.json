@@ -13,7 +13,7 @@
 		{
 			"Mode": "Clear",
 			"File": "test.bin",
-			"Start": "SectorA"
+			"Start": "SectorC.MODLOADER@invisibleup"
 		}
 	]
 }

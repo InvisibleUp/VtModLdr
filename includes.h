@@ -34,13 +34,14 @@
                                    // of existing mods, dependencies, etc.
 #include <archive.h>               // EXTERNAL (http://libarchive.org)
                                    // Archive packer/extractor. Used for
-				   // storing mods for sharing
+                                   // storing mods for sharing
+#include <archive_entry.h>         // Additional functions for libarchive
 				   
 /// Macro and shim declarations
 #define safe_free(ptr) if(ptr){free(ptr); ptr = NULL;}
-#define streq(str1, str2) str1 && str2 && strcmp(str1, str2) == 0
-#define strneq(str1, str2) str1 && str2 && strcmp(str1, str2) != 0
-#define strndef(str1) !str1 || strcmp(str1, "") == 0
+#define streq(str1, str2) (str1 && str2 && (strcmp(str1, str2) == 0))
+#define strneq(str1, str2) (str1 && str2 && (strcmp(str1, str2) != 0))
+#define strndef(str1) (!str1 || (strcmp(str1, "") == 0))
 
 // Switch and manipulate directories (chdir and getcwd)
 #if defined(HAVE_CHDIR) && defined(HAVE_GETCWD) && defined(HAVE_UNISTD_H)
@@ -125,9 +126,9 @@
 // Case-insensitive string comparsion
 #if defined(HAVE_STRINGS_H) && defined(HAVE_STRCASECMP)
 	#include <strings.h>
-	#define strieq(str1, str2) str1 && str2 && strcasecmp(str1, str2) == 0
+	#define strieq(str1, str2) (str1 && str2 && (strcasecmp(str1, str2) == 0))
 #elif defined(HAVE_WINDOWS_H)
-	#define strieq(str1, str2) str1 && str2 && lstrcmpi(str1, str2) == 0
+	#define strieq(str1, str2) (str1 && str2 && (lstrcmpi(str1, str2) == 0))
 #endif
 
 //asprintf shim

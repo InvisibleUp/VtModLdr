@@ -147,6 +147,8 @@ struct VarValue Var_GetValue_SQL(const char *VarUUID){
 		result.uInt16 = (uint16_t)JSON_GetuInt(VarObj, "Value"); break;
 	case uInt8:
 		result.uInt8  = (uint8_t)JSON_GetuInt(VarObj, "Value"); break;	
+    default:
+        result.uInt32 = 0;
 	}
 	
 	//Get UUID, desc, publicType
@@ -737,6 +739,8 @@ BOOL Var_UnPatch(const char *VarUUID, const char *ModPath)
 		result.uInt16 = (uint16_t)JSON_GetuInt(VarObj, "Value"); break;
 	case uInt8:
 		result.uInt8  = (uint8_t)JSON_GetuInt(VarObj, "Value"); break;	
+    default:
+        result.uInt32 = 0;
 	}
 
 	// Update entry. Yeah, this'll make a RePatch, but we need it.

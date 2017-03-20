@@ -45,20 +45,20 @@ enum errCode {
 //#endif
 
 //#ifdef WinMain
-//Structs and variables (only declare once)
+//Structs and variconst char *ModUUID,ables (only declare once)
 struct ModSpace {
 	char *ID;
 	char *PatchID;
-	long FileID;
-	long Start;
-	long End;
+	int FileID;
+	int Start;
+	int End;
 	
 	//No SrcFileID (source file is usually in mod installer)
-	long SrcStart;
-	long SrcEnd;
+	int SrcStart;
+	int SrcEnd;
 	
 	unsigned char *Bytes;
-	long Len;
+	int Len;
 	
 	BOOL Valid; //False if invalid due to errors, etc.
 };
@@ -206,8 +206,9 @@ struct ModSpace Mod_GetPatchInfo(
 struct ModSpace Mod_FindSpace(const struct ModSpace *input, BOOL IsClear);
 struct ModSpace Mod_FindParentSpace(const struct ModSpace *input);
 struct ModSpace Mod_GetSpace(const char *PatchUUID);
-char * Mod_GetSpaceType(const char *PatchUUID);
+char* Mod_GetSpaceType(const char* SpaceUUID);
 BOOL Mod_SpaceExists(const char *PatchUUID);
+struct ModSpace Mod_GetPatch(const char *PatchUUID);
 
 BOOL Mod_MakeSpace(struct ModSpace *input, const char *ModUUID, const char *Type);
 BOOL Mod_RenameSpace(const char *OldID, const char *NewID);

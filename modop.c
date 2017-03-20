@@ -190,7 +190,7 @@ BOOL Mod_CheckConflict(json_t *root)
 			asprintf (&buf, 
 				"The mod you have selected is a newer version of\n"
 				"'%s', which you have already installed.\n"
-				"Do you want to upgrade from version %d to version %d?",
+				"Do you want to upgrade from version %d to version %ld?",
 				name, oldver, ver);
 			if(buf == NULL){
 				safe_free(name);
@@ -205,7 +205,7 @@ BOOL Mod_CheckConflict(json_t *root)
 			asprintf (&buf, 
 				"The mod you have selected is an OLDER version of\n"
 				"'%s', which you have already installed.\n"
-				"Do you want to downgrade from version %d to version %d?",
+				"Do you want to downgrade from version %d to version %ld?",
 				name, oldver, ver);
 			if(buf == NULL){
 				safe_free(name);
@@ -346,7 +346,7 @@ void Mod_CheckDepAlert(json_t *root){
 		unsigned long parVer = JSON_GetuInt(root, "Version");
 		messagelen = asprintf(&message,
 			"The mod you are trying to install,\n"
-			"%s version %d by %s, requires some mods\n"
+			"%s version %ld by %s, requires some mods\n"
 			"that you do not have installed:\n\n",
 			parName, parVer, parAuth
 		);
@@ -401,7 +401,7 @@ void Mod_CheckDepAlert(json_t *root){
 			unsigned long ver = JSON_GetuInt(value, "Version");
 			char *out = NULL;
 			
-			asprintf(&out, "- %s version %d by %s\n", name, ver, auth);
+			asprintf(&out, "- %s version %lu by %s\n", name, ver, auth);
 			if(out == NULL){
 				CURRERROR = errCRIT_MALLOC;
 				safe_free(name);
@@ -609,7 +609,7 @@ BOOL ModOp_Clear(struct ModSpace *input, const char *ModUUID){
 		File_WritePattern(handle, input->Start, pattern, patternlen, input->Len);
 		close(handle);
 	}
-	
+	safe_free(pattern);
 	retval = TRUE;
 	
 ModOp_Clear_Return:
@@ -681,6 +681,7 @@ char * Mod_GetPatchInfo_SetID(const char *eq, unsigned int eqVal)
 
 // Set Start, End, and ID given a Start and End
 // Reusable for SrcStart and SrcEnd
+// Yeah, there's way too many arguments here
 BOOL Mod_GetPatchInfo_SetRange(
 	const char *StartEq, const char *EndEq, const char *PatchID,
 	const char *FilePath, const char *FileName, const char *FileType, const char *ModPath,
@@ -713,17 +714,18 @@ BOOL Mod_GetPatchInfo_SetRange(
 
 		struct ModSpace clone;
 
-		if(!Mod_SpaceExists(StartEq)){
-			AlertMsg(
-				"(Src)End is not defined and (Src)Start is not a reference "
-				"to an existing patch.", "Mod Config Error"
-			);
-		}
-
 		// Set Start to patch's start, End to patch's end, ID to patch's ID
-		clone = Mod_GetSpace(StartEq); // In case of classic style Start
+		clone = Mod_GetPatch(StartEq); // In case of classic style Start
 		*Start = clone.Start;
 		*End = clone.End;
+        
+        if(!clone.Valid){
+			AlertMsg(
+				"End (or SrcEnd) is not defined and Start (or SrcStart) is not a reference "
+				"to an existing patch.", "Mod Config Error"
+			);
+            return FALSE;
+        }
 
 		if(SetID && strndef(PatchID)){
 			*ID = strdup(clone.ID);
@@ -850,7 +852,7 @@ struct ModSpace Mod_GetPatchInfo(
 	input.PatchID = JSON_GetStr(patchCurr, "ID");
 	if(strndef(input.PatchID)){
 		// Make generic PatchID (for sanity's sake)
-		asprintf(&input.PatchID, "Patch-%d.%s", PatchCount, ModUUID);
+		asprintf(&input.PatchID, "Patch-%zu.%s", PatchCount, ModUUID);
 	}
 	input.ID = NULL;
 	 
@@ -881,7 +883,8 @@ struct ModSpace Mod_GetPatchInfo(
 		}
 
 	} else {
-		input.Len = 0;
+		//input.Len = 0;  // Why did I do this?
+        input.Len = input.End - input.Start;
 	}
 	
 	//Make a new file if the file doesn't exist.
@@ -1038,7 +1041,7 @@ struct ModSpace Mod_GetPatchInfo(
 			if(var.type == INVALID){
 				char *msg = NULL;
 				asprintf(
-					&msg, "Variable &s not defined.",
+					&msg, "Variable %s not defined.",
 					ByteStr
 				);
 				AlertMsg(msg, "JSON Error");
@@ -1484,7 +1487,7 @@ BOOL Mod_Install_Minipatch(
 		// Create ModSpace
 		// This memcpy includes pointers to allocated memory!
 		memcpy(&CurrInput, input, sizeof(struct ModSpace)); 
-		asprintf(&CurrInput.ID, "%s/%d", input->ID, j);
+		asprintf(&CurrInput.ID, "%s/%zu", input->ID, j);
 		
 		CurrInput.Start += CurrVarLoc;
 		CurrInput.End = CurrInput.Start + CurrVarLen;
@@ -1547,7 +1550,7 @@ BOOL Mod_Install_Minipatch(
 
 		// Create VarWritePos entries
 		if(strndef(ExprStr)){
-			asprintf(&ExprStr, "% %s", CurrVarStr);
+			asprintf(&ExprStr, "%% %s", CurrVarStr);
 		}
 
 		retval &= Mod_Install_VarRepatchFromExpr(ExprStr, ModPath, PatchNo);
@@ -1719,8 +1722,10 @@ BOOL Mod_InstallPatch(
 	}
 
 Mod_InstallPatch_End:
+    safe_free(Mode);
 	safe_free(input.Bytes);
 	safe_free(input.ID);
+    safe_free(input.PatchID);
 	return retval;
 }
 
@@ -1811,7 +1816,7 @@ BOOL Mod_Install(json_t *root, const char *path)
 		ProgDialog_Update(ProgDialog, 1);
 		if(retval == FALSE || CURRERROR != errNOERR){
 			char *msg = NULL;
-			asprintf(&msg, "Mod configuration error on patch #%d", i + 1);
+			asprintf(&msg, "Mod configuration error on patch #%lu", i + 1);
 			AlertMsg(msg, "JSON error");
 			safe_free(msg);
 			goto Mod_Install_Cleanup;
@@ -2515,7 +2520,6 @@ BOOL Mod_InstallSeries(const char *ModList)
 		root = JSON_Load(jsonPath);
 		
 		//Install mod
-		//TODO: Check return value of this and act accordingly
 		retval = Mod_Install(root, modPath);
 
 		//Increment pointer

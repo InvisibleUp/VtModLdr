@@ -8,8 +8,8 @@
 
 
 // Return TRUE if the given patch UUID is installed, FALSE otherwise
-// VERY SLOW
-BOOL Mod_SpaceExists(const char *PatchUUID)
+// VERY SLOW (??)
+BOOL Mod_SpaceExists(const char *SpaceUUID)
 {
 	sqlite3_stmt *command;
 	const char *query = "SELECT EXISTS(SELECT * FROM Spaces WHERE ID = ?)";
@@ -19,7 +19,7 @@ BOOL Mod_SpaceExists(const char *PatchUUID)
 	if(SQL_HandleErrors(__FILE__, __LINE__, 
 		sqlite3_prepare_v2(CURRDB, query, -1, &command, NULL)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
-		sqlite3_bind_text(command, 1, PatchUUID, -1, SQLITE_STATIC)
+		sqlite3_bind_text(command, 1, SpaceUUID, -1, SQLITE_STATIC)
 	) != 0){
 		CURRERROR = errCRIT_DBASE;
 		return FALSE;
@@ -36,7 +36,7 @@ BOOL Mod_SpaceExists(const char *PatchUUID)
 }
 
 //Returns a ModSpace struct that matches the given space
-struct ModSpace Mod_GetSpace(const char *PatchUUID)
+struct ModSpace Mod_GetSpace(const char *SpaceUUID)
 {
 	struct ModSpace result = {0};
 	json_t *out, *row;
@@ -50,7 +50,7 @@ struct ModSpace Mod_GetSpace(const char *PatchUUID)
 	if(SQL_HandleErrors(__FILE__, __LINE__, 
 		sqlite3_prepare_v2(CURRDB, query, -1, &command, NULL)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
-		sqlite3_bind_text(command, 1, PatchUUID, -1, SQLITE_STATIC)
+		sqlite3_bind_text(command, 1, SpaceUUID, -1, SQLITE_STATIC)
 	) != 0){
 		CURRERROR = errCRIT_DBASE;
 		return result;
@@ -90,7 +90,7 @@ struct ModSpace Mod_GetSpace(const char *PatchUUID)
 }
 
 //Returns the type of the given space
-char * Mod_GetSpaceType(const char *PatchUUID)
+char * Mod_GetSpaceType(const char *SpaceUUID)
 {
 	sqlite3_stmt *command;
 	const char *query = 
@@ -100,7 +100,7 @@ char * Mod_GetSpaceType(const char *PatchUUID)
 	if(SQL_HandleErrors(__FILE__, __LINE__, 
 		sqlite3_prepare_v2(CURRDB, query, -1, &command, NULL)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
-		sqlite3_bind_text(command, 1, PatchUUID, -1, SQLITE_STATIC)
+		sqlite3_bind_text(command, 1, SpaceUUID, -1, SQLITE_STATIC)
 	) != 0){
 		CURRERROR = errCRIT_DBASE;
 		//return strdup("");
@@ -173,6 +173,75 @@ BOOL Mod_RenameSpace(const char *OldID, const char *NewID)
 	return TRUE;
 }
 
+// TODO: Mod_GetPatch: Looks up the space that corresponds to a patch name
+struct ModSpace Mod_GetPatch(const char *PatchUUID)
+{
+    char *StartEq = NULL;
+    char *EndEq = NULL;
+    int PatchStart, PatchEnd;
+    struct ModSpace result = {0};
+	json_t *out, *row;
+	sqlite3_stmt *command;
+	const char *query = 
+		"SELECT * FROM Spaces WHERE Start = ? AND End = ? ORDER BY Version DESC LIMIT 1";
+    
+    // Get start and end value
+    asprintf(&StartEq, "$ Start.%s", PatchUUID);
+    PatchStart = Eq_Parse_Int(StartEq, NULL, FALSE);
+    safe_free(StartEq);
+    
+    asprintf(&EndEq, "$ End.%s", PatchUUID);
+    PatchEnd = Eq_Parse_Int(EndEq, NULL, FALSE);
+    safe_free(EndEq);
+    
+    // Find a space that lines up
+	
+	CURRERROR = errNOERR;
+	result.Valid = FALSE;
+	
+	if(SQL_HandleErrors(__FILE__, __LINE__, 
+		sqlite3_prepare_v2(CURRDB, query, -1, &command, NULL)
+	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
+		sqlite3_bind_int(command, 1, PatchStart) ||
+		sqlite3_bind_int(command, 2, PatchEnd)
+	) != 0){
+		CURRERROR = errCRIT_DBASE;
+		return result;
+	}
+	
+	out = SQL_GetJSON(command);
+	
+	if(SQL_HandleErrors(__FILE__, __LINE__, sqlite3_finalize(command)) != 0){
+		CURRERROR = errCRIT_DBASE; 
+		return result;
+	}
+		
+	//Make sure json output is valid
+	if(!json_is_array(out)){
+		CURRERROR = errCRIT_DBASE;
+		return result;
+	}
+	//Make sure there is a space
+	row = json_array_get(out, 0);
+	if (!json_is_object(row)){
+		return result;	//No error; no space
+	}
+	
+	//Pull the data
+	result.FileID = JSON_GetuInt(row, "File");
+	result.Start = JSON_GetuInt(row, "Start");
+	result.End = JSON_GetuInt(row, "End");
+	result.ID = JSON_GetStr(row, "ID");
+	result.PatchID = JSON_GetStr(row, "PatchID");
+	
+	result.Bytes = NULL;
+	result.Len = result.End - result.Start;
+	result.Valid = TRUE;
+
+	json_decref(out);
+	return result;
+}
+
 // Mod_MakeBranchName
 // Returns an "~x" name variant for new branch, with x being lowest possible
 
@@ -193,7 +262,6 @@ char * Mod_MakeBranchName(const char *PatchUUID)
 {
 	int oldCount = 1;
 	char *result = NULL;
-	int PatchUUIDLen = strlen(PatchUUID);
 	char *BaseOldPtr;
 	
 	//Check for branch chaining
@@ -712,6 +780,7 @@ BOOL Mod_SpliceSpace(
 	){
 		struct ModSpace newSpc;
 		newSpc = Mod_GetSpace(PatchName);
+        safe_free(newSpc.PatchID);
 		newSpc.PatchID = strdup(PatchID);
 
 		Mod_MakeSpace(&newSpc, ModUUID, "Add");

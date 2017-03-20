@@ -23,7 +23,7 @@ int Proto_JSON_CheckOutput(
 			fprintf(
 				stderr,
 				"JSON output bad\n"
-				"(at index %d expected %s but saw %s)\n",
+				"(at index %zu expected %s but saw %s)\n",
 				i, values[i], string
 			);
 			result = FALSE;

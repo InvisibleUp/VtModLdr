@@ -1,9 +1,9 @@
-// Tests if Mod_GetPatchInfo works at all
+// Tests if we can get s valid start and end from just a patch name
 
 #include "../../includes.h"
 #include "../../funcproto.h"
 
-int Test_Mod_GetPatchInfo_Simple()
+int Test_Mod_GetPatchInfo_ClearExisting()
 {
 	json_t *mod, *patcharr, *patch;
     char *modpath;
@@ -12,7 +12,7 @@ int Test_Mod_GetPatchInfo_Simple()
     BOOL result = TRUE;
     
     // Load first patch
-    asprintf(&modpath, "%s/test/Mod_/repl.json", CONFIG.PROGDIR);
+    asprintf(&modpath, "%s/test/Mod_/clear_existing.json", CONFIG.PROGDIR);
     mod = JSON_Load(modpath);
     if(!mod){
         fprintf(stderr, "Could not load mod .json\n");
@@ -30,7 +30,7 @@ int Test_Mod_GetPatchInfo_Simple()
     }
     
     // Get function result
-    out = Mod_GetPatchInfo(patch, modpath, "moduuid", 0);
+    out = Mod_GetPatchInfo(patch, modpath, "clear_existing@test", 0);
     
     // Unload
     safe_free(modpath);
@@ -46,38 +46,30 @@ int Test_Mod_GetPatchInfo_Simple()
         );
         result = FALSE;
     }
-    if(out.Start != 0){
+    if(out.Start != 131072){
         fprintf(
             stderr, 
             "out.Start has incorrect value\n"
             "\t(expected %d, got %d).\n", 
-            0, out.Start
+            131072, out.Start
         );
         result = FALSE;
     }
-    if(out.End != 4){
+    if(out.End != 262144){
         fprintf(
             stderr, 
             "out.End has incorrect value\n"
             "\t(expected %d, got %d).\n", 
-            4, out.End
+            262144, out.End
         );
         result = FALSE;
     }
-    if(out.Len != 4){
+    if(out.Len != 131072){
         fprintf(
             stderr, 
             "out.Len has incorrect value\n"
             "\t(expected %d, got %d).\n", 
-            4, out.Len
-        );
-        result = FALSE;
-    }
-    if(memcmp(out.Bytes, BytesExpected, 4) != 0){
-        fprintf(
-            stderr, 
-            "out.Bytes has incorrect value\n"
-            "Check debugger for details.\n"
+            131072, out.Len
         );
         result = FALSE;
     }
