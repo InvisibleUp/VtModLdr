@@ -12,10 +12,10 @@ char *TESTNAME = NULL;
 
 //Info I/O
 void AlertMsg(const char *Message, const char *Title) {
-	printf("%s\n====================\n\t%s\n\n", Title, Message);
+	printf("\n%s\n====================\n%s\n\n", Title, Message);
 }
 BOOL PromptMsg(const char *Message, const char *Title) {
-	printf("[PROMPT] %s\n====================\n\t%s\n\n", Title, Message);
+	printf("\n[PROMPT] %s\n====================\n%s\n\n", Title, Message);
 	return TRUE;
 }
 
@@ -35,25 +35,25 @@ void ProgDialog_Update(ProgDialog_Handle ProgDialog, int Delta) {
     const int drawCount = ratio * w;
  
     // Show the percentage complete.
-    printf("%s: %3d%% [", ProgDialog->msg, (int)(ratio*100) );
+    //printf("%s: %3d%% [", ProgDialog->msg, (int)(ratio*100) );
     // Show the load bar.
     for (int i = 0; i<drawCount; i++){
-       putchar('=');
+    //   putchar('=');
     }
     for (int i = drawCount; i<w; i++){
-       putchar(' ');
+    //   putchar(' ');
     }
-    putchar(']');
+   // putchar(']');
     
     // ANSI Control codes to go back to the
     // previous line and clear it.
-    fflush(stdout);
-    printf("\r");
+    //fflush(stdout);
+    //printf("\r");
 }
 void ProgDialog_Kill(ProgDialog_Handle ProgDialog) {
     safe_free(ProgDialog->msg);
 	safe_free(ProgDialog);
-    putchar('\n');
+   // putchar('\n');
 }
 
 
@@ -143,7 +143,10 @@ int Interface_EditConfig(void)
     asprintf(&TestBin, "%s/test.bin", LocalConfig->CURRDIR);
 
 	// Create dummy "game", 256 KB in size
-	if (!File_Exists(TestBin, FALSE, FALSE)) {
+	if (
+        !File_Exists(TestBin, FALSE, FALSE) || 
+        !Proto_Checksum("_InitSeq", "test.bin", 0xE20EEA22)
+    ) {
         CURRERROR = errNOERR;
 		File_Delete(TestBin);
         
@@ -160,7 +163,7 @@ int Interface_EditConfig(void)
 	asprintf(&LocalConfig->GAMECONFIG, "%s/games/test.json", LocalConfig->PROGDIR);
 	LocalConfig->GAMEUUID = strdup("testuuid");
 	LocalConfig->GAMEVER = strdup("testver");
-	LocalConfig->RUNPATH = strdup("notepad.exe"); // Because "test.bin" isn't executable...
+	LocalConfig->RUNPATH = strdup("test.bin");
 	LocalConfig->CHECKSUM = 0;
 
 	// Copy all of this to CONFIG

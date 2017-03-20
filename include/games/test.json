@@ -8,7 +8,7 @@
       "Desc": "256KB Null",
       "Size": 262144,
       "ChkSum": "0xE20EEA22",
-      "Mods": ["usedmod@test"]
+      "Mods": ["blacklisted@test"]
     }
   ],
   "KnownSpaces": [

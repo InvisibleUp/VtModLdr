@@ -6,3 +6,14 @@ int Test_CRC32_File_Basic(void);
 int Test__InitSeq(void);
 int Test_streq(void);
 int Test_strieq(void);
+int Test_Mod_CheckCompat_Pass(void);
+int Test_Mod_GetPatchInfo_Simple(void);
+int Test_Mod_CheckConflict_Blacklist(void);
+int Test_Mod_CheckConflict_Pass(void);
+int Test_Mod_CheckCompat_WrongMLVer(void);
+int Test_Mod_CheckDep_Pass(void);
+int Test_Mod_CheckDep_Fail(void);
+int Test_Mod_PatchKeyExists_Pass(void);
+int Test_Mod_PatchKeyExists_Fail(void);
+
+

@@ -114,7 +114,7 @@ extern sqlite3 *CURRDB;                   //Current database holding patches
 
 #endif
 
-//Random helper functions
+// Random helper functions
 int ItoaLen(int input);
 int FtoaLen(double input);
 void ErrNo2ErrCode(void);
@@ -122,10 +122,10 @@ void ErrCracker(enum errCode error);
 char * ForceStrNumeric(const char *input);
 void memcpy_rev(unsigned char *dst, const unsigned char *src, size_t n);
 
-//Interface helper functions
+// Interface helper functions
 int GetUsedSpaceBytes(const char *ModUUID, int File);
 
-//SQLite helper functions
+// SQLite helper functions
 const char * SQL_ColName(sqlite3_stmt * stmt, int col);
 const char * SQL_ColText(sqlite3_stmt * stmt, int col);
 int SQL_GetNum(sqlite3_stmt *stmt);
@@ -136,7 +136,7 @@ int SQL_HandleErrors(const char *filename, int lineno, int SQLResult);
 BOOL SQL_Load(void);
 BOOL SQL_Populate(json_t *GameCfg);
 
-//Jansson helper functions
+// Jansson helper functions
 json_t * JSON_Load(const char *fpath);
 unsigned long JSON_GetuInt(json_t *root, const char *name);
 signed long JSON_GetInt(json_t *root, const char *name);
@@ -145,7 +145,7 @@ char * JSON_GetStr(json_t *root, const char *name);
 int JSON_GetStrLen(json_t *root, const char *name);
 json_t * JSON_FindArrElemByKeyValue(json_t *root, const char *key, json_t *value);
 
-//Generic I/O helper functions
+// Generic I/O helper functions
 BOOL File_Exists(const char *file, BOOL InFolder, BOOL ReadOnly);
 int File_WhitelistIndex(const char *FileName, json_t *whitelist);
 int File_OpenSafe(const char *filename, int flags);
@@ -174,7 +174,7 @@ BOOL File_Create(char *FilePath, int FileLen);
 long filesize(const char *filename);
 #endif
 
-//Mod loading functions
+// Mod loading functions
 BOOL Mod_CheckCompat(json_t *root);
 BOOL Mod_CheckConflict(json_t *root);
 BOOL Mod_CheckDep(json_t *root);
@@ -190,7 +190,7 @@ BOOL Mod_PatchFillUUID(
 BOOL Mod_PatchKeyExists(json_t *patchCurr, const char *KeyName, BOOL ShowAlert);
 BOOL Mod_Verify(json_t *root);
 
-//Mod installation functions
+// Mod installation functions
 int File_GetID(const char *FileName);
 char * File_GetName(int input);
 char * File_GetPath(int input);
@@ -252,7 +252,7 @@ BOOL Mod_AddToDB(json_t *root, const char *path);
 BOOL Mod_ClaimSpace(const char *PatchUUID, const char *ModUUID);
 BOOL Mod_UnClaimSpace(const char *PatchUUID);
 
-//Mod uninstallation functions
+// Mod uninstallation functions
 BOOL Mod_Uninstall_Space(json_t *row, char **LastPatch);
 char * Mod_UninstallSeries(const char *UUID);
 BOOL Mod_Uninstall(const char *ModUUID);
@@ -273,18 +273,18 @@ int Mod_GetVerCount(const char *PatchUUID);
 char * Mod_MakeBranchName(const char *PatchUUID);
 //BOOL Mod_RemoveAllClear();
 
-//PE support functions
+// PE support functions
 BOOL File_IsPE(const char *FilePath);
 int File_PEToOff(const char *FilePath, uint32_t PELoc);
 int File_OffToPE(const char *FilePath, uint32_t FileLoc);
 
-//Mod whole file functions
+// Mod whole file functions
 char * Mod_MangleUUID(const char *UUID);
 
-//Mod removal functions
+// Mod removal functions
 BOOL Mod_Uninstall(const char *ModUUID);
 
-//Profile functions
+// Profile functions
 void Profile_EmptyStruct(struct ProgConfig *LocalConfig);
 char * Profile_GetGameName(const char *cfgpath);
 char * Profile_GetGameVer(const char *cfgpath, struct ProgConfig *LocalConfig);
@@ -307,7 +307,7 @@ BOOL Profile_ChecksumAlert(
 	struct ProgConfig *LocalConfig
 );
 
-//Variable functions
+// Variable functions
 enum VarType Var_GetType(const char *type);
 const char * Var_GetType_Str(enum VarType type);
 enum VarType Var_GetType_SQL(const char *VarUUID);

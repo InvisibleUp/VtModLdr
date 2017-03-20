@@ -60,7 +60,7 @@ int Test_Caller(const char *input){
          printf("[%s] %s (%f s)\n", verdict, "streq", ((float)(end-start))/CLOCKS_PER_SEC); 
          return !result; 
     }
-        if(streq(input, "strieq.c")){ 
+    if(streq(input, "strieq.c")){ 
          clock_t start = clock(); 
          int result = Test_strieq(); 
          clock_t end = clock(); 
@@ -68,6 +68,79 @@ int Test_Caller(const char *input){
          printf("[%s] %s (%f s)\n", verdict, "strieq", ((float)(end-start))/CLOCKS_PER_SEC); 
          return !result; 
     }
+    if(streq(input, "Mod_GetPatchInfo_Simple.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_GetPatchInfo_Simple(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_GetPatchInfo_Simple", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_CheckConflict_Blacklist.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_CheckConflict_Blacklist(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_CheckConflict_Blacklist", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_CheckConflict_Pass.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_CheckConflict_Pass(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_CheckConflict_Pass", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_CheckCompat_WrongMLVer.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_CheckCompat_WrongMLVer(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_CheckCompat_WrongMLVer", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_CheckCompat_Pass.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_CheckCompat_Pass(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_CheckCompat_Pass", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_CheckDep_Pass.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_CheckDep_Pass(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_CheckDep_Pass", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_CheckDep_Fail.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_CheckDep_Fail(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_CheckDep_Fail", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_PatchKeyExists_Pass.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_PatchKeyExists_Pass(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_PatchKeyExists_Pass", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_PatchKeyExists_Fail.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_PatchKeyExists_Fail(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_PatchKeyExists_Fail", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+
 
     printf("[FAIL] %s not found\n", input);
     return 1;

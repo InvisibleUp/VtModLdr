@@ -1,0 +1,23 @@
+{
+	"UUID": "wrongmlver@test",
+	"Name": "wrongmlver",
+	"Info": "This should not install, as it is for the wrong version of the mod loader.",
+	"Author": "InvisibleUp",
+	"Version": 1,
+	"Date": "1970-01-01",
+	"Category": "Test",
+	"ML_Ver": "99.99.99",
+	"GameUUID": "testuuid",
+
+	"patches": [
+		{
+			"Mode": "Repl",
+			"File": "test.bin",
+			"Start": "0",
+			"End": "4",
+			
+			"AddType": "Bytes",
+			"Value": "FFFFFFFF"
+		}
+	]
+}

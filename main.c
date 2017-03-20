@@ -20,7 +20,7 @@ const char PROGSITE[] = "http://github.com/InvisibleUp/SrModLdr/";
 
 // Globals
 struct ProgConfig CONFIG = {0};    // Global program configuration
-extern sqlite3 *CURRDB = NULL;     // Current database holding patches
+sqlite3 *CURRDB = NULL;            // Current database holding patches
 enum errCode CURRERROR = errNOERR; // Current error state
 #ifdef HAVE_WINDOWS_H
 HINSTANCE CURRINSTANCE = NULL;     // (Win32) Current instance
@@ -389,7 +389,8 @@ BOOL SQL_Load(){
     asprintf(&DBPath, "%s/mods.db", CONFIG.CURRDIR);
     
 	if(SQL_HandleErrors(__FILE__, __LINE__, 
-		sqlite3_open(DBPath, &CURRDB) |
+		//sqlite3_open(DBPath, &CURRDB) |
+        sqlite3_open(":memory:", &CURRDB) |
         sqlite3_extended_result_codes(CURRDB, 1)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__,                       
 		sqlite3_exec(CURRDB, 
