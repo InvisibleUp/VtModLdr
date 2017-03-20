@@ -1,0 +1,23 @@
+{
+	"UUID": "repl@test",
+	"Name": "repl",
+	"Info": "Test of REPL operator.",
+	"Author": "InvisibleUp",
+	"Version": 1,
+	"Date": "1970-01-01",
+	"Category": "Test",
+	"ML_Ver": "1.0.0",
+	"GameUUID": "testuuid",
+
+	"patches": [
+		{
+			"Mode": "Repl",
+			"File": "test.bin",
+			"Start": "0",
+			"End": "4",
+			
+			"AddType": "Bytes",
+			"Value": "FFFFFFFF"
+		}
+	]
+}

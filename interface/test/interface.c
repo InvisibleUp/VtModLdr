@@ -20,14 +20,40 @@ BOOL PromptMsg(const char *Message, const char *Title) {
 }
 
 ProgDialog_Handle ProgDialog_Init(int max, const char *label) {
-	return calloc(1, sizeof(int));
+	ProgDialog_Handle retval = calloc(1, sizeof(struct ProgStruct));
+    retval->max = max;
+    retval->val = 0;
+    retval->msg = strdup(label);
 }
 void ProgDialog_Update(ProgDialog_Handle ProgDialog, int Delta) {
 	if (!ProgDialog) { return; }
-	*ProgDialog += Delta;
+	ProgDialog->val += Delta;
+ 
+    // Calculuate the ratio of complete-to-incomplete.
+    const int w = 70;
+    const double ratio = ProgDialog->val/(double)ProgDialog->max;
+    const int drawCount = ratio * w;
+ 
+    // Show the percentage complete.
+    printf("%s: %3d%% [", ProgDialog->msg, (int)(ratio*100) );
+    // Show the load bar.
+    for (int i = 0; i<drawCount; i++){
+       putchar('=');
+    }
+    for (int i = drawCount; i<w; i++){
+       putchar(' ');
+    }
+    putchar(']');
+    
+    // ANSI Control codes to go back to the
+    // previous line and clear it.
+    fflush(stdout);
+    printf("\r");
 }
 void ProgDialog_Kill(ProgDialog_Handle ProgDialog) {
+    safe_free(ProgDialog->msg);
 	safe_free(ProgDialog);
+    putchar('\n');
 }
 
 

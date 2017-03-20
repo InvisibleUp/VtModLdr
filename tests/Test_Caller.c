@@ -52,6 +52,22 @@ int Test_Caller(const char *input){
          printf("[%s] %s (%f s)\n", verdict, "_InitSeq", ((float)(end-start))/CLOCKS_PER_SEC); 
          return !result; 
     }
+    if(streq(input, "streq.c")){ 
+         clock_t start = clock(); 
+         int result = Test_streq(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "streq", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+        if(streq(input, "strieq.c")){ 
+         clock_t start = clock(); 
+         int result = Test_strieq(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "strieq", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
 
     printf("[FAIL] %s not found\n", input);
     return 1;

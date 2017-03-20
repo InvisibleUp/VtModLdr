@@ -5,7 +5,6 @@
 
 int Proto_DBase_OK() {
 	json_t *out;
-	int result = 0;
 
 	// Define key/value pairs
     // (Turns out order isn't constant. :/ )

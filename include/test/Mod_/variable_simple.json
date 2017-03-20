@@ -1,0 +1,20 @@
+{
+	"UUID": "variable_simple@test",
+	"Name": "variable_simple",
+	"Info": "Test of adding variables.",
+	"Author": "InvisibleUp",
+	"Version": 1,
+	"Date": "1970-01-01",
+	"Category": "Test",
+	"ML_Ver": "1.0.0",
+	"GameUUID": "testuuid",
+
+    "variables": [
+        {
+            "UUID": "var.mod3@test",
+            "Type": "uInt8",
+            "Default": 42,
+            "Info": "Test Variable"
+        }
+    ]
+}

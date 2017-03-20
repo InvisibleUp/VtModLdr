@@ -121,18 +121,18 @@ int File_MakeEntry(const char *FileName){
 	struct ModSpace ClearSpc = {0};
 	
 	CURRERROR = errNOERR;
-	
-	//Get size of file
-	asprintf(&FilePath, "%s/%s", CONFIG.CURRDIR, FileName);
-	FileLen = filesize(FilePath);
-	safe_free(FilePath);
-	
-	//If :memory:, create virtual file with 2GB max length
+    
+    //If :memory:, create virtual file with 2GB max length
 	//(2GB is the default max address space for 32-bit Windows programs)
 	if(streq(FileName, ":memory:")){
-		FileLen = LONG_MAX;
-	}
-	
+		FileLen = INT_MAX;
+	} else {
+        //Get size of file
+        asprintf(&FilePath, "%s/%s", CONFIG.CURRDIR, FileName);
+        FileLen = filesize(FilePath);
+        safe_free(FilePath);
+    }
+
 	//If the file doesn't exist, there's an obvious mod configuration error
 	if(FileLen <= 0){
 		CURRERROR = errWNG_MODCFG;

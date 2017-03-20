@@ -393,6 +393,10 @@ BOOL SQL_Load(){
         sqlite3_extended_result_codes(CURRDB, 1)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__,                       
 		sqlite3_exec(CURRDB, 
+            "PRAGMA application_id = 2695796694;" // Randomly generated number
+            "PRAGMA user_version = 1;"
+            "PRAGMA journal_mode=MEMORY;" // If it crashes, you're in a pickle anyways...
+            "PRAGMA mmap_size=16777216;"
 			"CREATE TABLE IF NOT EXISTS 'Spaces'( "
 			"`ID`           	TEXT NOT NULL,"
 			"`Version`  		INTEGER NOT NULL,"
@@ -403,9 +407,7 @@ BOOL SQL_Load(){
 			"`Start`        	INTEGER NOT NULL,"
 			"`End`          	INTEGER NOT NULL,"
 			"`Len`          	INTEGER,"
-			"`UsedBy`       	TEXT );",
-			NULL, NULL, NULL
-		) | sqlite3_exec(CURRDB,
+			"`UsedBy`       	TEXT );"
 			"CREATE TABLE IF NOT EXISTS `Mods` ("
 			"`UUID`				TEXT NOT NULL UNIQUE PRIMARY KEY,"
 			"`Name`				TEXT NOT NULL,"
@@ -414,25 +416,17 @@ BOOL SQL_Load(){
 			"`Version`        	INTEGER NOT NULL,"
 			"`Date`         	TEXT,"
 			"`Category`        	TEXT,"
-			"`Path`         	TEXT);",
-			NULL, NULL, NULL
-		) | sqlite3_exec(CURRDB,
+			"`Path`         	TEXT);"
 			"CREATE TABLE IF NOT EXISTS `Dependencies` ("
 			"`ParentUUID`     	TEXT NOT NULL,"
-			"`ChildUUID`      	TEXT NOT NULL);",
-			NULL, NULL, NULL
-		) | sqlite3_exec(CURRDB,
+			"`ChildUUID`      	TEXT NOT NULL);"
 			"CREATE TABLE IF NOT EXISTS `Revert` ("
 			"`PatchUUID`		TEXT NOT NULL UNIQUE," // NOT Space ID
 			"`Start`            INTEGER NOT NULL,"
-			"`OldBytes`			TEXT NOT NULL);",
-			NULL, NULL, NULL
-		) | sqlite3_exec(CURRDB, 
+			"`OldBytes`			TEXT NOT NULL);"
 			"CREATE TABLE IF NOT EXISTS `Files` ("
 			"`ID`				INTEGER NOT NULL UNIQUE,"
-			"`Path`				TEXT NOT NULL);",
-			NULL, NULL, NULL
-		) | sqlite3_exec(CURRDB,
+			"`Path`				TEXT NOT NULL);"
 			"CREATE TABLE IF NOT EXISTS `Variables` ("
 			"`UUID`				TEXT NOT NULL UNIQUE,"
 			"`Mod`				TEXT NOT NULL,"
@@ -440,22 +434,17 @@ BOOL SQL_Load(){
 			"`PublicType`   	TEXT,"
 			"`Info`		    	TEXT,"
 			"`Value`        	BLOB,"
-			"`Persist`	    	INTEGER);",
-//			"`LivePatchable`	INTEGER);",
-			NULL, NULL, NULL
-		) | sqlite3_exec(CURRDB,
+			"`Persist`	    	INTEGER);"
 			"CREATE TABLE IF NOT EXISTS `VarList` ("
 			"`Var`          	TEXT NOT NULL,"
 			"`Number`       	INTEGER NOT NULL,"
-			"`Label`        	TEXT NOT NULL);",
-			NULL, NULL, NULL
-		) | sqlite3_exec(CURRDB,
+			"`Label`        	TEXT NOT NULL);"
 			"CREATE TABLE IF NOT EXISTS `VarRepatch` ("
 			"`Var`              TEXT NOT NULL,"
 			"`ModPath`          TEXT NOT NULL,"
 			"`Patch`            INTEGER NOT NULL,"
 			"`OldVal`           INTEGER NOT NULL);",
-			NULL, NULL, NULL
+            NULL, NULL, NULL
 		)
 	) != 0){
         safe_free(DBPath);
@@ -475,7 +464,7 @@ BOOL SQL_Load(){
 			//Variable does not exist; make it!
 			varCurr.type = uInt32;
 			varCurr.UUID = strdup("Version.MODLOADER@invisibleup");
-			varCurr.desc = strdup("Version of mod loader (InvisibleUp's fork)");
+			varCurr.desc = strdup("Version of mod loader");
 			varCurr.publicType = strdup("");
 			varCurr.mod = strdup("");
 			varCurr.uInt32 = PROGVERSION;

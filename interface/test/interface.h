@@ -1,3 +1,4 @@
+#pragma once
 // Public functions (expected to be implemented by other interface modes)
 // Testing stub interface
 
@@ -7,12 +8,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+    
+struct ProgStruct {
+    int max;
+    int val;
+    char *msg;
+};
 
 //Info I/O
 void AlertMsg (const char *Message, const char *Title);
 BOOL PromptMsg(const char *Message, const char *Title);
 
-typedef int * ProgDialog_Handle;
+typedef struct ProgStruct * ProgDialog_Handle;
 ProgDialog_Handle ProgDialog_Init(int max, const char *label);
 void ProgDialog_Update(ProgDialog_Handle ProgDialog, int Delta);
 void ProgDialog_Kill(ProgDialog_Handle ProgDialog);
