@@ -1075,21 +1075,24 @@ INT_PTR CALLBACK Dlg_Profile(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPar
 				memset(LocalConfig, 0, sizeof(struct ProgConfig));
 			}
 
-			//Get path to a profile
+			// Get path to a profile
 			char *fpath = SaveFile(
 				hwnd,
 				"SrModLdr Profile (.json)\0*.json\0\0",
 				"json"
 			);
 			
-			//If no path given, quit
+			// If no path given, quit
 			if(strndef(fpath)){ break; }
 			
-			//Record path
+			// Record path
 			LocalConfig->PROGDIR = strdup(CONFIG.PROGDIR);
 			LocalConfig->CURRPROF = fpath;
+            
+            // Save new profile as window property
+            SetProp(hwnd, "LocalConfig", LocalConfig);
 			
-			//Reload dialog
+			// Reload dialog
 			SendMessage(hwnd, WMX_RELOADPROF, 0, 0);
 			break;
 		}

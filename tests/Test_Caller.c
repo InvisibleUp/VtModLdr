@@ -156,6 +156,15 @@ int Test_Caller(const char *input){
          printf("[%s] %s (%f s)\n", verdict, "Mod_GetPatchInfo_ClearExisting", ((float)(end-start))/CLOCKS_PER_SEC); 
          return !result; 
     }
+    if(streq(input, "Mod_InstallPatch_ClearExisting.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_InstallPatch_ClearExisting(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_InstallPatch_ClearExisting", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+
 
 
     printf("[FAIL] %s not found\n", input);

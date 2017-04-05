@@ -35,10 +35,11 @@ int Test_Mod_InstallPatch_Repl()
     // Test if function succeeded
     if(result == FALSE){
         fprintf(stderr, "Function Mod_InstallPatch returned FALSE.\n");
+        return result;
     }
     
     // Test if checksum is OK
-    result &= Proto_Checksum("Mod_Bin", "repl.bin", 0xFFFFFFFF);
+    result = Proto_Checksum("test.bin", 0xFFFFFFFF, TRUE);
     
     // Test if Start.(whatever) variable exists
     

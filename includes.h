@@ -9,20 +9,21 @@
 #endif
 
 // Linux defines
-#define _GNU_SOURCE
+#ifndef _GNU_SOURCE
+    #define _GNU_SOURCE
+#endif
 
 // Includes and macros
 #include <stdlib.h>                // Malloc and other useful things
 #include <errno.h>                 // Catching and explaining errors
 #include <fcntl.h>                 // Flags for open() (O_RDWR, O_RDONLY)
-
 #include <stdint.h>                // Variable type sizes
 #include <string.h>                // String length/copy/etc.
 #include <ctype.h>                 // isdigit(), etc.
-#include <stdio.h>                 // sscanf, asprintf on POSIX systems
+#include <stdio.h>                 // sscanf, asprintf, etc.
 #include <limits.h>                // LONG_MAX, etc.
 #include "funcproto.h"             // Prototypes for all cross-plat functions
-#include "shims/crc32/crc32.h"     // CRC32 function. Not actually a shim yet.
+#include "shims/crc32/crc32.h"     // CRC32 function.
 #include "shims/zip/extract.h"     // Funct. to extract a ZIP
 #include SRMODLDR_INTERFACE_PATH
 
@@ -98,11 +99,15 @@
 #endif
 	
 // Define Win32-style booleans if not present
-#ifndef BOOL
+#ifndef HAVE_STDBOOL_H
 	#include <stdbool.h>
 	#define BOOL bool
 	#define TRUE true
 	#define FALSE false
+#else
+    #define BOOL int
+    #define TRUE 1
+    #define FALSE 0
 #endif
 
 // Define a MAX_PATH for non-Win32 systems

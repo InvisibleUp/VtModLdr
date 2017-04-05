@@ -7,16 +7,9 @@
 int Test__InitSeq()
 {
 	int result;
-	const char *testname = "_InitSeq";
-	
-    // Test config file checksum
-	result = Proto_Checksum(testname, "test_profile.json", 0xCD4DFDB5);
-	if (result == FALSE) { 
-        return FALSE; 
-    }
 
 	// Test dummy file checksum
-	result = Proto_Checksum(testname, "test.bin", 0xE20EEA22);
+	result = Proto_Checksum("test.bin", 0xE20EEA22, TRUE);
 	if (result == FALSE) { 
         return FALSE; 
     }

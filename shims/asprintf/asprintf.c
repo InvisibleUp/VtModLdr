@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include "../../includes.h"
 
 #ifndef VA_COPY

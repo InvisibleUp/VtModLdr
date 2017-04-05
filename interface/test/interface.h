@@ -41,7 +41,7 @@ int Interface_RunProgram(void);	// Run program in profile
 /* Generic testing prototypes */
 int Test_Caller(const char *testname);
 int Proto_Checksum(
-	const char *testname, const char *filename, unsigned int expected
+	const char *filename, unsigned int expected, BOOL DispError
 );
 int Proto_DBase_OK(void);
 json_t * Proto_DBase_ToJSON(const char *query);

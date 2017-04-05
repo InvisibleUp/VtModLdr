@@ -18,3 +18,4 @@ int Test_Mod_PatchKeyExists_Pass(void);
 int Test_Mod_PatchKeyExists_Fail(void);
 int Test_Mod_InstallPatch_Repl();
 int Test_Mod_GetPatchInfo_ClearExisting();
+int Test_Mod_InstallPatch_ClearExisting();

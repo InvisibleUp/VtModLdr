@@ -173,7 +173,7 @@ BOOL Mod_RenameSpace(const char *OldID, const char *NewID)
 	return TRUE;
 }
 
-// TODO: Mod_GetPatch: Looks up the space that corresponds to a patch name
+// Mod_GetPatch: Looks up the space that corresponds to a patch name
 struct ModSpace Mod_GetPatch(const char *PatchUUID)
 {
     char *StartEq = NULL;

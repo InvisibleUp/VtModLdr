@@ -145,7 +145,7 @@ int Interface_EditConfig(void)
 	// Create dummy "game", 256 KB in size
 	if (
         !File_Exists(TestBin, FALSE, FALSE) || 
-        !Proto_Checksum("_InitSeq", "test.bin", 0xE20EEA22)
+        !Proto_Checksum("test.bin", 0xE20EEA22, FALSE)
     ) {
         CURRERROR = errNOERR;
 		File_Delete(TestBin);
@@ -154,6 +154,7 @@ int Interface_EditConfig(void)
 			puts("Could not create test.bin!");
 			ErrCracker(CURRERROR);
             safe_free(TestBin);
+            Profile_EmptyStruct(LocalConfig);
 			return 1;
 		}
 	}

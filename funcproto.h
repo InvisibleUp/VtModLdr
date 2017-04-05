@@ -5,11 +5,15 @@
 
 // Can't use "includes.h" from here in C++ mode
 // Thankfully this is the only typedef needed
-#ifndef BOOL
+#ifndef HAVE_STDBOOL_H
 	#include <stdbool.h>
 	#define BOOL bool
 	#define TRUE true
 	#define FALSE false
+#else
+    #define BOOL int
+    #define TRUE 1
+    #define FALSE 0
 #endif
 
 #ifdef __cplusplus

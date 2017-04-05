@@ -588,6 +588,7 @@ BOOL ModOp_Clear(struct ModSpace *input, const char *ModUUID){
 	} 
 	
 	if (CURRERROR != errNOERR) {
+        safe_free(pattern);
 		return retval;
 	}
 
@@ -1963,7 +1964,7 @@ void Mod_FindDepAlert(const char *ModUUID){
 		safe_free(ver);
 		safe_free(auth);
 	}
-	//TODO: Prompt user yes/no, then uninstall in order (not in this funct.)
+	
 	AlertMsg(errormsg, "Other Mods Preventing Uninstallation");
 	safe_free(errormsg);
 	json_decref(out);

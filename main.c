@@ -317,9 +317,9 @@ char * Bytes2Hex(unsigned const char *bytes, int len)
 	}
 	for(i = 0; i < len; i++){
 		// Not using asprintf for speed reasons
-		char temp[8];
-		snprintf(temp, 7, "%02X", bytes[i]);
-		strncat(val, temp, len-strlen(val));
+		//char temp[8];
+		snprintf(val + (len*4), 7, "%02X", bytes[i]);
+		//strcat(val, temp);
 	}
 	return val;
 }
