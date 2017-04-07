@@ -2032,11 +2032,11 @@ BOOL ModOp_UnSpace(json_t *input, BOOL Revert)
 	CURRERROR = errNOERR;
 	
 	if(Revert){
-		json_t *out, *row;
 		sqlite3_stmt *command;
-		const char *query1 = "SELECT OldBytes, Start FROM Revert WHERE PatchUUID = ? ";
+		const char *query1 = "SELECT OldBytes FROM Revert WHERE PatchUUID = ?";
+        const char *query3 = "SELECT Start FROM Revert WHERE PatchUUID = ?";
 		                     //"ORDER BY Version DESC LIMIT 1;";
-		const char *query2 = "DELETE FROM Revert WHERE PatchUUID = ? ";
+		const char *query2 = "DELETE FROM Revert WHERE PatchUUID = ?";
 		                     /*"AND Version = ( "
 		                         "SELECT MAX(Version) FROM Revert "
 		                         "WHERE PatchUUID = ? "
@@ -2044,7 +2044,6 @@ BOOL ModOp_UnSpace(json_t *input, BOOL Revert)
 
 		int filehandle, offset, datalen;
 		unsigned char *bytes;
-		char *ByteStr;
 		char *FileName = File_GetName(JSON_GetuInt(input, "File"));
 		char *FilePath = NULL;
 
@@ -2060,7 +2059,7 @@ BOOL ModOp_UnSpace(json_t *input, BOOL Revert)
 			return FALSE;
 		} // Failure.
 
-		// Retrieve data
+		// Retrieve raw bytes
 		if(SQL_HandleErrors(__FILE__, __LINE__, 
 			sqlite3_prepare_v2(CURRDB, query1, -1, &command, NULL)
 		) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
@@ -2070,37 +2069,35 @@ BOOL ModOp_UnSpace(json_t *input, BOOL Revert)
 			return FALSE;
 		}
 
-		out = SQL_GetJSON(command);
-		row = json_array_get(out, 0);
-		if(!row){
+        bytes = SQL_GetBlob(command, &datalen);
+		
+		if(SQL_HandleErrors(__FILE__, __LINE__, sqlite3_finalize(command)) != 0){
 			CURRERROR = errCRIT_DBASE;
-			return FALSE;
-		}
-
-		ByteStr = JSON_GetStr(row, "OldBytes");
-		offset = JSON_GetInt(row, "Start");
-		json_decref(out);
-
-
-		if(strndef(ByteStr)){
-			return FALSE;
-		}
-
-		if(CURRERROR != errNOERR){
-			safe_free(ByteStr);
 			return FALSE;
 		}
 		
-		if(SQL_HandleErrors(__FILE__, __LINE__, sqlite3_finalize(command)) != 0){
-			safe_free(ByteStr);
+		
+		// Retrive Start
+		
+        if(SQL_HandleErrors(__FILE__, __LINE__, 
+			sqlite3_prepare_v2(CURRDB, query3, -1, &command, NULL)
+		) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
+			sqlite3_bind_text(command, 1, PatchUUID, -1, SQLITE_STATIC)
+		) != 0){
 			CURRERROR = errCRIT_DBASE;
 			return FALSE;
 		}
-		command = NULL;
+
+        offset = SQL_GetNum(command);
+		
+		if(SQL_HandleErrors(__FILE__, __LINE__, sqlite3_finalize(command)) != 0){
+			CURRERROR = errCRIT_DBASE;
+			return FALSE;
+		}
 
 		// Convert data string from hex to raw bytes
-		bytes = Hex2Bytes(ByteStr, &datalen);
-		safe_free(ByteStr);
+		//bytes = Hex2Bytes(ByteStr, &datalen);
+		//safe_free(ByteStr);
 		
 		// Restore the backup if it exists and the target file doesn't
 		// (Are we still doing this?)

@@ -42,6 +42,6 @@ LIST(APPEND srmodldr_SOURCES
 )
 
 # Add everything in the /tests/ folder
-FILE(GLOB_RECURSE test_src "${CMAKE_SOURCE_DIR}/tests/*.c" "${CMAKE_SOURCE_DIR}/tests/*.h" "${CMAKE_SOURCE_DIR}/tests/*.cpp")
-LIST(APPEND srmodldr_SOURCES ${test_src})
+#FILE(GLOB_RECURSE test_src "${CMAKE_SOURCE_DIR}/tests/*.c" "${CMAKE_SOURCE_DIR}/tests/*.h" "${CMAKE_SOURCE_DIR}/tests/*.cpp")
+#LIST(APPEND srmodldr_SOURCES ${test_src})
 

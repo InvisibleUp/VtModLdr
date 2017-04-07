@@ -190,6 +190,39 @@ ENDIF(NOT HAVE_ASPRINTF)
 # Include interface-specific build files
 include(interface/${SRMODLDR_INTERFACE}/CMakeLists.txt)
 
+
+## Tests?
+if(${SRMODLDR_INTERFACE} STREQUAL "test")
+	FILE(GLOB_RECURSE test_src "${CMAKE_SOURCE_DIR}/tests/*.c" "${CMAKE_SOURCE_DIR}/tests/*.cpp")
+	FILE(GLOB_RECURSE test_header "${CMAKE_SOURCE_DIR}/tests/*.h")
+	LIST(APPEND srmodldr_SOURCES ${test_src} ${test_header})
+
+	ENABLE_TESTING()
+
+	FOREACH(test ${test_src})
+		GET_FILENAME_COMPONENT(testname ${test} NAME)
+		IF(${testname} STREQUAL "Test_Caller.c")
+			continue()
+		ENDIF()
+		ADD_TEST(
+			NAME ${testname}
+			COMMAND SrModLdr ${testname}
+			WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+		)
+	ENDFOREACH(test)
+	
+	# Add post-build Test_Caller reparser
+#	add_custom_command(
+#		TARGET SrModLdr
+#		PRE_BUILD
+#		COMMAND ${CMAKE_SOURCE_DIR}/tests/genmapping_c_wrapper.bat
+#		COMMAND ${CMAKE_SOURCE_DIR}/tests/genmapping_h_wrapper.bat
+#		WORKING_DIRECTORY  ${CMAKE_SOURCE_DIR}/tests/
+#		VERBATIM
+#	)
+
+endif()
+
 ### Actually build
 IF(WIN32 AND NOT CYGWIN)
 	add_executable(
@@ -238,37 +271,6 @@ if(MSVC)
 	if(${SRMODLDR_INTERFACE} STREQUAL "test")
 		set_target_properties(SrModLdr PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE")
 	endif()
-endif()
-
-## Tests?
-if(${SRMODLDR_INTERFACE} STREQUAL "test")
-	FILE(GLOB_RECURSE test_src "${CMAKE_SOURCE_DIR}/tests/*.c" "${CMAKE_SOURCE_DIR}/tests/*.cpp")
-	LIST(APPEND srmodldr_SOURCES ${test_src})
-
-	ENABLE_TESTING()
-
-	FOREACH(test ${test_src})
-		GET_FILENAME_COMPONENT(testname ${test} NAME)
-		IF(${testname} STREQUAL "Test_Caller.c")
-			break()
-		ENDIF()
-		ADD_TEST(
-			NAME ${testname}
-			COMMAND SrModLdr ${testname} 
-			WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-		)
-	ENDFOREACH(test)
-	
-	# Add post-build Test_Caller reparser
-#	add_custom_command(
-#		TARGET SrModLdr
-#		PRE_BUILD
-#		COMMAND ${CMAKE_SOURCE_DIR}/tests/genmapping_c_wrapper.bat
-#		COMMAND ${CMAKE_SOURCE_DIR}/tests/genmapping_h_wrapper.bat
-#		WORKING_DIRECTORY  ${CMAKE_SOURCE_DIR}/tests/
-#		VERBATIM
-#	)
-
 endif()
 
 ### Create installer (because why not?)

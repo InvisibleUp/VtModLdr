@@ -911,8 +911,8 @@ BOOL Mod_CreateRevertEntry(const struct ModSpace *input)
 	handle = -1;
 	
 	//Convert to hex string
-	OldBytes = Bytes2Hex(OldBytesRaw, input->Len);
-	safe_free(OldBytesRaw);
+	//OldBytes = Bytes2Hex(OldBytesRaw, input->Len);
+	//safe_free(OldBytesRaw);
 	
 	//Construct & Execute SQL Statement
 	if(SQL_HandleErrors(__FILE__, __LINE__, 
@@ -920,12 +920,14 @@ BOOL Mod_CreateRevertEntry(const struct ModSpace *input)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
 		sqlite3_bind_text(command, 1, input->PatchID, -1, SQLITE_STATIC) ||
 		sqlite3_bind_int(command, 2, input->Start) ||
-		sqlite3_bind_text(command, 3, OldBytes, -1, SQLITE_STATIC)
+		sqlite3_bind_blob(command, 3, OldBytesRaw, input->Len, SQLITE_STATIC)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, sqlite3_step(command)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, sqlite3_finalize(command)) != 0){
 		CURRERROR = errCRIT_DBASE;
 		goto Mod_CreateRevertEntry_Return;
 	}
+	
+	safe_free(OldBytesRaw);
 	command = NULL;
 	retval = TRUE;
 	

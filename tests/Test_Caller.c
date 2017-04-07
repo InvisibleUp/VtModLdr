@@ -164,7 +164,78 @@ int Test_Caller(const char *input){
          printf("[%s] %s (%f s)\n", verdict, "Mod_InstallPatch_ClearExisting", ((float)(end-start))/CLOCKS_PER_SEC); 
          return !result; 
     }
-
+    if(streq(input, "Var_MakeEntry.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Var_MakeEntry(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Var_MakeEntry", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Var_Exists.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Var_Exists(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Var_Exists", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Var_GetType.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Var_GetType(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Var_GetType", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Var_GetValue_SQL.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Var_GetValue_SQL(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Var_GetValue_SQL", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Var_GetType_SQL.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Var_GetType_SQL(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Var_GetType_SQL", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Var_UpdateEntry.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Var_UpdateEntry(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Var_UpdateEntry", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_Install_UnitTest_repl.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_Install_UnitTest_repl(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_Install_UnitTest_repl", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_Install_UnitTest_clear_existing.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_Install_UnitTest_clear_existing(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_Install_UnitTest_clear_existing", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
+    if(streq(input, "Mod_Install_UnitTest_variable_simple.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_Install_UnitTest_variable_simple(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_Install_UnitTest_variable_simple", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
 
 
     printf("[FAIL] %s not found\n", input);

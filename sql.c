@@ -9,7 +9,8 @@
 ///SQLite helper Functions
 //////////////////////////
 
-//I'm sorry, I'm not typing all this out every time.
+// I'm sorry, I'm not typing all this out every time.
+// This is required, or else I get a segfault.
 /* 
  * ===  FUNCTION  ======================================================================
  *         Name:  SQL_ColName
@@ -155,9 +156,35 @@ char * SQL_GetStr(sqlite3_stmt *stmt)
 	
         errorNo = sqlite3_step(stmt);
         if (errorNo == SQLITE_ROW) {
-		result = strdup(SQL_ColText(stmt, 0));
+            result = strdup(SQL_ColText(stmt, 0));
         } else if (errorNo == SQLITE_DONE){
-		//result = strdup("");
+			return NULL;
+	} else {
+		CURRERROR = errCRIT_DBASE;
+	}
+	
+	sqlite3_reset(stmt);
+	return result;
+}
+
+unsigned char * SQL_GetBlob(sqlite3_stmt *stmt, int *noBytes)
+{
+    int errorNo;
+	unsigned char *result = NULL;
+    const char *result_tmp = NULL;
+	CURRERROR = errNOERR;
+	
+        errorNo = sqlite3_step(stmt);
+        if (errorNo == SQLITE_ROW) {
+            result_tmp = sqlite3_column_blob(stmt, 0);
+            sqlite3_reset(stmt);
+            *noBytes = sqlite3_column_bytes(stmt, 0);
+            
+            // Make copy
+            result = malloc(*noBytes);
+            memcpy(result, result_tmp, *noBytes);
+            
+        } else if (errorNo == SQLITE_DONE){
 			return NULL;
 	} else {
 		CURRERROR = errCRIT_DBASE;

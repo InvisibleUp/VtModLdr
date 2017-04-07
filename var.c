@@ -823,7 +823,7 @@ BOOL Var_MakeEntry(struct VarValue result)
 	// Check if variable already exists
 	if(Var_GetValue_SQL(result.UUID).type != INVALID){
 		return Var_UpdateEntry(result);
-	}	
+	}
 		
 	// Compose and execute an insert command.
 	{	

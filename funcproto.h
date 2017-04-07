@@ -135,6 +135,7 @@ const char * SQL_ColText(sqlite3_stmt * stmt, int col);
 int SQL_GetNum(sqlite3_stmt *stmt);
 json_t * SQL_GetJSON(sqlite3_stmt *stmt);
 char * SQL_GetStr(sqlite3_stmt *stmt);
+unsigned char * SQL_GetBlob(sqlite3_stmt *stmt, int *noBytes);
 int SQL_HandleErrors(const char *filename, int lineno, int SQLResult);
 
 BOOL SQL_Load(void);

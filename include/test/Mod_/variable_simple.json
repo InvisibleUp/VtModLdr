@@ -11,7 +11,7 @@
 
     "variables": [
         {
-            "UUID": "var.mod3@test",
+            "UUID": "var.variable_simple@test",
             "Type": "uInt8",
             "Default": 42,
             "Info": "Test Variable"
