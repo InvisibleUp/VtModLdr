@@ -40,8 +40,10 @@ int Test_Mod_InstallPatch_Repl()
     
     // Test if checksum is OK
     result = Proto_Checksum("test.bin", 0xFFFFFFFF, TRUE);
-    
-    // Test if Start.(whatever) variable exists
+    if(result == FALSE){
+        fprintf(stderr, "Checksum error on test.bin");
+        return FALSE;
+    }
     
     return result;
 }

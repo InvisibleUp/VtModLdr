@@ -1700,7 +1700,7 @@ BOOL Mod_InstallPatch(
 		varCurr.publicType = strdup("");
 		varCurr.mod = strdup(ModUUID);
 		varCurr.persist = FALSE;
-		varCurr.uInt32 = File_OffToPE(FilePath, input.Start);
+		varCurr.uInt32 = File_OffToPE(FilePath, input.End);
 
 		Var_MakeEntry(varCurr);
 		Var_Destructor(&varCurr);

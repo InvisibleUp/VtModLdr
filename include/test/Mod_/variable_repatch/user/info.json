@@ -1,0 +1,27 @@
+{
+  "UUID": "variable_repatch_user@test",
+  "Name": "Variable Repatch (User)",
+  "Info": "This just increments UserCount.",
+  "Author": "InvisibleUp",
+  "Version": 1,
+  "Date": "1970-01-01",
+  "Category": "Test",
+  "ML_Ver": "1.0.0",
+  "Game": "testuuid",
+  "dependencies": [
+    {
+      "Name": "Variable Repatch (Host)",
+      "Version": 1,
+      "Author": "InvisibleUp",
+      "UUID": "variable_repatch_host@test"
+    }
+  ],
+  "variables": [
+    {
+      "UUID": "UserCount.variable_repatch_host@test",
+      "Type": "uInt8",
+      "Update": 1,
+      "Info": "Number of mods using this host"
+    }
+  ]
+}

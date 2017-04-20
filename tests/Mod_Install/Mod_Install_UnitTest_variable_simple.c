@@ -25,27 +25,24 @@ int Test_Mod_Install_UnitTest_variable_simple()
     
     // Test if checksum is unchanged
     if(!Proto_Checksum("test.bin", 0xE20EEA22, TRUE)){
-        fprintf(stderr, "Checksum error on test.bin");
+        fprintf(stderr, "Checksum error on test.bin\n");
         return FALSE;
     }
     
     // Check if new variable exists and is expected value
     if(!Var_Exists("var.variable_simple@test")){
-        fprintf(stderr, "Variable var.variable_simple@test not found");
+        fprintf(stderr, "Variable var.variable_simple@test not found\n");
         return FALSE;
     }
     
     {
         struct VarValue var = Var_GetValue_SQL("var.variable_simple@test");
         if(var.uInt8 != 42){
-            fprintf(stderr, "Value does not match! (Found %d, expected %d)", var.uInt8, 42);
+            fprintf(stderr, "Value does not match! (Found %d, expected %d)\n", var.uInt8, 42);
             return FALSE;
         }
         Var_Destructor(&var);
     }
     
     return TRUE;
-    
-    
-    return result;
 }

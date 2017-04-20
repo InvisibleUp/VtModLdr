@@ -28,3 +28,4 @@ int Test_Var_UpdateEntry();
 int Test_Mod_Install_UnitTest_repl();
 int Test_Mod_Install_UnitTest_clear_existing();
 int Test_Mod_Install_UnitTest_variable_simple();
+int Test_Mod_Install_UnitTest_VarRepatch();

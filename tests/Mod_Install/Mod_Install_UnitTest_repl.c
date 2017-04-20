@@ -25,8 +25,6 @@ int Test_Mod_Install_UnitTest_repl()
     
     // Test if checksum is OK
     result = Proto_Checksum("test.bin", 0xFFFFFFFF, TRUE);
-    
-    // Test if Start.(whatever) variable exists
-    
+
     return result;
 }

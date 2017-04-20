@@ -42,6 +42,10 @@ int Test_Mod_InstallPatch_ClearExisting()
     
     // Test if checksum is OK
     result = Proto_Checksum("test.bin", 0x89AE2423, TRUE);
+    if(result == FALSE){
+        fprintf(stderr, "Checksum error on test.bin");
+        return FALSE;
+    }
     
     return result;
 }

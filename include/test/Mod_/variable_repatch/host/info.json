@@ -1,0 +1,29 @@
+{
+  "UUID": "variable_repatch_host@test",
+  "Name": "Variable Repatch (Host)",
+  "Info": "This alters it's contents depending on the value of UserCount.",
+  "Author": "InvisibleUp",
+  "Version": 1,
+  "Date": "1970-01-01",
+  "Category": "Test",
+  "ML_Ver": "1.0.0",
+  "Game": "testuuid",
+  "variables": [
+    {
+      "UUID": "UserCount.variable_repatch_host@test",
+      "Type": "uInt8",
+      "Default": 0,
+      "Info": "Number of mods using this host"
+    }
+  ],
+  "patches": [
+    {
+      "ID": "ClearSpot.variable_repatch_host@test",
+      "Mode": "CLEAR",
+      "File": "test.bin",
+      "Start": 0,
+      "End": "( $ UserCount.variable_repatch_host@test ) * 4",
+      "Len": "( $ UserCount.variable_repatch_host@test ) * 4"
+    }
+  ]
+}

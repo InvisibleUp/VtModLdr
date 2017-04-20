@@ -236,6 +236,14 @@ int Test_Caller(const char *input){
          printf("[%s] %s (%f s)\n", verdict, "Mod_Install_UnitTest_variable_simple", ((float)(end-start))/CLOCKS_PER_SEC); 
          return !result; 
     }
+    if(streq(input, "Mod_Install_UnitTest_VarRepatch.c")){ 
+         clock_t start = clock(); 
+         int result = Test_Mod_Install_UnitTest_VarRepatch(); 
+         clock_t end = clock(); 
+         const char *verdict = result ? "PASS" : "FAIL"; 
+         printf("[%s] %s (%f s)\n", verdict, "Mod_Install_UnitTest_VarRepatch", ((float)(end-start))/CLOCKS_PER_SEC); 
+         return !result; 
+    }
 
 
     printf("[FAIL] %s not found\n", input);

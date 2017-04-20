@@ -640,8 +640,6 @@ BOOL Var_RePatch(const char *VarUUID) {
 			return FALSE;
 		}
 
-		//AlertMsg("We're repatching!", "DEBUG");
-
 		// Uninstall patch
 		{
 			size_t i;
