@@ -1068,6 +1068,8 @@ INT_PTR CALLBACK Dlg_Profile(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPar
 		//Generate new, blank profile
 		case IDC_CFGPROFNEW:{
 			struct ProgConfig *LocalConfig = GetProp(hwnd, "LocalConfig");
+			char *fpath = NULL;
+
 			if (LocalConfig) {
 				Profile_EmptyStruct(LocalConfig);
 			} else {
@@ -1076,7 +1078,7 @@ INT_PTR CALLBACK Dlg_Profile(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPar
 			}
 
 			// Get path to a profile
-			char *fpath = SaveFile(
+			fpath = SaveFile(
 				hwnd,
 				"SrModLdr Profile (.json)\0*.json\0\0",
 				"json"

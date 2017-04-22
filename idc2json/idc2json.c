@@ -48,7 +48,6 @@ int SegArrayAlloc = 8;
 char *EXEName = NULL;
 
 /* Main functions that do the things that have to be done */
-//Something, something full life consequences.
 
 //Check if address exists. Returns index in array
 int addrLoc(int startAddr){
@@ -172,7 +171,7 @@ void dumpArray(){
 				"Name", DataArray[i].name,
 				"Comment", DataArray[i].comment,
 				"Start", DataArray[i].start,
-				"End", DataArray[i].end,
+				"End", DataArray[i].end - 1,
 				"File", file
 			);
 		} else {
@@ -180,7 +179,7 @@ void dumpArray(){
 				"{ss si si ss}",
 				"Name", DataArray[i].name,
 				"Start", DataArray[i].start,
-				"End", DataArray[i].end,
+				"End", DataArray[i].end - 1,
 				"File", file
 			);
 		}

@@ -8,7 +8,6 @@ int Test_Mod_GetPatchInfo_ClearExisting()
 	json_t *mod, *patcharr, *patch;
     char *modpath;
     struct ModSpace out;
-    const char BytesExpected[] = {0xFF, 0xFF, 0xFF, 0xFF};
     BOOL result = TRUE;
     
     // Load first patch

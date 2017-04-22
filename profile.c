@@ -207,9 +207,10 @@ BOOL Profile_ChecksumAlert(
 ){
 	char *GameEXE = Profile_GetGameEXE(LocalConfig->GAMECONFIG);
 	char *GamePath = NULL;
-	asprintf(&GamePath, "%s/%s", LocalConfig->CURRDIR, GameEXE);
+	unsigned int checksum;
 
-	unsigned int checksum = crc32File(GamePath);
+	asprintf(&GamePath, "%s/%s", LocalConfig->CURRDIR, GameEXE);
+	checksum = crc32File(GamePath);
 	safe_free(GamePath);
 
 	if (LocalConfig->CHECKSUM != checksum && LocalConfig->CHECKSUM != 0) {

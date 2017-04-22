@@ -164,7 +164,7 @@ int File_MakeEntry(const char *FileName){
 	if(streq(FileName, ":memory:")){
 		ID = 0;
 	} else {
-		ID = IDCount + 1;;
+		ID = IDCount + 1;
 	}
 	
 	//Insert new ID into database

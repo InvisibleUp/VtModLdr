@@ -1,45 +1,4 @@
-{
-  "GameName": "Sonic R (PC, 1998)",
-  "GameUUID": "SonicR_PC1998",
-  "GameEXE": "SONICR.EXE",
-  "Whitelist": [
-    {
-      "Name": "vanilla",
-      "Desc": "Vanilla EXE (Expert Software, probably others)",
-      "Size": 1263104,
-      "ChkSum": "0x75AB6A2E",
-      "Mods": []
-    },
-    {
-      "Name": "cpu",
-      "Desc": "Vanilla EXE with CPU bugfix only",
-      "Size": 1263104,
-      "ChkSum": "0x922323E1",
-      "Mods": [
-        "cpufix@invisibleup"
-      ]
-    },
-    {
-      "Name": "nocd",
-      "Desc": "Vanilla EXE with No-CD patch",
-      "Size": 1263104,
-      "ChkSum": "0x341828E8",
-      "Mods": [
-        "nocd@invisibleup"
-      ]
-    },
-    {
-      "Name": "semivanilla",
-      "Desc": "Vanilla EXE with CPU bugfix and No-CD patch",
-      "Size": 1263104,
-      "ChkSum": "0xD3906127",
-      "Mods": [
-        "cpufix@invisibleup",
-        "nocd@invisibleup"
-      ]
-    }
-  ],
-  "KnownSpaces": [
+[
     {
         "Name": "___begtext",
         "Start": 4259843,
@@ -5404,4 +5363,3 @@
         "File": ":memory:"
     }
 ]
-}

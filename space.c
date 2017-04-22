@@ -178,67 +178,60 @@ struct ModSpace Mod_GetPatch(const char *PatchUUID)
 {
     char *StartEq = NULL;
     char *EndEq = NULL;
-    int PatchStart, PatchEnd;
+	char *FilePath = NULL;
+
     struct ModSpace result = {0};
-	json_t *out, *row;
+	struct ModSpace input = {0};
 	sqlite3_stmt *command;
-	const char *query = 
-		"SELECT * FROM Spaces WHERE Start = ? AND End = ? ORDER BY Version DESC LIMIT 1";
-    
-    // Get start and end value
-    asprintf(&StartEq, "$ Start.%s", PatchUUID);
-    PatchStart = Eq_Parse_Int(StartEq, NULL, FALSE);
-    safe_free(StartEq);
-    
-    asprintf(&EndEq, "$ End.%s", PatchUUID);
-    PatchEnd = Eq_Parse_Int(EndEq, NULL, FALSE);
-    safe_free(EndEq);
-    
-    // Find a space that lines up
-	
-	CURRERROR = errNOERR;
-	result.Valid = FALSE;
-	
+
+	const char *query1 = "SELECT File FROM Spaces WHERE PatchID = ?";
+
+	// Get applicable file path
 	if(SQL_HandleErrors(__FILE__, __LINE__, 
-		sqlite3_prepare_v2(CURRDB, query, -1, &command, NULL)
+		sqlite3_prepare_v2(CURRDB, query1, -1, &command, NULL)
 	) != 0 || SQL_HandleErrors(__FILE__, __LINE__, 
-		sqlite3_bind_int(command, 1, PatchStart) ||
-		sqlite3_bind_int(command, 2, PatchEnd)
+		sqlite3_bind_text(command, 1, PatchUUID, -1, SQLITE_STATIC)
 	) != 0){
 		CURRERROR = errCRIT_DBASE;
 		return result;
 	}
 	
-	out = SQL_GetJSON(command);
+	input.FileID = SQL_GetNum(command);
 	
 	if(SQL_HandleErrors(__FILE__, __LINE__, sqlite3_finalize(command)) != 0){
 		CURRERROR = errCRIT_DBASE; 
 		return result;
 	}
-		
-	//Make sure json output is valid
-	if(!json_is_array(out)){
+
+	FilePath = File_GetPath(input.FileID);
+	if(strndef(FilePath)){
+		// This is a database error, because this sould be a valid path
 		CURRERROR = errCRIT_DBASE;
 		return result;
 	}
-	//Make sure there is a space
-	row = json_array_get(out, 0);
-	if (!json_is_object(row)){
-		return result;	//No error; no space
-	}
-	
-	//Pull the data
-	result.FileID = JSON_GetuInt(row, "File");
-	result.Start = JSON_GetuInt(row, "Start");
-	result.End = JSON_GetuInt(row, "End");
-	result.ID = JSON_GetStr(row, "ID");
-	result.PatchID = JSON_GetStr(row, "PatchID");
-	
-	result.Bytes = NULL;
-	result.Len = result.End - result.Start;
-	result.Valid = TRUE;
+    
+    // Get start and end value
+	// Fuzzing a little because sometimes we're off by one
+	// and I can't figure out why.
+    asprintf(&StartEq, "$ Start.%s", PatchUUID);
+    input.Start = Eq_Parse_Int(StartEq, NULL, FALSE);
+    input.Start = File_PEToOff(FilePath, input.Start) + 1;
+    safe_free(StartEq);
+    
+    asprintf(&EndEq, "$ End.%s", PatchUUID);
+    input.End = Eq_Parse_Int(EndEq, NULL, FALSE);
+    input.End = File_PEToOff(FilePath, input.End) - 1;
+    safe_free(EndEq);
+    
+    // Find a space that lines up
+	input.Len = input.End - input.Start;
+	input.Valid = FALSE;
+	input.PatchID = strdup(PatchUUID);
 
-	json_decref(out);
+	result = Mod_FindSpace(&input, FALSE);
+
+	safe_free(input.PatchID);
+	safe_free(FilePath);
 	return result;
 }
 
@@ -788,6 +781,16 @@ BOOL Mod_SpliceSpace(
 		safe_free(newSpc.Bytes);
 		safe_free(newSpc.ID);
 		safe_free(newSpc.PatchID);
+	}
+
+	// We just need direct access to a space created by the mod loader,
+	// so just replace that space!
+	if(
+		child->Start == parent->Start &&
+		child->End == parent->End &&
+		streq(ModUUID, "MODLOADER@invisibleup")
+	){
+		Mod_MakeSpace(parent, ModUUID, "Add");
 	}
 
 	safe_free(parentName);

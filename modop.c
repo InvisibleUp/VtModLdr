@@ -853,7 +853,7 @@ struct ModSpace Mod_GetPatchInfo(
 	input.PatchID = JSON_GetStr(patchCurr, "ID");
 	if(strndef(input.PatchID)){
 		// Make generic PatchID (for sanity's sake)
-		asprintf(&input.PatchID, "Patch-%zu.%s", PatchCount, ModUUID);
+		asprintf(&input.PatchID, "Patch-%lu.%s", (unsigned long) PatchCount, ModUUID);
 	}
 	input.ID = NULL;
 	 
@@ -944,9 +944,9 @@ struct ModSpace Mod_GetPatchInfo(
 		}
 
 		// Set length if needed
-		if(input.Len == 0){
+		//if(input.Len == 0){
 			input.Len = input.SrcEnd - input.SrcStart;
-		}
+		//}
 		
 		// Allocate space for bytes
 		input.Bytes = calloc(input.Len, sizeof(char));
@@ -1330,6 +1330,7 @@ BOOL Mod_Verify(json_t *root)
 	return TRUE;
 }
 
+// Creates a VarRepatch entry from an expression
 BOOL Mod_Install_VarRepatchFromExpr(
 	const char *ExprStr,
 	const char *ModPath,

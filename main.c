@@ -663,78 +663,84 @@ BOOL SQL_Populate(json_t *GameCfg)
 *                formatted string so we can thunk WinMain() to main()
 * =====================================================================================
 */
-LPSTR* CommandLineToArgvA(LPSTR lpCmdLine, INT *pNumArgs)
+PCHAR* CommandLineToArgvA(PCHAR CmdLine, int* _argc)
 {
-	int retval;
-	retval = MultiByteToWideChar(CP_ACP, MB_ERR_INVALID_CHARS, lpCmdLine, -1, NULL, 0);
-	if (!SUCCEEDED(retval))
-		return NULL;
+    PCHAR* argv;
+    PCHAR  _argv;
+    ULONG   len;
+    ULONG   argc;
+    CHAR   a;
+    ULONG   i, j;
 
-	LPWSTR lpWideCharStr = (LPWSTR)malloc(retval * sizeof(WCHAR));
-	if (lpWideCharStr == NULL)
-		return NULL;
+    BOOLEAN  in_QM;
+    BOOLEAN  in_TEXT;
+    BOOLEAN  in_SPACE;
 
-	retval = MultiByteToWideChar(CP_ACP, MB_ERR_INVALID_CHARS, lpCmdLine, -1, lpWideCharStr, retval);
-	if (!SUCCEEDED(retval))
-	{
-		free(lpWideCharStr);
-		return NULL;
-	}
+    len = strlen(CmdLine);
+    i = ((len+2)/2)*sizeof(PVOID) + sizeof(PVOID);
 
-	int numArgs;
-	LPWSTR* args;
-	args = CommandLineToArgvW(lpWideCharStr, &numArgs);
-	free(lpWideCharStr);
-	if (args == NULL)
-		return NULL;
+    argv = (PCHAR*)GlobalAlloc(GMEM_FIXED,
+        i + (len+2)*sizeof(CHAR));
 
-	int storage = numArgs * sizeof(LPSTR);
-	for (int i = 0; i < numArgs; ++i)
-	{
-		BOOL lpUsedDefaultChar = FALSE;
-		retval = WideCharToMultiByte(CP_ACP, 0, args[i], -1, NULL, 0, NULL, &lpUsedDefaultChar);
-		if (!SUCCEEDED(retval))
-		{
-			LocalFree(args);
-			return NULL;
-		}
+    _argv = (PCHAR)(((PUCHAR)argv)+i);
 
-		storage += retval;
-	}
+    argc = 0;
+    argv[argc] = _argv;
+    in_QM = FALSE;
+    in_TEXT = FALSE;
+    in_SPACE = TRUE;
+    i = 0;
+    j = 0;
 
-	LPSTR* result = (LPSTR*)LocalAlloc(LMEM_FIXED, storage);
-	if (result == NULL)
-	{
-		LocalFree(args);
-		return NULL;
-	}
+    while( a = CmdLine[i] ) {
+        if(in_QM) {
+            if(a == '\"') {
+                in_QM = FALSE;
+            } else {
+                _argv[j] = a;
+                j++;
+            }
+        } else {
+            switch(a) {
+            case '\"':
+                in_QM = TRUE;
+                in_TEXT = TRUE;
+                if(in_SPACE) {
+                    argv[argc] = _argv+j;
+                    argc++;
+                }
+                in_SPACE = FALSE;
+                break;
+            case ' ':
+            case '\t':
+            case '\n':
+            case '\r':
+                if(in_TEXT) {
+                    _argv[j] = '\0';
+                    j++;
+                }
+                in_TEXT = FALSE;
+                in_SPACE = TRUE;
+                break;
+            default:
+                in_TEXT = TRUE;
+                if(in_SPACE) {
+                    argv[argc] = _argv+j;
+                    argc++;
+                }
+                _argv[j] = a;
+                j++;
+                in_SPACE = FALSE;
+                break;
+            }
+        }
+        i++;
+    }
+    _argv[j] = '\0';
+    argv[argc] = NULL;
 
-	int bufLen = storage - numArgs * sizeof(LPSTR);
-	LPSTR buffer = ((LPSTR)result) + numArgs * sizeof(LPSTR);
-	for (int i = 0; i < numArgs; ++i)
-	{
-		if (bufLen <= 0) {
-			*pNumArgs = 0;
-			return NULL;
-		}
-		BOOL lpUsedDefaultChar = FALSE;
-		retval = WideCharToMultiByte(CP_ACP, 0, args[i], -1, buffer, bufLen, NULL, &lpUsedDefaultChar);
-		if (!SUCCEEDED(retval))
-		{
-			LocalFree(result);
-			LocalFree(args);
-			return NULL;
-		}
-
-		result[i] = buffer;
-		buffer += retval;
-		bufLen -= retval;
-	}
-
-	LocalFree(args);
-
-	*pNumArgs = numArgs;
-	return result;
+    (*_argc) = argc;
+    return argv;
 }
 #endif
 
@@ -825,7 +831,7 @@ int main(int argc, char *argv[])
 int WINAPI WinMain (HINSTANCE hInst, HINSTANCE hPrevInst, char * cmdParam, int cmdShow)
 {
 	int argc;
-	LPCWSTR argv;
+	char **argv;
 
 	CURRINSTANCE = hInst;
 	argv = CommandLineToArgvA(GetCommandLine(), &argc);

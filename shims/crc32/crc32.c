@@ -124,14 +124,14 @@ unsigned long crc32File(const char *filename)
 	
 	#ifdef _WIN32
 		HANDLE File2CRC = INVALID_HANDLE_VALUE;
-		HANDLE File2CRC_INVALID_FILE_SIZEMap = NULL;
+		HANDLE File2CRC_Map = NULL;
 	
 		/* Open file */	
 		File2CRC = CreateFile(filename, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if(File2CRC == INVALID_HANDLE_VALUE){return 0UL;}
 		
 		/* Get file size */
-		len = filesize(File2CRC, NULL);
+		len = GetFileSize(File2CRC, NULL);
 		if(len == INVALID_FILE_SIZE){CloseHandle(File2CRC); return 0UL;}
 		
 		/* Map to memory */

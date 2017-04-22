@@ -5,11 +5,13 @@
 
 // Can't use "includes.h" from here in C++ mode
 // Thankfully this is the only typedef needed
-#ifndef HAVE_STDBOOL_H
+#ifdef HAVE_STDBOOL_H
 	#include <stdbool.h>
 	#define BOOL bool
 	#define TRUE true
 	#define FALSE false
+#elif defined(WINVER)
+	#include <windows.h>
 #else
     #define BOOL int
     #define TRUE 1

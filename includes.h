@@ -1,11 +1,13 @@
 #pragma once
 // Windows defines
-#ifdef WINVER
+#ifdef WIN32
 	#undef WINVER
 	#undef _WIN32_IE
 
 	#define WINVER 0x0400
-	#define _WIN32_IE 0x0000 //No IE requirement
+	#define _WIN32_IE 0x0300 //No IE requirement
+
+	#include <windows.h>
 #endif
 
 // Linux defines
@@ -57,13 +59,14 @@
 #endif
 
 // Linux IO compatibility
-/*#ifdef HAVE_IO_H
+#ifdef HAVE_IO_H
 	#include <io.h>                    // Standardized I/O library. (Portable!)
 #elif HAVE_SYS_IO_H
 	#include <sys/io.h>
-#else
-	#error "No functions for io.h style file IO found. Cannot compile."
-#endif*/
+//#else
+//	#error "No functions for io.h style file IO found. Cannot compile."
+//  (Turns out we can get around this on Linux. So this error message doesn't need to exist...)
+#endif
 
 #ifdef HAVE_SYS_SENDFILE_H
 #include <sys/sendfile.h>
@@ -93,18 +96,21 @@
 
 
 #ifndef MIN
-#ifdef HAVE_SYS_PARAM_H
-	#include <sys/param.h>
-#endif
+	#ifdef HAVE_SYS_PARAM_H
+		#include <sys/param.h>
+	#elif defined(HAVE_WINDOWS_H)
+		#define MIN min
+		#define MAX max
+	#endif
 #endif
 	
 // Define Win32-style booleans if not present
-#ifndef HAVE_STDBOOL_H
+#ifdef HAVE_STDBOOL_H
 	#include <stdbool.h>
 	#define BOOL bool
 	#define TRUE true
 	#define FALSE false
-#else
+#elif !defined(BOOL)
     #define BOOL int
     #define TRUE 1
     #define FALSE 0
