@@ -1,0 +1,23 @@
+The PE Conversion Plan (because I need to think this out now for some reason)
+
+Things that MUST be in offset format:
+	- Address given to File_WriteBytes
+	- Bounds checking in Mod_GetPatchInfo
+
+Things that MUST be in PE format:
+	- Address-as-patch
+	- (future) Relocation information
+
+Things that COULD be either:
+	- Space start/end address
+
+---
+
+The problem: We may (in future versions) shuffle around the PE headers. We want to combat this if possible.
+             But at the same time non-PE files don't have PE offsets.
+
+Let's always store PE space start/end address in PE format.
+This *should* solve the shuffling problem (compare against the original backup?).
+
+Check if the file is a PE, and if so, convert to File offset. Reconvert to PE for storage.
+(But what if it's out of range?) In that case, store as file offset.

@@ -1,0 +1,11 @@
+ {
+	"UUID": "InitHook@invisibleup",
+	"Name": "Program Init Hook",
+	"Info": "Gives a spot during program initilization for multiple custom functions to be called in succession.",
+	"Author": "InvisibleUp",
+	"Version": 1,
+	"Date": "2016-12-16",
+	"Category": "Code",
+	"ML_Ver": "1.0.0",
+	"Game": "SonicR_PC_1998"
+}

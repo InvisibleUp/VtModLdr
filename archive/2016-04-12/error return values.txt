@@ -1,0 +1,20 @@
+ERROR RETURN VALUES
+=======================
+
+BOOL
+	False: Error
+
+INT
+	(if negative values not allowed)
+		-1: Error
+	(otherwise)
+		Always check error var
+
+CHAR*
+	"": Error (check error var, just in case)
+
+STRUCT VarValue
+	RETVAL.type == INVALID: Error
+
+STRUCT ModSpace
+	Just always check.

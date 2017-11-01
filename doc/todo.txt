@@ -1,7 +1,0 @@
-More stuff to do:
-
-X If 'End' is missing, parse 'Start' as patch UUID.
-- Fix Profile game version display
-X Add a "New File" space type.
-- Ensure variables work as expected when changed.
-- Revert versioning is possibly broken.

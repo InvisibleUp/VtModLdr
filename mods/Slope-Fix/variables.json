@@ -1,0 +1,16 @@
+ [
+    {
+        "UUID": "SlopeFix_SpeedCutoff",
+        "Type": "uInt32",
+        "Default": "1000",
+        "Desc": "Cutoff speed for slope physics",
+        "PublicType": "Numeric"
+    },
+    {
+        "UUID": "SlopeFix_AngleCutoff",
+        "Type": "Int32",
+        "Default": "0x0FFFFF138",
+        "Desc": "Cutoff angle for slope physics",
+        "PublicType": "Numeric"
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "ID": "HookAddr.DebugTextViewer@invisibleup",
+        "Comment": "Address for InitHook to start execution",
+        "Mode": "Repl",
+        "AddType": "Expression",
+        "File": "SONICR.EXE",
+        "Start": "( $ Start.HookAddr.InitHook@invisibleup ) + ( ( $ HookCount.InitHook@invisibleup - 1 ) * 4 )",
+        "End": "( $ Start.HookAddr.InitHook@invisibleup ) + ( $ HookCount.InitHook@invisibleup * 4 )",
+        "Len": "4",
+        "Value": "$ Start.DebugText_Init.DebugTextViewer@invisibleup"
+    }
+]

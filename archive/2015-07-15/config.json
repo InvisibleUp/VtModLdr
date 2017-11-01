@@ -1,0 +1,26 @@
+{
+	"LastProfile": 0,
+	"Profiles":[
+		{
+			"Name": "Semi-Vanilla",
+			"Game": "SonicR",
+			"Path": "C:\\Documents and Settings\\InvisibleUp\\Desktop\\test folder\\"
+		},
+		{
+			"Name": "Sonic Redux",
+			"Game": "SonicR",
+			"Path": "C:\\Documents and Settings\\InvisibleUp\\Desktop\\sonicredux\\"
+		}
+	],
+	
+	"Games":[
+		{
+			"ID": "SonicR",
+			"Path": ".\\games\\sonicr.json"
+		},
+		{
+			"ID": "SonicRNet",
+			"Path": ".\\games\sonicrnet.json"
+		}
+	]
+}

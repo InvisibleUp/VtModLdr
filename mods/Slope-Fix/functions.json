@@ -1,0 +1,12 @@
+[
+    {
+        "Name": "CharDiff_SlopeFix",
+        "File": "SONICR.EXE",
+        "Start": "0x00485E20",
+        "End": "0x00485E69",
+        "Repl": 1,
+        "Src": {
+            "as": "src.asm"
+        }
+    }
+]

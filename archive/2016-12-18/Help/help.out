@@ -1,0 +1,76 @@
+\BOOKMARK [1][-]{section.1}{Using the Mod Loader}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{System Requirements}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Creating a Profile}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{The Mod Loader Interface}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Installing Mods}{section.1}% 5
+\BOOKMARK [2][-]{subsection.1.5}{Configuring Mods}{section.1}% 6
+\BOOKMARK [2][-]{subsection.1.6}{Removing Mods}{section.1}% 7
+\BOOKMARK [1][-]{section.2}{How the Loader Works}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{How Mods are Stored}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.2}{Introduction to Spaces}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{Patches}{section.2}% 11
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Operations}{subsection.2.3}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Whole-File Operations}{subsection.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.4}{Variables}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.5}{Installation and Removal}{section.2}% 15
+\BOOKMARK [1][-]{section.3}{Creating Mods}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Files}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.2}{Expressions}{section.3}% 18
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Numbers and References}{subsection.3.2}% 19
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Operators}{subsection.3.2}% 20
+\BOOKMARK [2][-]{subsection.3.3}{Defining Mod Metadata}{section.3}% 21
+\BOOKMARK [3][-]{subsubsection.3.3.1}{UUID}{subsection.3.3}% 22
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Name}{subsection.3.3}% 23
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Info}{subsection.3.3}% 24
+\BOOKMARK [3][-]{subsubsection.3.3.4}{Author}{subsection.3.3}% 25
+\BOOKMARK [3][-]{subsubsection.3.3.5}{Version}{subsection.3.3}% 26
+\BOOKMARK [3][-]{subsubsection.3.3.6}{Date}{subsection.3.3}% 27
+\BOOKMARK [3][-]{subsubsection.3.3.7}{Category}{subsection.3.3}% 28
+\BOOKMARK [3][-]{subsubsection.3.3.8}{ML\137Ver}{subsection.3.3}% 29
+\BOOKMARK [2][-]{subsection.3.4}{Dependencies}{section.3}% 30
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Name}{subsection.3.4}% 31
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Version}{subsection.3.4}% 32
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Author}{subsection.3.4}% 33
+\BOOKMARK [3][-]{subsubsection.3.4.4}{UUID}{subsection.3.4}% 34
+\BOOKMARK [2][-]{subsection.3.5}{Variables}{section.3}% 35
+\BOOKMARK [3][-]{subsubsection.3.5.1}{UUID}{subsection.3.5}% 36
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Info}{subsection.3.5}% 37
+\BOOKMARK [3][-]{subsubsection.3.5.3}{Default}{subsection.3.5}% 38
+\BOOKMARK [3][-]{subsubsection.3.5.4}{Update}{subsection.3.5}% 39
+\BOOKMARK [3][-]{subsubsection.3.5.5}{Type}{subsection.3.5}% 40
+\BOOKMARK [3][-]{subsubsection.3.5.6}{PublicType}{subsection.3.5}% 41
+\BOOKMARK [3][-]{subsubsection.3.5.7}{PublicList Array}{subsection.3.5}% 42
+\BOOKMARK [3][-]{subsubsection.3.5.8}{Predefined Variables}{subsection.3.5}% 43
+\BOOKMARK [2][-]{subsection.3.6}{Patches}{section.3}% 44
+\BOOKMARK [3][-]{subsubsection.3.6.1}{ID}{subsection.3.6}% 45
+\BOOKMARK [3][-]{subsubsection.3.6.2}{Mode}{subsection.3.6}% 46
+\BOOKMARK [3][-]{subsubsection.3.6.3}{File}{subsection.3.6}% 47
+\BOOKMARK [3][-]{subsubsection.3.6.4}{FileType}{subsection.3.6}% 48
+\BOOKMARK [3][-]{subsubsection.3.6.5}{Start}{subsection.3.6}% 49
+\BOOKMARK [3][-]{subsubsection.3.6.6}{End}{subsection.3.6}% 50
+\BOOKMARK [3][-]{subsubsection.3.6.7}{Len}{subsection.3.6}% 51
+\BOOKMARK [3][-]{subsubsection.3.6.8}{SrcFile}{subsection.3.6}% 52
+\BOOKMARK [3][-]{subsubsection.3.6.9}{SrcFileType}{subsection.3.6}% 53
+\BOOKMARK [3][-]{subsubsection.3.6.10}{SrcFileLoc}{subsection.3.6}% 54
+\BOOKMARK [3][-]{subsubsection.3.6.11}{SrcStart}{subsection.3.6}% 55
+\BOOKMARK [3][-]{subsubsection.3.6.12}{SrcEnd}{subsection.3.6}% 56
+\BOOKMARK [3][-]{subsubsection.3.6.13}{AddType}{subsection.3.6}% 57
+\BOOKMARK [3][-]{subsubsection.3.6.14}{Value}{subsection.3.6}% 58
+\BOOKMARK [3][-]{subsubsection.3.6.15}{Comment}{subsection.3.6}% 59
+\BOOKMARK [3][-]{subsubsection.3.6.16}{Condition}{subsection.3.6}% 60
+\BOOKMARK [3][-]{subsubsection.3.6.17}{MiniPatches}{subsection.3.6}% 61
+\BOOKMARK [1][-]{section.4}{Adding Support for Additional Games}{}% 62
+\BOOKMARK [2][-]{subsection.4.1}{Game Metadata}{section.4}% 63
+\BOOKMARK [3][-]{subsubsection.4.1.1}{GameName}{subsection.4.1}% 64
+\BOOKMARK [3][-]{subsubsection.4.1.2}{GameUUID}{subsection.4.1}% 65
+\BOOKMARK [3][-]{subsubsection.4.1.3}{GameEXE}{subsection.4.1}% 66
+\BOOKMARK [2][-]{subsection.4.2}{Whitelist}{section.4}% 67
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Desc}{subsection.4.2}% 68
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Size}{subsection.4.2}% 69
+\BOOKMARK [3][-]{subsubsection.4.2.3}{ChkSum}{subsection.4.2}% 70
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Mods}{subsection.4.2}% 71
+\BOOKMARK [2][-]{subsection.4.3}{KnownSpaces}{section.4}% 72
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Start}{subsection.4.3}% 73
+\BOOKMARK [3][-]{subsubsection.4.3.2}{End}{subsection.4.3}% 74
+\BOOKMARK [3][-]{subsubsection.4.3.3}{File}{subsection.4.3}% 75
+\BOOKMARK [3][-]{subsubsection.4.3.4}{UUID}{subsection.4.3}% 76

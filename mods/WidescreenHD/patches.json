@@ -1,0 +1,68 @@
+[
+    {
+        "Comment": "Reserve donor memory address to keep UI elements centered",
+        "Mode": "REPL",
+        "File": "SONICR.EXE",
+        "FileType": "PE",
+        "Start": "0x4CC18D",
+        "End": "0x4CC192",
+        "Len": 5,
+        "AddType": "Bytes",
+        "Value": "9090909090"
+    },
+    {
+        "Comment": "Remove 640px width cap on screen selector",
+        "Mode": "REPL",
+        "File": "SONICR.EXE",
+        "FileType": "PE",
+        "Start": "0x492210",
+        "End": "0x492217",
+        "Len": 7,
+        "AddType": "Bytes",
+        "Value": "90909090909090"
+    },
+    {
+        "Comment": "Write VirtualLeftBound to donor address",
+        "Mode": "REPL",
+        "File": "SONICR.EXE",
+        "FileType": "PE",
+        "Start": "0x4CC0F7",
+        "End": "0x4CC0F8",
+        "Len": 1,
+        "AddType": "Bytes",
+        "Value": "FC"
+    },
+    {
+        "Comment": "Read VirtualLeftBound from donor address in Direct3D 2D renderer",
+        "Mode": "REPL",
+        "File": "SONICR.EXE",
+        "FileType": "PE",
+        "Start": "0x450C8D",
+        "End": "0x450C8E",
+        "Len": 1,
+        "AddType": "Bytes",
+        "Value": "FC"
+    },
+    {
+        "Comment": "Use actual screen width when setting camera viewport",
+        "Mode": "REPL",
+        "File": "SONICR.EXE",
+        "FileType": "PE",
+        "Start": "0x4CC206",
+        "End": "0x4CC207",
+        "Len": 1,
+        "AddType": "Bytes",
+        "Value": "98"
+    },
+    {
+        "Comment": "Hackishly fix clipping by taking some random, always large address and using that as the clipping bound. May or may not be bad for performannce.",
+        "Mode": "REPL",
+        "File": "SONICR.EXE",
+        "FileType": "PE",
+        "Start": "0x4CC10E",
+        "End": "0x4CC10F",
+        "Len": 1,
+        "AddType": "Bytes",
+        "Value": "30"
+    }
+]

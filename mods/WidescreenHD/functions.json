@@ -1,0 +1,12 @@
+[
+    {
+        "Name": "SetAspRatio",
+        "File": "SONICR.EXE",
+        "Start": "0x004CBE1A",
+        "End": "0x004CBE5E",
+        "Repl": 1,
+        "Src": {
+            "as": "src.asm"
+        }
+    }
+]

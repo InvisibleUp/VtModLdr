@@ -16,7 +16,7 @@ const long PROGVERSION =           // Program version in format 0x00MMmmbb
 	(PROGVERSION_MAJOR*0x10000);
 // Name of program's primary author and website
 const char PROGAUTHOR[] = "InvisibleUp";
-const char PROGSITE[] = "http://github.com/InvisibleUp/SrModLdr/";
+const char PROGSITE[] = "http://github.com/InvisibleUp/VTModLdr/";
 
 // Globals
 struct ProgConfig CONFIG = {0};    // Global program configuration
@@ -277,7 +277,7 @@ unsigned char * Hex2Bytes(const char *hexstring, int *len)
 {
 	int i = 0;
 	//Allocate space for every byte + null byte (just in case)
-	unsigned char *result = malloc((strlen(hexstring) + 2 / 2));
+	unsigned char *result = malloc((strlen(hexstring) + 2) / 2);
 	char currByte[3];
 	const char *currBytePtr = hexstring;
 	if (!result) {

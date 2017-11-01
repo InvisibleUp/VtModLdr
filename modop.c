@@ -1339,7 +1339,7 @@ BOOL Mod_Install_VarRepatchFromExpr(
 	char **Vars = NULL;
 	int i = 0;
 	int allocCnt = 64;
-	char *pch, *varname, *space;
+	char *pch;
 
 	if(strndef(ExprStr)){
 		return TRUE;
@@ -1354,8 +1354,8 @@ BOOL Mod_Install_VarRepatchFromExpr(
 	pch = strstr(ExprStr, "$ ");
 	while(pch != NULL){
 
-		varname = pch + strlen("$ ");
-		space = strchr(varname, ' ');
+		char *varname = pch + strlen("$ ");
+		char *space = strchr(varname, ' ');
 		if(space == NULL){
 			// End of string
 			space = pch + strlen(pch);
@@ -1506,7 +1506,7 @@ BOOL Mod_Install_Minipatch(
 
 		// Extremely hacky way of making sure CALL/JMP operators are relative
 		// (E8 = CALL, E9 = JMP)
-		if(	strieq(PatchMode, "rel") && CurrInput.Len == 4	){ 
+		if(	strieq(PatchMode, "repl") && CurrInput.Len == 4	){ 
 			uint32_t OpLoc = CurrInput.Start - 1; // Call/Jmp op
 			uint32_t RelOffset = File_OffToPE(FilePath, CurrInput.End); // Next address
 			uint8_t OpByte;
@@ -1629,6 +1629,34 @@ BOOL Mod_InstallPatch(
 		}
 
 	}
+	
+	// Extremely hacky way of making sure CALL/JMP operators are relative
+    // (E8 = CALL, E9 = JMP)
+    if(	strieq(Mode, "Repl") && input.Len == 4){ 
+        char *FilePath = File_GetPath(input.FileID);
+        uint32_t OpLoc = input.Start - 1; // Call/Jmp op
+        uint32_t RelOffset = File_OffToPE(FilePath, input.End); // Next address
+        uint8_t OpByte;
+        int handle;
+        uint32_t AbsPos;
+        
+        // We need to somehow open and read a single byte from the EXE.
+        handle = File_OpenSafe(FilePath, _O_BINARY | _O_RDONLY);
+        lseek(handle, OpLoc, SEEK_SET);
+        read(handle, &OpByte, 1);
+        close(handle);
+        
+        if(
+            File_IsPE(FilePath) &&
+            (OpByte == 0xE8 || OpByte == 0xE9)
+        ){
+            memcpy(&AbsPos, input.Bytes, 4);
+            AbsPos -= RelOffset;
+            memcpy(input.Bytes, &AbsPos, 4);
+        }
+        
+        safe_free(FilePath);
+    }
 
 	/// Apply patches
 	// Replace
@@ -1689,6 +1717,7 @@ BOOL Mod_InstallPatch(
 		varCurr.publicType = strdup("");
 		varCurr.mod = strdup(ModUUID);
 		varCurr.persist = FALSE;
+        varCurr.norepatch = TRUE;
 		varCurr.uInt32 = File_OffToPE(FilePath, input.Start);
 
 		Var_MakeEntry(varCurr);
@@ -1701,6 +1730,7 @@ BOOL Mod_InstallPatch(
 		varCurr.publicType = strdup("");
 		varCurr.mod = strdup(ModUUID);
 		varCurr.persist = FALSE;
+        varCurr.norepatch = TRUE;
 		varCurr.uInt32 = File_OffToPE(FilePath, input.End);
 
 		Var_MakeEntry(varCurr);
@@ -1710,7 +1740,7 @@ BOOL Mod_InstallPatch(
 	}
 	
 	// Install "Mini Patches"
-	{
+	/*{
 		json_t *miniArray;
 		
 		miniArray = json_object_get(patchCurr, "MiniPatches");
@@ -1721,7 +1751,7 @@ BOOL Mod_InstallPatch(
 		if(!Mod_Install_Minipatch(miniArray, &input, path, ModUUID, i)){
 			retval = FALSE;
 		}
-	}
+	}*/
 
 Mod_InstallPatch_End:
     safe_free(Mode);
@@ -1818,8 +1848,10 @@ BOOL Mod_Install(json_t *root, const char *path)
 		ProgDialog_Update(ProgDialog, 1);
 		if(retval == FALSE || CURRERROR != errNOERR){
 			char *msg = NULL;
-			asprintf(&msg, "Mod configuration error on patch #%lu", i + 1);
+			char *ID = JSON_GetStr(patchCurr, "ID");
+			asprintf(&msg, "Mod configuration error on patch #%lu\nID: %s", i + 1, ID);
 			AlertMsg(msg, "JSON error");
+			safe_free(ID);
 			safe_free(msg);
 			goto Mod_Install_Cleanup;
 		}

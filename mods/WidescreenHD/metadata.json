@@ -1,0 +1,11 @@
+{
+	"UUID": "WidescreenHD@invisibleup",
+	"Name": "Widescreen HD",
+	"Info": "Unlocks the maximum resolution in the Options screen. Also replaces the 'Window size' option with an aspect ratio switcher, from 4:3 to 16:9.",
+	"Author": "InvisibleUp",
+	"Version": 1,
+	"Date": "2017-10-04",
+	"Category": "Code",
+	"ML_Ver": "1.0.0",
+	"GameUUID": "SonicR_PC_1998"
+}

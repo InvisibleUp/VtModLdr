@@ -207,13 +207,13 @@ BEGIN
         BLOCK "040904E4"
         BEGIN
             VALUE "CompanyName",      "InvisibleUp\0"
-	    VALUE "Comments",         "A utility for loading custom patches onto Sonic R or any other game, keeping free and used space in mind.\0"
-            VALUE "FileDescription",  "Sonic R Mod Loader\0"
+	    VALUE "Comments",         "A (quite broken) utility for loading custom patches onto a program, keeping free and used space in mind.\0"
+            VALUE "FileDescription",  "Very Terrible Mod Loader\0"
             VALUE "FileVersion",      "v1.0.0\0"
             VALUE "InternalName",     "srmodldr\0"
-            VALUE "LegalCopyright",   "©2015-2016 InvisibleUp. Licensed under the MPL 2.0.\0"
-            VALUE "OriginalFilename", "srmodldr.exe\0"
-            VALUE "ProductName",      "Sonic R Mod Loader\0"
+            VALUE "LegalCopyright",   "©2015-2017 InvisibleUp. Licensed under the MPL 2.0.\0"
+            VALUE "OriginalFilename", "vtmodldr.exe\0"
+            VALUE "ProductName",      "Very Terrible Mod Loader\0"
             VALUE "ProductVersion",   "v1.0.0\0"
         END
     END

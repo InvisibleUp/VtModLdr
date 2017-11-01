@@ -88,6 +88,7 @@ struct VarValue {
 		unsigned char raw[8];
 	};
 	BOOL persist;
+    BOOL norepatch; // True to skip repatching step
 };
 
 struct ProgConfig {

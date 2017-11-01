@@ -1,0 +1,15 @@
+[
+    {
+        "Name": "Program Init Hook",
+        "Ver": 1,
+        "Auth": "InvisibleUp",
+        "UUID": "InitHook@invisibleup",
+        "Variables": [
+            {
+                "UUID": "HookCount.InitHook@invisibleup",
+                "Type": "uInt8",
+                "Update": 1
+            }
+        ]
+    }
+]

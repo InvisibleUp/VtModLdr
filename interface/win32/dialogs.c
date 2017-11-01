@@ -1328,11 +1328,10 @@ INT_PTR CALLBACK Dlg_About(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam
 		
 		asprintf(
 			&CopyText,
-			"Sonic R Mod Loader %d.%d.%d\r\n"
-			"(c) 2015-2016 InvisibleUp\r\n\r\n"
+			"Very Terrible Mod Loader %d.%d.%d\r\n"
+			"(c) 2015-2017 InvisibleUp\r\n\r\n"
 			
-			"This program is not affiliated by Sega Corporation, "
-			"TT Games or any subsidiaries thereof.\r\n\r\n"
+			"Please don't use this. It is broken beyond belief.\r\n\r\n"
 			
 			"Source available at\r\n"
 			"%s\r\n"
@@ -1822,7 +1821,7 @@ BOOL Mod_InstallPrep(HWND hwnd)
 		char *ModUUID = NULL;
 		
 		ModUUID = JSON_GetStr(jsonroot, "UUID");
-		//AlertMsg("Installation failed. Rolling back...", "Installation Failure");
+		AlertMsg("Installation failed. Rolling back...", "Installation Failure");
 		Mod_Uninstall(ModUUID);
 		safe_free(ModUUID);
 		

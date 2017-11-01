@@ -11,7 +11,11 @@ int Test_Mod_Install_UnitTest_VarRepatch()
     asprintf(&modpath, "%s/test/Mod_/variable_repatch/host/", CONFIG.PROGDIR);
     asprintf(&modfile, "%sinfo.json", modpath);
     mod = JSON_Load(modfile);
-    if(!mod){return FALSE;}
+    if(!mod){
+        safe_free(modfile);
+        safe_free(modpath);
+        return FALSE;
+    }
 
     result = Mod_Install(mod, modpath);
 
@@ -28,7 +32,11 @@ int Test_Mod_Install_UnitTest_VarRepatch()
     asprintf(&modpath, "%s/test/Mod_/variable_repatch/user/", CONFIG.PROGDIR);
     asprintf(&modfile, "%sinfo.json", modpath);
     mod = JSON_Load(modfile);
-    if(!mod){return FALSE;}
+    if(!mod){
+        safe_free(modfile);
+        safe_free(modpath);
+        return FALSE;
+    }
 
     result = Mod_Install(mod, modpath);
 

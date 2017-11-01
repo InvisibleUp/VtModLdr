@@ -1,0 +1,166 @@
+Setting up the build environment.
+===
+
+This program uses standard C89, so which compiler you use really shouldn't matter.
+(For the record, I'm using Visual C++ 6.0. The *only* reason for that is Windows 9X
+compatibility. If you're compiling for more contemporary systems please don't use that.)
+
+You will require the standard Windows headers. As this uses raw Win32, you do
+not need MFC or .NET or anything else. The standard Windows headers are included
+with all major compilers, including MinGW, Visual C++ and Borland C++.
+
+In addition, you will need to be able to compile resource files. MinGW currently
+does not have full support for resource files, so do not use that compiler.
+
+## External Dependencies
+There are three external dependencies, plus 1 additional required library.
+
+Jansson: JSON parser (http://www.digip.org/jansson)
+SQLite3: Embedded database (http://sqlite.org)
+libarchive: Used as a ZIP extractor (http://libarchive.org)
+
+libarchive depends on zlib (http://zlib.net)
+
+## Borland C++ 5.5
+
+This is the most archaic compiler that still supports this program.
+
+It works pretty well, actually, until C++ enters the picture.
+It seems it's CMake conifguration doesn't like Borland C++ for whatever
+reason. Oh well.
+
+When compiling, ingore all "W8060" warnings, as they're caused by
+Jansson's for loop macro. It's fine.
+
+For Jansson, you will need the source code and CMake.
+1. Extract the source code and open the folder in the CMake GUI. Set the Binary
+   location to the source directory + "/bin". Press Configure.
+   When prompted for a generator, select "Borland Makefiles" with "Use Default
+   Native Compilers" selected. Let it work out what the compiler is capable of.
+   Click "Generate" to produce header files.
+   
+2. When that is done, close CMake and navigate to /bin/include. There should
+   be two *.h files. Put these in the INCLUDE folder in Borland's installation
+   directory.
+
+3. In [SrModLdr source]/include/, run
+   "implib -a -c -f jansson.lib jansson.dll"
+   This will generate jansson.lib. Place this in the LIB folder in Borland's
+   installation directory.
+   
+For SQLite, you will need the source code and the .DLL from the SQLite3 site.
+1. Extract the source code. There should be two *.h files. Put these in the
+   INCLUDE folder in Borland's installation directory.
+   
+2. Extract the .DLL. Run 
+   "implib -a -c -f sqlite3.lib sqlite3.dll"
+   This will generate sqlite3.lib. Place this in the LIB folder in Borland's
+   installation directory.
+
+For zlib...
+
+1. Extract the source code
+
+2. Generate with CMake
+
+3. Run `make install` where the Makefile was created
+
+4. Copy "zlib.h" and "zconf.h" to "include/" in the compiler install directory
+
+5. Copy "zlib.lib" to "lib/" in compiler install directory
+
+For libarchive ...
+
+1. Copy "shims/borland-types.c" to "include/sys/type.c" in compiler install directory
+
+2. Extract the source code
+
+3. Copy "libarchive/archive.h" from source dir to "include/" in compiler install directory
+
+4. [These edits are done against libarchive 3.21 from June 20, 2016]
+	Edit "libarchive/config.h" and "archive_platform.h" to comment out the line "#define HAVE_EILSEQ = 1"
+	Edit line 130 and 580 of archive_read_support_format_warc.c to change "const char buf[10]" to "char buf[10]"
+	Edit "archive_windows.h" to remove lines 298, 304, 313, and 314 (#if statements)
+	Edit "archive_write_disk_windows.c" to remove line 37 (#include <sys/utime.h>)
+
+5. Generate with CMake
+
+6. Run `make archive` where the Makefile was created
+
+7. Copy "libarchive/archive.lib" from build dir to "lib/" in compiler install directory
+
+   
+## MS Visual Studio 6.0
+
+This is a rather old compiler, so you'll need some work-around hacks.
+
+Download stdint.h (a C99 standard library) from 
+http://www.azillionmonkeys.com/qed/pstdint.h. Place it in the "include" folder
+in your Visual Studio install path.
+
+For Jansson, you will need the source code and CMake.
+1. Extract the source code and open the folder in the CMake GUI. Set the Binary
+   location to the source directory + "/bin". Press Configure.
+   When prompted for a generator, select "Visual Studio 6" with "Use Default
+   Native Compilers" selected. Let it work out what the compiler is capable of.
+   
+   DISABLE "USE_WINDOW_CRYPTOAPI". This will cause the library to not build.
+   Click "Generate" to produce header files.
+   
+2. Edit /src/hashtable_seed.c and replace "SwitchToThread()" on line 260 to
+   "Sleep(0)". (If you're using a newer version of Visual C++, you probably
+   won't have to do this.)
+   
+3. Open "/bin/jansson.dsp" in Visual Studio.
+   Set your Active Configuration to "BUILD_ALL - Release". Click "Rebuild All".
+   With VC6, an error might appear about a missing reference to "__FUNCTION__".
+   Ignore it.
+   
+4. Open /bin/lib/Release. Copy "jansson.lib" to your Visual Studio install
+   directory.
+   
+5. Open /bin/include. Copy these header files to your Visual Studio install
+   directory.
+   
+For sqlite3...
+1. Extract the source code. There should be two *.h files. Put these in the
+   INCLUDE folder in Visual C++'s installation directory.
+   
+2. Download the release DLL. Run LIB /DEF:sqlite3.def. Copy the resulting .lib
+   to Visual C++'s installation directory.
+   
+3. Place sqlite3.dll in the folder where the Sonic R Mod Loader binary will be
+   located.
+
+For libarchive and zlib...
+
+1. Extract the source code
+
+2. Generate with CMake
+
+3. Open the solution in Visual Studio as an administrator and bui
+Can I just point out how nice Linux and even Mac OS X are for C dependencies? We don't have
+to deal with this.ld the "Install" project
+
+4. Copy built files into your compiler's install directory
+
+## MS Visual Studio 2010+
+
+Run the included /build/setup.ps1 PowerShell file. If that fails, just follow the
+instructions for Visual Studio 6.0, but don't edit any source files.
+
+If the debugger is broken, set your start-up project to SrModLdr and not ALL_BUILD.
+It might also be necessary to change your working directory in the project settings to where the
+DLL files and the "games" folder is located.
+
+If it refuses to build with an error in resources.rc, remove the line
+	1	RT_MANIFEST	"manifest.xml"
+as Visual Studio's built-in manifest handling freaks out when a manifest is manually declared.
+You don't have to worry about this with Visual Studio 2005, as the preprocessor takes care of it for you.
+(It's just broken in 2015 for some reason.)
+You may wish to re-add manifest.xml as a source manifest in the project options.
+
+## GCC/Clang on Linux
+
+Obviously the "win32" target isn't supported, so set the target in the CMake configuration to "test".
+After that, just run CMake and then run the resulting makefile. Easy!

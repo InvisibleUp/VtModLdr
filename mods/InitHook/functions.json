@@ -1,0 +1,19 @@
+[
+    {
+        "Name": "InitLoop",
+        "File": "SONICR.EXE",
+        "Src": {
+            "cc": "InitLoop.c"
+        }
+    },
+    {
+        "Name": "Inject",
+        "File": "SONICR.EXE",
+        "Start": "0x705E9",
+        "End": "0x705EE",
+        "Repl": 1,
+        "Src": {
+            "as": "inject.asm"
+        }
+    }
+]

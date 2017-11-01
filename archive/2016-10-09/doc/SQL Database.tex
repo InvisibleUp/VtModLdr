@@ -1,0 +1,86 @@
+% This is a pulled section from the user manual. It's useless for pretty much anyone besides code contributors.
+
+\subsection{The SQL Database}
+The heart of the mod loader, so to speak, is an SQLite3 database containting every mod, patch, variable, file location and space. The choice of an SQL database might seem a bit puzzling at first, but it allows for the vast power the mod loader gives. The database is split up into several tables:
+
+\subsubsection{Mods}
+This table is a list of every mod installed. It is, essentially, what you see in the Details pane of the mod loader. It contains the following columns:
+
+\begin{description}
+\item[UUID (TEXT)] A unique identifier for the mod. Does not have to be in standard UUID format.
+\item[Name (TEXT)] The name of the mod. Used primarily in the user interface.
+\item[Desc (TEXT)] Description of the mod.	
+\item[Auth (TEXT)] Creator of the mod.	
+\item[Ver (INTEGER)] Version of the mod.
+\item[Date (TEXT)] Date mod was published in ISO-8601 format.
+\item[Cat (TEXT)] Category of mod. See \ref{subsubsec:create-meta-cat} for possible values.
+\item[Path (TEXT)] Path to stored .ZIP containing mod files.
+\end{description}
+
+\subsubsection{Spaces}
+A list of spaces added or removed by mods or during profile initilization. See \ref{subsec:works-spaces} for details.
+
+\begin{description}
+\item[ID (TEXT)] A unique identifier to name the space so that mod developers can refer to it.
+\item[Type (TEXT)] 'Add', 'Clear', 'Split' or 'Merge', depending on the type of space.
+\item[File (INTEGER)] The file that the space refers to. Use table `Files' to convert to a path.
+\item[Mod (TEXT)] The UUID of the mod that created the space.
+\item[Start (INTEGER)] The first byte of the file described by the space.
+\item[End (INTEGER)] The last byte of the file described by the space.
+\item[Len (INTEGER)] Equal to End - Start.
+\item[UsedBy (TEXT)] The mod that is currently using the space, if different than the creator.
+\end{description}
+
+For SPLIT and MERGE spaces, Start and End are the IDs of the ADD/CLEAR spaces used for the head and tail of the operation.
+An ADD into a larger CLEAR space always creates a SPLIT space.
+After every mod, all adjacent CLEAR spaces are MERGEd.
+
+There's two general rules of thumb to adhere to:
+1. One space per byte
+2. Spaces should be as large as possible.
+
+\subsubsection{Variables}
+Contains a list of public and private variables used by mods.
+
+\begin{description}
+\item[UUID (TEXT)] A unique identifier for the variable. Does not have to be in standard UUID format.
+\item[Mod (TEXT)] The UUID of the owning mod.
+\item[Type (TEXT)] How the data stored in Value is represented. Possible values can be found at \ref{subsubsec:create-var-type}.
+\item[PublicType (TEXT)] How the variable is displayed on the Config screen. If value is null, variable is considered "private" and not displayed on config screen. 
+\item[Desc (TEXT)] Human-readable description of the variable's purpose. Displayed in config screen.	
+\item[Value (INTEGER)] The number currently stored in the varaible.
+
+\end{description}
+
+\subsubsection{VarList}
+Small table used to store list entries for public varibles with PublicType set to ``list".
+
+\begin{description}
+\item[Var (TEXT)] UUID of the mod that uses this list.
+\item[Number (INTEGER)] The number associated with the value in the list.	
+\item[Label (TEXT)] A description of what the entry in the list corresponds to in the mod's code or installation routine.
+\end{description}
+
+\subsubsection{Revert}
+Holds rollback data for mod uninstallation.
+
+\begin{description}
+\item[PatchUUID (TEXT)] UUID of the patch (and consequently the space) that caused this entry to be created.
+\item[OldBytes (TEXT; Hex bytes)] A hex dump of the previous contents of that part of the file.
+\end{description}
+
+\subsubsection{Files}
+Holds list of known files. Files are internally stored as numbers. They go up sequentially in the order that they are first referenced by a mod.  1 is always the main file and 0 is always the RAM.
+
+\begin{description}
+\item[ID (INTEGER)] Number corresponding with the path.
+\item[Path (TEXT)] Location of the file relative to the main file.
+\end{description}
+
+\subsubsection{Dependencies}
+Holds list of mod dependencies for uninstallation.
+
+\begin{description}
+\item[ParentUUID (TEXT)] UUID of mod with dependency.
+\item[ChildUUID (TEXT)] UUID of mod that is required by ParentUUID.
+\end{description}

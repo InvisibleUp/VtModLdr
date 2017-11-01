@@ -1,0 +1,61 @@
+BEGIN TRANSACTION;
+CREATE TABLE `VarList` (
+	`GUID`	BLOB NOT NULL UNIQUE,
+	`Parent GUID`	BLOB NOT NULL,
+	`Address`	TEXT UNIQUE,
+	`Value`	TEXT,
+	PRIMARY KEY(GUID)
+);
+CREATE TABLE "Remove" (
+	`GUID`	BLOB NOT NULL UNIQUE,
+	`Parent GUID`	INTEGER NOT NULL,
+	`File`	TEXT,
+	`Start`	INTEGER,
+	`End`	INTEGER,
+	`Size`	INTEGER,
+	`Type`	TEXT,
+	`Comment`	TEXT,
+	PRIMARY KEY(GUID)
+);
+INSERT INTO `Remove` VALUES ('{BF8455C0-B7D0-11E4-9D53-A8336D82512D}','{5b1c755d-785a-4d5a-aa7e-d3834668bd50}','',5433323,5437604,4281,'data','Hard-coded filenames');
+INSERT INTO `Remove` VALUES ('{3A993208-B7D1-11E4-9588-4A249580656B}','{5b1c755d-785a-4d5a-aa7e-d3834668bd50}',NULL,4357772,4679671,321899,'data','Old character loading routines');
+CREATE TABLE `Moves` (
+	`GUID`	BLOB NOT NULL UNIQUE,
+	`File`	TEXT NOT NULL,
+	`Source`	INTEGER,
+	`Destination`	INTEGER,
+	`Type`	INTEGER,
+	`Comment`	INTEGER,
+	PRIMARY KEY(GUID)
+);
+CREATE TABLE `ModList` (
+	`GUID`	BLOB NOT NULL UNIQUE,
+	`Path`	TEXT NOT NULL UNIQUE,
+	`Name`	TEXT NOT NULL UNIQUE,
+	`Description`	TEXT,
+	`Author`	TEXT,
+	`Version`	TEXT,
+	`Date`	INTEGER,
+	`Type`	TEXT,
+	PRIMARY KEY(GUID)
+);
+INSERT INTO `ModList` VALUES ('{5b1c755d-785a-4d5a-aa7e-d3834668bd50}','charload.zip','Better Character Loading','Replaces the hard-coded character loading routine with one that loads up to 999.','InvisibleUp','0.1',1422334800,'code');
+CREATE TABLE `Dependencies` (
+	`GUID`	BLOB NOT NULL UNIQUE,
+	`Parent GUID`	BLOB NOT NULL UNIQUE,
+	PRIMARY KEY(GUID)
+);
+CREATE TABLE "Addition" (
+	`GUID`	BLOB NOT NULL UNIQUE,
+	`Parent GUID`	BLOB NOT NULL,
+	`File`	TEXT,
+	`Address`	INTEGER,
+	`Relative?`	INTEGER NOT NULL,
+	`Bytes`	BLOB NOT NULL,
+	`Type`	TEXT,
+	`Comment`	TEXT,
+	PRIMARY KEY(GUID)
+);
+INSERT INTO `Addition` VALUES ('{376dc8dc-a732-11e4-9059-d522b6c90e9a}','{5b1c755d-785a-4d5a-aa7e-d3834668bd50}','',-1,0,X'5c5c00','data','\\.');
+INSERT INTO `Addition` VALUES ('{edaed75c-a733-11e4-ab2e-a70c9580656b}','{5b1c755d-785a-4d5a-aa7e-d3834668bd50}',NULL,-1,0,X'62696e5c5c63686172735c5c00','data','bin\\chars\\.');
+COMMIT;

@@ -1,0 +1,11 @@
+[
+    {
+        "ID": "HookAddr.InitHook@invisibleup",
+        "Comment": "Address where hook starts reading function addresses from. Your mod's .json should write it's Init function address to $ Start.HookAddr + (HookCount * 4)",
+        "Mode": "Reserve",
+        "File": "SONICR.EXE",
+        "Start": 0,
+        "End": "len @ SONICR.EXE",
+        "Len": "( $ HookCount.InitHook@invisibleup ) * 4"
+    }
+]

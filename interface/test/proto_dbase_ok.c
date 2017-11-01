@@ -30,20 +30,23 @@ int Proto_DBase_OK() {
 		"SectorA",
 		"Base.test.bin",
 		"SectorA-Base.test.bin",
+        "SectorA",
 		"SectorB",
 		"Base.test.bin",
-		"SectorB-Base.test.bin"
+		"SectorB-Base.test.bin",
+        "SectorB",
+        "Base.test.bin"
 	};
 	const char *value2_Version[] = {
-		"1", "2", "1", "2", "1", "3", "1", "1", "4", "1"
+		"1", "2", "1", "2", "1", "3", "1", "2", "1", "4", "1", "2", "5"
 	};
 	const char *value2_Type[] = {
-		"New", "Add", "New", "Add", "Add", "Add", "Split", "Add", "Add", "Split"
+		"New", "Add", "New", "Add", "Add", "Add", "Split", "Add", "Add", "Add", "Split", "Add", "Add"
 	};
 	const char *value2_File[] = {
-		"0", "0", "1", "1", "1", "1", "1", "1", "1", "1"
+		"0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
 	};
-	const size_t value2len = 10;
+	const size_t value2len = 13;
 	// Skipping UsedBy, PatchID because I don't know how to compare nulls
 	// Skipping Mod, Start, End, Len out of laziness
 

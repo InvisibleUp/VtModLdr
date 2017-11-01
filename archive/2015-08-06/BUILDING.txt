@@ -1,0 +1,47 @@
+Setting up the build environment.
+===
+
+This program uses standard C89, so which compiler you use really shouldn't matter.
+(For the record, I'm using Borland C++ 5.5. The *only* reason for that is Windows 95
+compatibility. If you're compiling for more contemporary systems please don't use that.)
+
+You will require the standard Windows headers. As this uses raw Win32, you do
+not need MFC or .NET or anything else. The standard Windows headers are included
+with all major compilers, including MinGW, Visual C++ and Borland C++.
+
+In addition, you will need to be able to compile resource files. MinGW currently
+does not have full support for resource files, so do not use that compiler.
+
+##External Dependencies
+There are two external dependencies. They are Jansson, a JSON parser, and SQLite3,
+an embedded database. Both of them do not require any dependencies of their own.
+
+###Borland C++ 5.5
+
+For Jansson, you will need the source code and CMake.
+1. Extract the source code and open the folder in the CMake GUI. Set the Binary
+   location to the source directory + "/bin". Press Configure.
+   When prompted for a generator, select "Borland Makefiles" with "Use Default
+   Native Compilers" selected. Let it work out what the compiler is capable of.
+2. When that is done, close CMake and navigate to /bin/include. There should
+   be two *.h files. Put these in the INCLUDE folder in Borland's installation
+   directory.
+3. Either obtain a copy of jansson.dll from another program on your computer or
+   compile it with a more capable compiler. Do not attempt to compile it with
+   Borland. You will be disappointed.
+4. In the directory with jansson.dll is located run 
+   "implib -a -c -f jansson.lib jansson.dll"
+   This will generate jansson.lib. Place this in the LIB folder in Borland's
+   installation directory.
+5. Place jansson.dll in the folder where the Sonic R Mod Loader binary will be
+   located.
+   
+For SQLite, you will need the source code and the .DLL from the SQLite3 site.
+1. Extract the source code. There should be two *.h files. Put these in the
+   INCLUDE folder in Borland's installation directory.
+2. Extract the .DLL. Run 
+   "implib -a -c -f sqlite3.lib sqlite3.dll"
+   This will generate sqlite3.lib. Place this in the LIB folder in Borland's
+   installation directory.
+3. Place sqlite3.dll in the folder where the Sonic R Mod Loader binary will be
+   located.

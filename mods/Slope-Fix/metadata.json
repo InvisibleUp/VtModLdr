@@ -1,0 +1,11 @@
+{
+	"UUID": "SlopeSlipFix@invisibleup",
+	"Name": "Slope Slippage Fix",
+	"Info": "Forces slope physics to always apply when player is moving. See http://invisibleup.neocities.org/articles/6/ for details. You can edit the cutoff speed and angle yourself with the Options button!",
+	"Author": "InvisibleUp",
+	"Version": 1,
+	"Date": "2016-11-16",
+	"Category": "Code",
+	"ML_Ver": "1.0.0",
+	"GameUUID": "SonicR_PC_1998"
+}

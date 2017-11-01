@@ -1,0 +1,11 @@
+{
+	"UUID": "DebugTextViewer@invisibleup",
+	"Name": "Debug Text Viewer",
+	"Info": "Replaces 'dummy_printf' with an actual printf to stdout for debugging use.",
+	"Author": "InvisibleUp",
+	"Version": 1,
+	"Date": "2016-10-16",
+	"Category": "Code",
+	"ML_Ver": "1.0.0",
+	"Game": "SonicR_PC_1998"
+}

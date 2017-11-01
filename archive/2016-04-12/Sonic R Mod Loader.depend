@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1453134006 source:c:\documents and settings\invisibleup\desktop\copy of sonic r mod loader\asprintf.c
+	<errno.h>
+	<stdarg.h>
+	<stdlib.h>
+	<limits.h>
+	<stdio.h>
+
+1453134121 source:c:\documents and settings\invisibleup\desktop\copy of sonic r mod loader\crc32.c
+	<sys/mman.h>
+	<windows.h>
+
+1461036184 source:c:\documents and settings\invisibleup\desktop\copy of sonic r mod loader\main.c
+	<stdlib.h>
+	<errno.h>
+	<stdarg.h>
+	<assert.h>
+	<math.h>
+	<fcntl.h>
+	<io.h>
+	<dir.h>
+	<stdint.h>
+	<wchar.h>
+	<limits.h>
+	<dirent.h>
+	<sys/stat.h>
+	<windows.h>
+	<commctrl.h>
+	<Shlobj.h>
+	<jansson.h>
+	<sqlite3.h>
+	"resource.h"
+	"funcproto.h"
+	"errormsgs.h"
+
+1460047297 c:\documents and settings\invisibleup\desktop\copy of sonic r mod loader\resource.h
+
+1461036112 c:\documents and settings\invisibleup\desktop\copy of sonic r mod loader\funcproto.h
+	<stdint.h>
+
+1451275860 c:\documents and settings\invisibleup\desktop\copy of sonic r mod loader\errormsgs.h
+
+1461036564 source:c:\documents and settings\invisibleup\desktop\copy of sonic r mod loader\resources.rc
+	"resource.h"
+	<windows.h>
+

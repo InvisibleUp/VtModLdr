@@ -1,0 +1,70 @@
+SONIC R MOD LOADER v1.0 RELEASE NOTES
+=====================================
+
+It slices. It dices. I've heard it even installs mods.
+
+[ image ]
+
+It's the Sonic R Mod Loader, coming to a Sonic R installation near you. As much as I wanted to submit a Sonic R mod for the Hacking Contest, it was nowhere near even starting up without crashing. So, as a consoltation prize (mostly to myself), I'm sharing the tool that I'm using to apply vast expanses of code and assets to the game.
+
+This has been my little pet project for roughly the past year. It's a generic sort of Swiss Army Knife utility that can do pretty much any sort of patching job you need. This isn't just a fancy wrapper around an IPS patcher, though. A more honest name would probably be the "Sonic R and Also Other Games Post-Build Linker and Patcher". Hardly rolls of the tounge, though.
+
+# FEATURES
+
+[ SQL screenshot ]
+
+- Operates on the concept of "Spaces". Each file in the game is seperated into spaces, one for each function/variable. Mods mark these spaces as "Add" or "Clear", depending on whether or not they're occupied. They can also (implicitly and automatically) split and merge these spaces as needed. This allows mods, if they need to inject functions *somewhere*, to inject them in whatever free space they can find. Trust me when I say that's a really useful feature.
+
+[ Options screenshot ]
+
+- Each mod can define and use variables. These can alter portions of files or let mods take different paths during installation. There are "public variables", which can be edited by the viewer, but they can also be used for internal bookkeeping and cross-mod communication as well. Pre-defined variables are automatically made for the version/existence of every mod and the start address of every function/variable, either from the base game or from a mod.
+
+[ Screenshot of sonicr.json ]
+
+- Works with any game. A BASH/C script is included with the source code that converts .IDC files exported from an x86 disassembly to the format the mod loader needs. ...Makes the name "Sonic R Mod Loader" short-sighted, but I couldn't think of anything better anytime within the past year.
+
+[ Windows 95 screenshot ]
+
+- Compatible with Windows 95! Yes, really. Sonic R was, why not this? It even runs on a 486 and uses (on average) 8 megabytes of RAM, so you can use this on your retro gaming PC. (Now you know why development took so long.)
+
+[ Screenshot of CPU fix mod source ]
+
+- Simple JSON-based mod format. For each patch, list it's mode (one of Add, Clear, Move, Copy, Replace, or Reserve), target file, start and end locations, and if needed variable conditions, variable insertion points ("Mini-Patches"), source start and end, and input bytes.
+
+[ Screenshot of a mod's archive ]
+
+- While the Mod Loader is designed for intense operations on individual files, it can also copy, move, replace, and delete whole files as well. These files can also come from a mod's .ZIP archive.
+
+More or less, it's a strange, highly versatile thing. What you'll probably end up using it for the most is throwing out portions of the EXE and rewriting it, while also using the variables so that 'mov' and 'lea' operations can point to the right thing. However, I'm sure you can push it a bit more if you're creative.
+
+# DOWNLOAD
+
+Before using this, you REALLY want to download [the manual]. It teaches you not only how to use the mod loader, but also how to make mods for it as well.
+
+Download [the binary from Github].
+
+It's also open source under the MPL 2.0, so download the (amittedly messy) [source code from Github]. Comes with compilation instructions for Microsoft Visual C++ 6.0 and 2015. Also compiles with Borland C++ 5.5, if you prefer that.
+
+# SAMPLE MODS
+
+You'll likely need some mods to install. Here's some simple ones to try out:
+
+- [CPU Crash Fix] : Fixes the 004801D9 error that occurs on startup and let's you actually play the game. (Note that on modern Windows you'll still need to run it through a program such as d3dWindower or DxWnd. WINE on Linux/Mac won't have this problem.)
+
+- [Enhanced Resolution] : Lets you set the screen resolution above 640x480 and the draw distance above "Very High". Useful for making the game actually visible on today's monitors. Note that the aspect ratio is locked at 4:3, and it'll just stretch if you try otherwise. Also the framerate is locked at 30 fps, as the game's physics runs at 30 fps.
+
+- [No-CD Hack] : Taken shamelessly from some shady YouTube link years ago, here's a mod that keeps you from needing to insert a CD to play the game. (Note that I don't endorse piracy of video games, 18 years old or otherwise.)
+
+- [Local Music] : Had one of those botched Expert Software copies that didn't have any music? Heck, maybe you just want custom music. Here's a mod that showcases interfacing with a DLL, in this case [whatever library I use]. (Yes, this does DLLs too. I haven't forgotten about those.) Just dump your tunes into the newly-created /MUSIC folder, name them starting with the track number, and they will play in-game.
+
+- [Physics Customizer] : Sonic R is a horifically unbalanced game. Until I get a say in it (and trust me, I will) we'll have to deal with Amy's dumb car and Robotnik's pointless bombs. But in the meantime, YOU can change the game's physics variables. Make water slow the characters down more. Up Amy's top speed. Reduce Super Sonic's OP-ness. Make the characters actually able to turn. Endless possibilities here.
+
+- [Slope Fix] : Implements the slope bug fix as detailed on [my blog]. This will make the slopes slightly better. (That being said, the whole physics code really needs to be torn to the ground and rebuilt. It's mostly there, but slopes are broken and it's very character-specific.)
+
+- [Clear Network Space] : Marks many things associated with the unused Networking code (including my favorite function, InitHandshakeBollocks) as CLEAR, so other mods can use them. Note that is also replaces all the code with the UD2 illegal instruction, so don't view this as a ticking time bomb.
+
+- [Debug Messge Viewer] : Fun fact: Sonic R is littered with debug messages. (Certainly made the reverse engineering a bit easier.) They all are surrounded by what appears to be a call to a printf-type function. However, the function's actually just a dummy. This replaces that dummy function with a real printf into a console window. It might be handy.s
+
+If you want to make an advanced mod that uses custom code, I've also made a mod build script in BASH that compiles/assembles code and then converts the output into a mod. [Get the script here.]
+
+I hope you all find this useful. At the very least, this program is almost certainly what I'm going to use to distribute my mods ([and boy have I been itching to use these models]), so let me know [on Github] if there's any glaring issues.

@@ -156,6 +156,8 @@ struct VarValue Var_GetValue_SQL(const char *VarUUID){
 	result.desc = JSON_GetStr(VarObj, "Info");
 	result.publicType = JSON_GetStr(VarObj, "PublicType");
 	result.mod = JSON_GetStr(VarObj, "Mod");
+    result.norepatch = FALSE;
+	result.persist = JSON_GetuInt(VarObj, "Persist") ? TRUE : FALSE;
 	
 	json_decref(VarArr);
 	return result;
@@ -214,6 +216,7 @@ struct VarValue Var_GetValue_JSON(json_t *VarObj, const char *ModUUID)
 
 	// Handle remaining errors now
 	if(strndef(eq) || var.type == INVALID){
+		AlertMsg("No value found for variable.", "Variable error");
 		CURRERROR = errWNG_MODCFG;
 		var.type = INVALID;
 		safe_free(VarID);
@@ -264,6 +267,7 @@ struct VarValue Var_GetValue_JSON(json_t *VarObj, const char *ModUUID)
 	var.publicType = JSON_GetStr(VarObj, "PublicType");
 	var.mod = strdup(ModUUID);
 	var.persist = JSON_GetuInt(VarObj, "Persist") ? TRUE : FALSE;
+    var.norepatch = FALSE;
 	
 	return var;
 }
@@ -587,7 +591,9 @@ BOOL Var_UpdateEntry(struct VarValue result)
 	command = NULL;
 
 	// Reinstall effected patches
-	Var_RePatch(result.UUID);
+    if(result.norepatch == FALSE){
+        Var_RePatch(result.UUID);
+    }
 
 	return TRUE;
 }
@@ -617,7 +623,7 @@ BOOL Var_RePatch(const char *VarUUID) {
 
 		// Load selected mod JSON
 		modPath = JSON_GetStr(row, "ModPath");
-		patchNo = JSON_GetInt(row, "PatchNo");
+		patchNo = JSON_GetInt(row, "Patch");
 		asprintf(&jsonPath, "%sinfo.json", modPath);
 
 		mod = JSON_Load(jsonPath);
@@ -629,7 +635,7 @@ BOOL Var_RePatch(const char *VarUUID) {
 
 		modUUID = JSON_GetStr(mod, "UUID");
 		patchArray = json_object_get(mod, "patches");
-		if (mod == NULL) {
+		if (patchArray == NULL) {
 			CURRERROR = errCRIT_DBASE;
 			return FALSE;
 		}

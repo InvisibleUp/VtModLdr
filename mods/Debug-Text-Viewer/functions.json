@@ -1,0 +1,26 @@
+ [
+    {
+        "Name": "DebugText_Init",
+        "File": "SONICR.EXE",
+        "Src": {
+            "cc": "init.c"
+        }
+    },
+    {
+        "Name": "DebugText_Write",
+        "File": "SONICR.EXE",
+        "Src": {
+            "cc": "write.c"
+        }
+    },
+    {
+        "Name": "Printf_Dummy",
+        "File": "SONICR.EXE",
+        "Start": "0x00431140",
+        "End": "0x0043114C",
+        "Repl": "1",
+        "Src": {
+            "as": "stub.asm"
+        }
+    }
+ ]

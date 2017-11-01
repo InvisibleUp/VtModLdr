@@ -1,0 +1,5658 @@
+{
+  "GameName": "Sonic R (PC, 1998)",
+  "GameUUID": "SonicR_PC1998",
+  "GameEXE": "SONICR.EXE",
+  "Whitelist": [
+    {
+      "Name": "vanilla",
+      "Desc": "Vanilla EXE (Expert Software, probably others)",
+      "Size": 1263104,
+      "ChkSum": "0x75AB6A2E",
+      "Mods": []
+    },
+    {
+      "Name": "cpu",
+      "Desc": "Vanilla EXE with CPU bugfix only",
+      "Size": 1263104,
+      "ChkSum": "0x922323E1",
+      "Mods": [
+        "cpufix@invisibleup"
+      ]
+    },
+    {
+      "Name": "nocd",
+      "Desc": "Vanilla EXE with No-CD patch",
+      "Size": 1263104,
+      "ChkSum": "0x341828E8",
+      "Mods": [
+        "nocd@invisibleup"
+      ]
+    },
+    {
+      "Name": "semivanilla",
+      "Desc": "Vanilla EXE with CPU bugfix and No-CD patch",
+      "Size": 1263104,
+      "ChkSum": "0xD3906127",
+      "Mods": [
+        "cpufix@invisibleup",
+        "nocd@invisibleup"
+      ]
+    }
+  ],
+  "KnownSpaces": [
+    {
+      "Name": "___begtext",
+      "Start": 4259843,
+      "End": 4259844,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderFog",
+      "Start": 4335764,
+      "End": 4336025,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_SceneReady?",
+      "Start": 4336028,
+      "End": 4336542,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_RenderSomething",
+      "Start": 4336544,
+      "End": 4336658,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitTexPage_Buffer",
+      "Start": 4337588,
+      "End": 4337640,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "UpdateCameraPos",
+      "Start": 4339060,
+      "End": 4340629,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitSettings",
+      "Start": 4344688,
+      "End": 4344756,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SaveSettings",
+      "Start": 4344756,
+      "End": 4344868,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Read_SonicRBit",
+      "Start": 4344868,
+      "End": 4344945,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_HackTPageBright",
+      "Start": 4345176,
+      "End": 4345497,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?.fn_init$n()v",
+      "Start": 4345511,
+      "End": 4349351,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ParseTrackObjects",
+      "Start": 4353464,
+      "End": 4358483,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadTerrain",
+      "Start": 4367352,
+      "End": 4367433,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadAI",
+      "Start": 4367436,
+      "End": 4367849,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_LoadReflectMap",
+      "Start": 4367852,
+      "End": 4368453,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_LoadReflectMap",
+      "Start": 4368456,
+      "End": 4368570,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ParseTexture",
+      "Start": 4368572,
+      "End": 4368788,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadTexture",
+      "Start": 4368788,
+      "End": 4369677,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_LoadTexturePage",
+      "Start": 4369680,
+      "End": 4369777,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadBlueScaleFlag",
+      "Start": 4370328,
+      "End": 4370497,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_LoadTexturePage",
+      "Start": 4370500,
+      "End": 4371176,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_LoadScaleParallax",
+      "Start": 4373148,
+      "End": 4373967,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_LoadWallpaper",
+      "Start": 4373968,
+      "End": 4375531,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_LoadWallpaper",
+      "Start": 4375532,
+      "End": 4376189,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_LoadScaleParallax",
+      "Start": 4377876,
+      "End": 4378562,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_LoadGroundTextures",
+      "Start": 4379672,
+      "End": 4380131,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_LoadGroundTextures",
+      "Start": 4380132,
+      "End": 4380764,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadGroundMap",
+      "Start": 4380764,
+      "End": 4380818,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullsub_8",
+      "Start": 4380864,
+      "End": 4380865,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Parse3DCharacter",
+      "Start": 4382772,
+      "End": 4384652,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Parse3DAnimations",
+      "Start": 4384652,
+      "End": 4384820,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Parse3DGourads",
+      "Start": 4384820,
+      "End": 4385031,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "OpenKeysBIN",
+      "Start": 4385032,
+      "End": 4385095,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SaveKeybinds",
+      "Start": 4385096,
+      "End": 4385159,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SaveGhost",
+      "Start": 4385188,
+      "End": 4385705,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadGhost",
+      "Start": 4385708,
+      "End": 4386170,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitGhostData",
+      "Start": 4386172,
+      "End": 4387093,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Menu_FadeOut",
+      "Start": 4392404,
+      "End": 4392503,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TintTrackGourads",
+      "Start": 4393484,
+      "End": 4393947,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TintCharacterGourads",
+      "Start": 4393948,
+      "End": 4394403,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Printf_Dummy",
+      "Start": 4395328,
+      "End": 4395341,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Callback",
+      "Start": 4396752,
+      "End": 4398149,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitGraphicsWindow",
+      "Start": 4398228,
+      "End": 4400042,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_LoadTexture?",
+      "Start": 4400076,
+      "End": 4400650,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "RestartD3D",
+      "Start": 4402120,
+      "End": 4402728,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3DApplCreateBuffers",
+      "Start": 4406748,
+      "End": 4407490,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3DApplGetSurfDesc",
+      "Start": 4407492,
+      "End": 4407878,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3DAppCreateFromHWND",
+      "Start": 4410544,
+      "End": 4412226,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_RenderScene",
+      "Start": 4413116,
+      "End": 4413541,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_WipeScreen",
+      "Start": 4413544,
+      "End": 4413733,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LostSurfaceCheck",
+      "Start": 4413736,
+      "End": 4414044,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_AppDestroy",
+      "Start": 4414484,
+      "End": 4415013,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_MakeError",
+      "Start": 4415016,
+      "End": 4426010,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_DestroyTexture",
+      "Start": 4426916,
+      "End": 4426966,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_DestroyTexture_2",
+      "Start": 4426968,
+      "End": 4427022,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_GenerateMaterials",
+      "Start": 4427024,
+      "End": 4427811,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_ismbdprint_",
+      "Start": 4430080,
+      "End": 4430096,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DialogFunc",
+      "Start": 4430192,
+      "End": 4430254,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Win_MakeErrorMsg",
+      "Start": 4432556,
+      "End": 4432764,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_DisplayCharacterModel",
+      "Start": 4509052,
+      "End": 4515793,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitManyThings_FWStart",
+      "Start": 4516416,
+      "End": 4516513,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderRings",
+      "Start": 4519300,
+      "End": 4520331,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_Render2DObject",
+      "Start": 4525112,
+      "End": 4525889,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderCourse",
+      "Start": 4535236,
+      "End": 4541552,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_Render3DObject",
+      "Start": 4541552,
+      "End": 4543928,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderFootsteps",
+      "Start": 4558444,
+      "End": 4561340,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "RenderCharacterShadow",
+      "Start": 4563204,
+      "End": 4567033,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderCharacters",
+      "Start": 4567036,
+      "End": 4567386,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderSky",
+      "Start": 4572228,
+      "End": 4573736,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderWater",
+      "Start": 4576724,
+      "End": 4579772,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderFloor",
+      "Start": 4579772,
+      "End": 4582283,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderDemoElements",
+      "Start": 4592796,
+      "End": 4592970,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_RenderBackdrop",
+      "Start": 4592972,
+      "End": 4593699,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Menu_FadeIn",
+      "Start": 4595188,
+      "End": 4596188,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_DisplayPlayerModel",
+      "Start": 4599488,
+      "End": 4609277,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_TitleSparkles",
+      "Start": 4648780,
+      "End": 4650032,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CalculateFogDist",
+      "Start": 4654320,
+      "End": 4654436,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_RenderFrame?",
+      "Start": 4654492,
+      "End": 4654675,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitTitleStuff",
+      "Start": 4654676,
+      "End": 4655215,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitOptionStuff",
+      "Start": 4655468,
+      "End": 4656286,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "WriteRAM1",
+      "Start": 4656320,
+      "End": 4656584,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "UnlockDefaultChars",
+      "Start": 4656584,
+      "End": 4657123,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitLevel_SetStartPos",
+      "Start": 4657292,
+      "End": 4658017,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Race_Finish",
+      "Start": 4658020,
+      "End": 4659715,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ResetAI",
+      "Start": 4660912,
+      "End": 4660928,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "UpdateObjectVerticies",
+      "Start": 4662636,
+      "End": 4664711,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_IslandParallax",
+      "Start": 4665672,
+      "End": 4665831,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_IslandParallax",
+      "Start": 4665832,
+      "End": 4666043,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitLevel_Island",
+      "Start": 4666044,
+      "End": 4667360,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_CityParallax",
+      "Start": 4667360,
+      "End": 4667519,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_CityParallax",
+      "Start": 4667520,
+      "End": 4667731,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitLevel_City",
+      "Start": 4667732,
+      "End": 4669158,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitLevel_Ruin",
+      "Start": 4669532,
+      "End": 4670925,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_FactoryParallax",
+      "Start": 4670928,
+      "End": 4671087,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_FactoryParallax",
+      "Start": 4671088,
+      "End": 4671299,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitLevel_Factory",
+      "Start": 4671300,
+      "End": 4672693,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitLevel_Emerald",
+      "Start": 4672744,
+      "End": 4673599,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitLevel",
+      "Start": 4675356,
+      "End": 4676951,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Load3DCharacters",
+      "Start": 4676952,
+      "End": 4677517,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Load3DAnimations",
+      "Start": 4677520,
+      "End": 4679503,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadCharacterGourads",
+      "Start": 4679504,
+      "End": 4679672,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadGroundTiles",
+      "Start": 4679672,
+      "End": 4679974,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CheckInput?",
+      "Start": 4680112,
+      "End": 4681123,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetInput?",
+      "Start": 4683084,
+      "End": 4684834,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitJoystick",
+      "Start": 4684836,
+      "End": 4685075,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitJoystickKeys",
+      "Start": 4685076,
+      "End": 4685139,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SaveJoystickInfo",
+      "Start": 4685140,
+      "End": 4685203,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitDxInput",
+      "Start": 4685564,
+      "End": 4686083,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CloseDirectInput",
+      "Start": 4686084,
+      "End": 4686208,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SetKeyBinds",
+      "Start": 4686272,
+      "End": 4686472,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullsub_1",
+      "Start": 4686472,
+      "End": 4686473,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullsub_2",
+      "Start": 4691712,
+      "End": 4691713,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Level_PlaceCollectibles",
+      "Start": 4717156,
+      "End": 4717305,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetCPUSpeed",
+      "Start": 4718952,
+      "End": 4719286,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullsub_6",
+      "Start": 4720778,
+      "End": 4720779,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Eggman_ShootMissile",
+      "Start": 4720912,
+      "End": 4722036,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_MakeWaterIce",
+      "Start": 4725168,
+      "End": 4725292,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "PlaySFX",
+      "Start": 4727424,
+      "End": 4727535,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_SparkleRing",
+      "Start": 4731512,
+      "End": 4731795,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitLevel_ClearCharRAM",
+      "Start": 4739360,
+      "End": 4740006,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CharDif_Jump",
+      "Start": 4740008,
+      "End": 4740582,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CharDif_Unk",
+      "Start": 4740584,
+      "End": 4740927,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CharacterDifferentation",
+      "Start": 4740968,
+      "End": 4744979,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Printf_Dummy2",
+      "Start": 4745424,
+      "End": 4745431,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DestroyThread",
+      "Start": 4745512,
+      "End": 4745647,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_Connect",
+      "Start": 4746072,
+      "End": 4746213,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_CreateSession",
+      "Start": 4746616,
+      "End": 4747430,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_JoinSession",
+      "Start": 4747432,
+      "End": 4747645,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_SetPlayerData",
+      "Start": 4747648,
+      "End": 4747699,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_GetPlayerData",
+      "Start": 4747700,
+      "End": 4747767,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitHandshakeBollocks",
+      "Start": 4747768,
+      "End": 4747999,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_EnumeratePlayers",
+      "Start": 4748188,
+      "End": 4748418,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_Kill",
+      "Start": 4748748,
+      "End": 4748792,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_BroadcastFail",
+      "Start": 4748868,
+      "End": 4748914,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_AssignPlayerSlots",
+      "Start": 4749880,
+      "End": 4750450,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_ismbdprint__0",
+      "Start": 4750552,
+      "End": 4750568,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitModeSelect",
+      "Start": 4752828,
+      "End": 4755369,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "MultiPlayerSelect_Loop",
+      "Start": 4755548,
+      "End": 4757300,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "NetworkScreen_Loop",
+      "Start": 4761772,
+      "End": 4766336,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TAttackSelect",
+      "Start": 4766336,
+      "End": 4768366,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitMPSelect",
+      "Start": 4768368,
+      "End": 4770151,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitCharacterSelect",
+      "Start": 4770152,
+      "End": 4775476,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CourseSelectScreen",
+      "Start": 4775476,
+      "End": 4778669,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadSaveFiles",
+      "Start": 4781860,
+      "End": 4782284,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "WriteSaveFile",
+      "Start": 4782284,
+      "End": 4782418,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitSaveScreen",
+      "Start": 4782468,
+      "End": 4785413,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TimeRankingScreen",
+      "Start": 4787492,
+      "End": 4791173,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DDraw_SetResolution",
+      "Start": 4791176,
+      "End": 4792642,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "AdjustResolution",
+      "Start": 4793004,
+      "End": 4793268,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "OptionsScreen_Loop",
+      "Start": 4799452,
+      "End": 4805552,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Net_CreateLobby",
+      "Start": 4805608,
+      "End": 4805711,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?.tdctor$:CPtrList$n()rn$1$",
+      "Start": 4809744,
+      "End": 4809757,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_CollectRings",
+      "Start": 4810176,
+      "End": 4810850,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullsub_3",
+      "Start": 4811332,
+      "End": 4811333,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ClosePaletteStuff",
+      "Start": 4950308,
+      "End": 4950529,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_RenderBG",
+      "Start": 5008208,
+      "End": 5009543,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Init_ResultsScreen",
+      "Start": 5009904,
+      "End": 5014528,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "EmeraldGet_Loop",
+      "Start": 5015248,
+      "End": 5016873,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Unused_1",
+      "Start": 5016904,
+      "End": 5016959,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TagMode_Somethingness",
+      "Start": 5017668,
+      "End": 5018292,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Unused_2",
+      "Start": 5018728,
+      "End": 5019144,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CheckReg_AutoRun",
+      "Start": 5021216,
+      "End": 5021365,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "RestoreAutoRun",
+      "Start": 5021368,
+      "End": 5021469,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Init256TexBuff",
+      "Start": 5021836,
+      "End": 5021977,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "FreeTextures",
+      "Start": 5022236,
+      "End": 5022323,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "FreeTrackArrays",
+      "Start": 5022324,
+      "End": 5022459,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_FullQuit",
+      "Start": 5022460,
+      "End": 5022912,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_Quit",
+      "Start": 5022912,
+      "End": 5023125,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Load3DEverything",
+      "Start": 5023128,
+      "End": 5023227,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadParticleDisappearence",
+      "Start": 5023228,
+      "End": 5023311,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitScreenSize",
+      "Start": 5029628,
+      "End": 5029921,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_SetCameraPos?",
+      "Start": 5030120,
+      "End": 5030549,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TakeScreenshot",
+      "Start": 5030908,
+      "End": 5031689,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ResetPolyFunctPointers",
+      "Start": 5031964,
+      "End": 5032371,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "FunctionKeyOptions",
+      "Start": 5032372,
+      "End": 5033207,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "RandomizeWeather?",
+      "Start": 5035924,
+      "End": 5036137,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitPolygonPointers",
+      "Start": 5036140,
+      "End": 5036213,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitSonicR_B",
+      "Start": 5036292,
+      "End": 5037347,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_WinMain",
+      "Start": 5038020,
+      "End": 5046274,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitCDDevice",
+      "Start": 5046580,
+      "End": 5046656,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CloseCDDevice",
+      "Start": 5046656,
+      "End": 5046699,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "PlayCDMusic",
+      "Start": 5046700,
+      "End": 5046876,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadSFXFiles",
+      "Start": 5047884,
+      "End": 5048056,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadSFX",
+      "Start": 5048276,
+      "End": 5049027,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CloseDirectSound",
+      "Start": 5049028,
+      "End": 5049111,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "FindCDDrive",
+      "Start": 5049484,
+      "End": 5050186,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CDCheck",
+      "Start": 5050188,
+      "End": 5050411,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderPauseMenu",
+      "Start": 5051368,
+      "End": 5051842,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_Display2D",
+      "Start": 5052784,
+      "End": 5053747,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_Display2DNums",
+      "Start": 5054672,
+      "End": 5055350,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_DisplayMiniMap",
+      "Start": 5056280,
+      "End": 5056914,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderHUDElements",
+      "Start": 5057640,
+      "End": 5061448,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitRendererChooser",
+      "Start": 5066132,
+      "End": 5067285,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CharDiff_Loop",
+      "Start": 5069304,
+      "End": 5069796,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Collision_CheckLoops",
+      "Start": 5076252,
+      "End": 5076462,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "XZCollision_SlopesBorders",
+      "Start": 5076464,
+      "End": 5077308,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "BumpOnCollision",
+      "Start": 5078828,
+      "End": 5079415,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "XZCollision_SolidObject",
+      "Start": 5080204,
+      "End": 5081347,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadTerrainHeader",
+      "Start": 5081348,
+      "End": 5081771,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Collision_Main",
+      "Start": 5081784,
+      "End": 5081956,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "StartAddress",
+      "Start": 5082384,
+      "End": 5084354,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Credits_ShowText",
+      "Start": 5090084,
+      "End": 5091347,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Init_CreditsGraphics",
+      "Start": 5093884,
+      "End": 5094427,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadSegaScreen",
+      "Start": 5095904,
+      "End": 5096509,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadTTalesScreen",
+      "Start": 5096512,
+      "End": 5097120,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_TitlePressStart",
+      "Start": 5098260,
+      "End": 5099467,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TitleScreen_Loop",
+      "Start": 5099468,
+      "End": 5103537,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_RenderPercipitation",
+      "Start": 5108864,
+      "End": 5110305,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadRainbowTexture",
+      "Start": 5111956,
+      "End": 5112904,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "InitWeather",
+      "Start": 5112904,
+      "End": 5112990,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Game_CheckPercipitation",
+      "Start": 5113152,
+      "End": 5113206,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "D3D_SetParallaxLight",
+      "Start": 5113688,
+      "End": 5114058,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__CHP",
+      "Start": 5114058,
+      "End": 5114087,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "IF@ATAN",
+      "Start": 5114088,
+      "End": 5114109,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "IF@ATAN2",
+      "Start": 5114109,
+      "End": 5114130,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "unknown_libname_1",
+      "Start": 5114158,
+      "End": 5114195,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "memset_",
+      "Start": 5114208,
+      "End": 5114232,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "mem_putc_",
+      "Start": 5114232,
+      "End": 5114251,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "vsprintf_",
+      "Start": 5114251,
+      "End": 5114272,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_nmalloc_",
+      "Start": 5114272,
+      "End": 5114511,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_nfree_",
+      "Start": 5114511,
+      "End": 5114653,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__open_flags_",
+      "Start": 5114653,
+      "End": 5114862,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__doopen_",
+      "Start": 5114862,
+      "End": 5115058,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_fsopen_",
+      "Start": 5115058,
+      "End": 5115115,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "fopen_",
+      "Start": 5115115,
+      "End": 5115125,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "close_file_",
+      "Start": 5115125,
+      "End": 5115247,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "fread_",
+      "Start": 5115351,
+      "End": 5115862,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "fclose_",
+      "Start": 5115862,
+      "End": 5115925,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__shutdown_stream_",
+      "Start": 5115925,
+      "End": 5115946,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__hex_",
+      "Start": 5115946,
+      "End": 5115958,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__MkTmpFile_",
+      "Start": 5115958,
+      "End": 5116059,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__doclose_",
+      "Start": 5116059,
+      "End": 5116230,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "fwrite_",
+      "Start": 5116230,
+      "End": 5116716,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "fsetpos_",
+      "Start": 5116716,
+      "End": 5116728,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "initrandnext_",
+      "Start": 5116728,
+      "End": 5116738,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "rand_",
+      "Start": 5116738,
+      "End": 5116774,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "srand_",
+      "Start": 5116774,
+      "End": 5116790,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "strcmp_",
+      "Start": 5116800,
+      "End": 5116961,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "strerror_",
+      "Start": 5116981,
+      "End": 5117004,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "strncpy_",
+      "Start": 5117004,
+      "End": 5117041,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "byteswap_",
+      "Start": 5117041,
+      "End": 5117079,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "med3_",
+      "Start": 5117079,
+      "End": 5117167,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "qsort_",
+      "Start": 5117167,
+      "End": 5118248,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_module_dtor__",
+      "Start": 5118384,
+      "End": 5118476,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?fs_state_table$n(pn$ro_dtreg$$)pn$__7a4u3RO_STATE$$",
+      "Start": 5118476,
+      "End": 5118480,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?fs_point_object$n(pn$rw_dtreg$$ui)pnv",
+      "Start": 5118480,
+      "End": 5118487,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?fs_init_traverse$n(pn$__1j2o3bSTAB_TRAVERSE$$pn$rw_dtreg$$)v",
+      "Start": 5118487,
+      "End": 5118492,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?init$n()v",
+      "Start": 5118492,
+      "End": 5118503,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_mod_register__",
+      "Start": 5118503,
+      "End": 5118519,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_ctor_array__",
+      "Start": 5118520,
+      "End": 5118592,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?.fn_init$n()v_1",
+      "Start": 5118592,
+      "End": 5118686,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$ct:cout_initfini$n()_",
+      "Start": 5118686,
+      "End": 5118694,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$dt:cout_initfini$n()_",
+      "Start": 5118694,
+      "End": 5118711,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$ob:ostream$n(pnxa)rn$0$",
+      "Start": 5118712,
+      "End": 5118853,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$ob:ostream$n(l)rn$0$",
+      "Start": 5118856,
+      "End": 5119091,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$ob:ostream$n(pnv)rn$0$",
+      "Start": 5119092,
+      "End": 5119303,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "unknown_libname_2",
+      "Start": 5119304,
+      "End": 5119330,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "do_getch_",
+      "Start": 5119436,
+      "End": 5119703,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "getch_",
+      "Start": 5119703,
+      "End": 5119821,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?.fn_init$n()v_2",
+      "Start": 5119840,
+      "End": 5119934,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$ct:cerr_initfini$n()_",
+      "Start": 5119934,
+      "End": 5119952,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$dt:cerr_initfini$n()_",
+      "Start": 5119952,
+      "End": 5119969,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_dtor_array__",
+      "Start": 5119992,
+      "End": 5120037,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__null_int23_exit_",
+      "Start": 5120040,
+      "End": 5120041,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "exit_",
+      "Comment": "int",
+      "Start": 5120041,
+      "End": 5120065,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_exit_",
+      "Start": 5120065,
+      "End": 5120102,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "start",
+      "Start": 5120102,
+      "End": 5130934,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__fpatan_chk",
+      "Start": 5131024,
+      "End": 5131536,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__cnvs2d_",
+      "Start": 5131865,
+      "End": 5131879,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?_no_support_loaded$n()v",
+      "Start": 5131879,
+      "End": 5131897,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullsub_7",
+      "Start": 5131897,
+      "End": 5131898,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__init_80x87",
+      "Start": 5131898,
+      "End": 5131937,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__EnterWVIDEO_",
+      "Start": 5131937,
+      "End": 5131975,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__exit_with_msg_",
+      "Start": 5131975,
+      "End": 5132030,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__fatal_runtime_error_",
+      "Start": 5132030,
+      "End": 5132059,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_Alphabet",
+      "Start": 5132059,
+      "End": 5132060,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "utoa_",
+      "Start": 5132096,
+      "End": 5132170,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "itoa_",
+      "Start": 5132170,
+      "End": 5132197,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "toupper_",
+      "Start": 5132197,
+      "End": 5132211,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "HandlerRoutine",
+      "Start": 5132211,
+      "End": 5132300,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullsub_5",
+      "Start": 5132869,
+      "End": 5132870,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ReportFatalCrash",
+      "Start": 5132899,
+      "End": 5133846,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullSema4Rtn_",
+      "Start": 5134450,
+      "End": 5134451,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__CloseSemaphore_",
+      "Start": 5134451,
+      "End": 5134495,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__AccessIOB_",
+      "Start": 5134495,
+      "End": 5134505,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__ReleaseIOB_",
+      "Start": 5134505,
+      "End": 5134515,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__AccessFileH_",
+      "Start": 5134515,
+      "End": 5134528,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__ReleaseFileH_",
+      "Start": 5134528,
+      "End": 5134544,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__InitAccessH_",
+      "Start": 5134544,
+      "End": 5134549,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__FiniAccessH_",
+      "Start": 5134549,
+      "End": 5134577,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__AccessNHeap_",
+      "Start": 5134577,
+      "End": 5134584,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__ReleaseNHeap_",
+      "Start": 5134584,
+      "End": 5134594,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__AccessSemaphore_",
+      "Start": 5134630,
+      "End": 5134723,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__ReleaseFList_",
+      "Start": 5134723,
+      "End": 5134728,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__ReleaseSemaphore_",
+      "Start": 5134728,
+      "End": 5134765,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__MultipleThread_",
+      "Start": 5134765,
+      "End": 5134797,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__InitThreadData_",
+      "Start": 5134797,
+      "End": 5134860,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__NTThreadInit_",
+      "Start": 5134860,
+      "End": 5134936,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__NTAddThread_",
+      "Start": 5134936,
+      "End": 5135013,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__NTRemoveThread_",
+      "Start": 5135013,
+      "End": 5135090,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__ThreadExit_",
+      "Start": 5135090,
+      "End": 5135132,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__InitMultipleThread_",
+      "Start": 5135132,
+      "End": 5135413,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__FiniSema4s_",
+      "Start": 5135413,
+      "End": 5135520,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "strdup_",
+      "Start": 5135520,
+      "End": 5135589,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__InitRtns",
+      "Start": 5135590,
+      "End": 5135665,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__FiniRtns",
+      "Start": 5135665,
+      "End": 5135744,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__GetNTAccessAttr_",
+      "Start": 5136019,
+      "End": 5136063,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__GetNTShareAttr_",
+      "Start": 5136063,
+      "End": 5136110,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "stricmp_",
+      "Start": 5136110,
+      "End": 5136181,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__set_errno_dos_",
+      "Start": 5136192,
+      "End": 5136273,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__set_errno_nt_",
+      "Start": 5136273,
+      "End": 5136288,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "isatty_",
+      "Start": 5136288,
+      "End": 5136353,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__IOMode_",
+      "Start": 5136353,
+      "End": 5136438,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__SetIOMode_",
+      "Start": 5136438,
+      "End": 5136459,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "tell_",
+      "Start": 5136459,
+      "End": 5136520,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__InitFiles_",
+      "Start": 5136520,
+      "End": 5136639,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__full_io_exit_",
+      "Start": 5136639,
+      "End": 5136651,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "docloseall_",
+      "Start": 5136656,
+      "End": 5136744,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "flushall_",
+      "Start": 5136744,
+      "End": 5136749,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__flushall_",
+      "Start": 5136749,
+      "End": 5136808,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "getche_",
+      "Start": 5136808,
+      "End": 5136842,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "fflush_",
+      "Start": 5136842,
+      "End": 5136858,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_stab_entry__",
+      "Start": 5136884,
+      "End": 5136930,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_stab_trav_init__",
+      "Start": 5136930,
+      "End": 5136963,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_stab_trav_comp__",
+      "Start": 5136963,
+      "End": 5136968,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_stab_trav_next__",
+      "Start": 5136968,
+      "End": 5137101,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_stab_trav_move__",
+      "Start": 5137101,
+      "End": 5137247,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?callTerminate$n(pn$thread_ctl$$)v",
+      "Start": 5137248,
+      "End": 5137271,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_corrupted_stack__",
+      "Start": 5137271,
+      "End": 5137288,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?typesigIndex$n(pn$dispatch_exc$$uipnpn$rt_type_sig$$)ui",
+      "Start": 5137288,
+      "End": 5137444,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?dispatchableFnExc$n(pn$dispatch_exc$$pn$__iaap9DTOR_CMD$$)i",
+      "Start": 5137444,
+      "End": 5137483,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?fneDispatch$n(pn$dispatch_exc$$)v",
+      "Start": 5137483,
+      "End": 5137505,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?dispatchableCatch$n(pn$dispatch_exc$$pn$__iaap9DTOR_CMD$$)i",
+      "Start": 5137505,
+      "End": 5137543,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?throwCnvSig$n(pn$dispatch_exc$$)pn$rt_type_sig$$",
+      "Start": 5137543,
+      "End": 5137557,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?excToBePopped$n(pn$thread_ctl$$)i",
+      "Start": 5137557,
+      "End": 5137683,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?catchDispatch$n(pn$dispatch_exc$$)v",
+      "Start": 5137720,
+      "End": 5138038,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?catchDone$n(pn$thread_ctl$$pn$active_exc$$)v",
+      "Start": 5138038,
+      "End": 5138099,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?unwindExc$n(pn$dispatch_exc$$)v",
+      "Start": 5138132,
+      "End": 5138169,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?unwindStack$n(pn$dispatch_exc$$)v",
+      "Start": 5138169,
+      "End": 5138255,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?dispatchable$n(pn$dispatch_exc$$pn$rw_dtreg$$)$$TE$$",
+      "Start": 5138255,
+      "End": 5138484,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?getActiveExc$n(pn$thread_ctl$$)pn$active_exc$$",
+      "Start": 5138512,
+      "End": 5138644,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?dispatch_init$n(pn$dispatch_exc$$pn$throw_ro$$i)v",
+      "Start": 5138644,
+      "End": 5138701,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_dispatchable__",
+      "Start": 5138701,
+      "End": 5138790,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_save_exc__",
+      "Start": 5138790,
+      "End": 5138898,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_dispatch__",
+      "Start": 5138916,
+      "End": 5139093,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?processThrow$n(pnvpn$throw_ro$$i)v",
+      "Start": 5139093,
+      "End": 5139164,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?longjmpExcPop$n(pn$dispatch_exc$$pn$rw_dtreg$$)v",
+      "Start": 5139198,
+      "End": 5139273,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?longjmpDtoring$n(pfv)v",
+      "Start": 5139273,
+      "End": 5139433,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?longjmpInit$n()v",
+      "Start": 5139433,
+      "End": 5139444,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_ts_size__",
+      "Start": 5139480,
+      "End": 5139545,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_base_register__",
+      "Start": 5139548,
+      "End": 5139573,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?do_sgetn$:streambuf$n(pnai)i",
+      "Start": 5139588,
+      "End": 5139705,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?do_sputn$:streambuf$n(pnxai)i",
+      "Start": 5139744,
+      "End": 5139900,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?overflow$:stdiobuf$n(i)i",
+      "Start": 5139908,
+      "End": 5140279,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?underflow$:stdiobuf$n()i",
+      "Start": 5140280,
+      "End": 5140538,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?setbuf$:streambuf$n(pnai)pn$1$",
+      "Start": 5140540,
+      "End": 5140610,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?seekpos$:streambuf$n(li)l",
+      "Start": 5140620,
+      "End": 5140635,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?sync$:stdiobuf$n()i",
+      "Start": 5140636,
+      "End": 5140681,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?doallocate$:streambuf$n()i",
+      "Start": 5140684,
+      "End": 5140741,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$dt:streambuf$n()_",
+      "Start": 5140776,
+      "End": 5140804,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$dt:ios$n()_",
+      "Start": 5140804,
+      "End": 5140859,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$ct:streambuf$n()_",
+      "Start": 5140860,
+      "End": 5140934,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?init$:ios$n(pn$streambuf$$)v",
+      "Start": 5140944,
+      "End": 5141018,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "stackavail_",
+      "Start": 5141120,
+      "End": 5141167,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "fdiv_main_routine",
+      "Start": 5141180,
+      "End": 5141459,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__fdiv_fpr",
+      "Start": 5141459,
+      "End": 5142639,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__fdivp_sti_st",
+      "Start": 5142639,
+      "End": 5142658,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__fdivrp_sti_st",
+      "Start": 5142658,
+      "End": 5142677,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__fdiv_m64",
+      "Start": 5142772,
+      "End": 5142848,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DoEFormat_",
+      "Start": 5143006,
+      "End": 5143169,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DoFFormat_",
+      "Start": 5143169,
+      "End": 5143268,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "AdjField_",
+      "Start": 5143268,
+      "End": 5143381,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_FtoS_",
+      "Start": 5143381,
+      "End": 5143951,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "strtod_",
+      "Start": 5143951,
+      "End": 5144450,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__terminate_",
+      "Start": 5144456,
+      "End": 5144474,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_control87_",
+      "Start": 5144474,
+      "End": 5144557,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_nrealloc_",
+      "Start": 5144557,
+      "End": 5144679,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__GetThreadData_",
+      "Start": 5144679,
+      "End": 5144734,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__AddThreadData_",
+      "Start": 5144734,
+      "End": 5144831,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__RemoveThreadData_",
+      "Start": 5144831,
+      "End": 5144905,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__FreeThreadDataList_",
+      "Start": 5144905,
+      "End": 5144946,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "calloc_",
+      "Start": 5144946,
+      "End": 5144970,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "j___FreeThreadDataList_",
+      "Start": 5144970,
+      "End": 5144975,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "putch_",
+      "Start": 5144975,
+      "End": 5145073,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_bit_test__",
+      "Start": 5145076,
+      "End": 5145106,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "j_W?terminate$n()v",
+      "Start": 5145108,
+      "End": 5145113,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?catBaseSig$n(pn$rt_type_sig$$)pn$1$",
+      "Start": 5145116,
+      "End": 5145125,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_ts_equiv__",
+      "Start": 5145125,
+      "End": 5145206,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_alloc_exc__",
+      "Start": 5145448,
+      "End": 5145763,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_free_exc__",
+      "Start": 5145763,
+      "End": 5145808,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_pop_exc__",
+      "Start": 5145808,
+      "End": 5145823,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__wcpp_2_push_exc__",
+      "Start": 5145823,
+      "End": 5145836,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "nullsub_9",
+      "Start": 5145836,
+      "End": 5145837,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "memmove_",
+      "Start": 5145837,
+      "End": 5145914,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?setb$:streambuf$n(pnapnai)v",
+      "Start": 5145916,
+      "End": 5146001,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "j__nmalloc_",
+      "Start": 5146001,
+      "End": 5146006,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "j__nfree_",
+      "Start": 5146006,
+      "End": 5146011,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$ct:ios$n(rnx$0$)_",
+      "Start": 5146012,
+      "End": 5146084,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?free_xalloc_storage$:__WATCOM_ios$n(pn$ios$$)v",
+      "Start": 5146084,
+      "End": 5146105,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__Nan_Inf_",
+      "Start": 5146105,
+      "End": 5146251,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "IF@LOG",
+      "Start": 5146252,
+      "End": 5146254,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "IF@LOG2",
+      "Start": 5146319,
+      "End": 5146323,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "IF@LOG10",
+      "Start": 5146323,
+      "End": 5146327,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "floor_",
+      "Start": 5146363,
+      "End": 5146423,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_Scale_",
+      "Start": 5146423,
+      "End": 5146488,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_Scale10V_",
+      "Start": 5146488,
+      "End": 5146773,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__cvt_",
+      "Start": 5146773,
+      "End": 5147250,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__ZBuf2F",
+      "Start": 5147394,
+      "End": 5147469,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_nmsize_",
+      "Start": 5147550,
+      "End": 5147559,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_nexpand_",
+      "Start": 5147559,
+      "End": 5147617,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__HeapManager_expand_",
+      "Start": 5147617,
+      "End": 5148016,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__CInitThread_",
+      "Start": 5148031,
+      "End": 5148034,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_endthread_",
+      "Start": 5148041,
+      "End": 5148048,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__initthread_",
+      "Start": 5148048,
+      "End": 5148055,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?terminate$n()v",
+      "Start": 5148120,
+      "End": 5148193,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__log87_err_",
+      "Start": 5148248,
+      "End": 5148308,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "modf_",
+      "Start": 5148308,
+      "End": 5148333,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__CmpBigInt",
+      "Start": 5148334,
+      "End": 5148392,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__Rnd2Int",
+      "Start": 5148392,
+      "End": 5148499,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__Bin2String",
+      "Start": 5148499,
+      "End": 5148605,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$Wcm012$nx[]uc_0",
+      "Start": 5148622,
+      "End": 5148624,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?$Wcm012$nx[]uc_1",
+      "Start": 5148664,
+      "End": 5148694,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "frexp_",
+      "Start": 5148788,
+      "End": 5148899,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_begin_thread_helper",
+      "Start": 5148899,
+      "End": 5149071,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__CBeginThread_",
+      "Start": 5149071,
+      "End": 5149283,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__CEndThread_",
+      "Start": 5149283,
+      "End": 5149325,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__math1err_",
+      "Start": 5149325,
+      "End": 5149335,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__math2err_",
+      "Start": 5149335,
+      "End": 5149554,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "__rterrmsg_",
+      "Start": 5149560,
+      "End": 5149632,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "_matherr_",
+      "Start": 5149632,
+      "End": 5149679,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "fputs_",
+      "Start": 5149685,
+      "End": 5149826,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "W?sync$:streambuf$n()i",
+      "Start": 5149832,
+      "End": 5149885,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ExitThread",
+      "Start": 5155242,
+      "End": 5155248,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CreateThread_0",
+      "Start": 5155248,
+      "End": 5155254,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CreateEventA_0",
+      "Start": 5155254,
+      "End": 5155260,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetCurrentThread",
+      "Start": 5155260,
+      "End": 5155266,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SetEvent_0",
+      "Start": 5155266,
+      "End": 5155272,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "RtlUnwind",
+      "Start": 5155272,
+      "End": 5155278,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "WriteConsoleA",
+      "Start": 5155278,
+      "End": 5155284,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DeleteFileA",
+      "Start": 5155284,
+      "End": 5155290,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetFileType",
+      "Start": 5155290,
+      "End": 5155296,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetLastError",
+      "Start": 5155296,
+      "End": 5155302,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "VirtualFree",
+      "Start": 5155302,
+      "End": 5155308,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TlsFree",
+      "Start": 5155308,
+      "End": 5155314,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TlsSetValue",
+      "Start": 5155314,
+      "End": 5155320,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TlsAlloc",
+      "Start": 5155320,
+      "End": 5155326,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "TlsGetValue",
+      "Start": 5155326,
+      "End": 5155332,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ReleaseMutex",
+      "Start": 5155332,
+      "End": 5155338,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "WaitForSingleObject_0",
+      "Start": 5155338,
+      "End": 5155344,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CreateMutexA",
+      "Start": 5155344,
+      "End": 5155350,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetCurrentThreadId",
+      "Start": 5155350,
+      "End": 5155356,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetStdHandle",
+      "Start": 5155356,
+      "End": 5155362,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SetStdHandle",
+      "Start": 5155362,
+      "End": 5155368,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetProcAddress",
+      "Start": 5155368,
+      "End": 5155374,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "LoadLibraryA",
+      "Start": 5155374,
+      "End": 5155380,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetActiveWindow",
+      "Start": 5155380,
+      "End": 5155386,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "wsprintfA",
+      "Start": 5155386,
+      "End": 5155392,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SetConsoleCtrlHandler",
+      "Start": 5155392,
+      "End": 5155398,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "WriteFile",
+      "Start": 5155398,
+      "End": 5155404,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CloseHandle_0",
+      "Start": 5155404,
+      "End": 5155410,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SetFilePointer",
+      "Start": 5155410,
+      "End": 5155416,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetCurrentProcessId",
+      "Start": 5155416,
+      "End": 5155422,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ReadFile",
+      "Start": 5155422,
+      "End": 5155428,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "CreateFileA",
+      "Start": 5155428,
+      "End": 5155434,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "VirtualAlloc",
+      "Start": 5155434,
+      "End": 5155440,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetModuleHandleA",
+      "Start": 5155440,
+      "End": 5155446,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetVersion",
+      "Start": 5155446,
+      "End": 5155452,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetCommandLineA",
+      "Start": 5155452,
+      "End": 5155458,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetModuleFileNameA_0",
+      "Start": 5155458,
+      "End": 5155464,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetEnvironmentStrings",
+      "Start": 5155464,
+      "End": 5155470,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ExitProcess",
+      "Start": 5155470,
+      "End": 5155476,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "SetConsoleMode",
+      "Start": 5155548,
+      "End": 5155554,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "GetConsoleMode",
+      "Start": 5155554,
+      "End": 5155560,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "ReadConsoleInputA",
+      "Start": 5155560,
+      "End": 5155566,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DirectSoundCreate",
+      "Start": 5155572,
+      "End": 5155578,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DirectSoundEnumerateA",
+      "Start": 5155578,
+      "End": 5155584,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DirectPlayLobbyCreateA",
+      "Start": 5155584,
+      "End": 5155590,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DirectInputCreateA",
+      "Start": 5155590,
+      "End": 5155596,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DirectDrawEnumerateA",
+      "Start": 5155596,
+      "End": 5155602,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "DirectDrawCreate",
+      "Start": 5155602,
+      "End": 5155608,
+      "File": "SONICR.EXE"
+    },
+    {
+      "Name": "Course_RotOffset",
+      "Start": 5237508,
+      "End": 5237512,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Course_PlaceIndex",
+      "Comment": "0-4: Victory locations\n5-9: Standard locations\nA: P1 victory spot?\n+: garbage",
+      "Start": 5237552,
+      "End": 5237553,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SaveFileLoc",
+      "Start": 5253144,
+      "End": 5253148,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Data",
+      "Start": 5259456,
+      "End": 5259460,
+      "File": ":memory:"
+    },
+    {
+      "Name": "cbData",
+      "Start": 5259464,
+      "End": 5259468,
+      "File": ":memory:"
+    },
+    {
+      "Name": "lpSubKey",
+      "Start": 5259468,
+      "End": 5259472,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CDExists",
+      "Start": 5259896,
+      "End": 5259900,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CreditsText",
+      "Start": 5263388,
+      "End": 5263392,
+      "File": ":memory:"
+    },
+    {
+      "Name": "dwTlsIndex",
+      "Start": 5366112,
+      "End": 5366116,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Char3_Ptr",
+      "Start": 5505060,
+      "End": 5505064,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Char2_Ptr",
+      "Start": 5505064,
+      "End": 5505068,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Char4_Ptr",
+      "Start": 5505068,
+      "End": 5505072,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Char1_Ptr",
+      "Start": 5505072,
+      "End": 5505076,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Char5_Ptr",
+      "Start": 5505076,
+      "End": 5505080,
+      "File": ":memory:"
+    },
+    {
+      "Name": "AI_RamPointer",
+      "Start": 5505124,
+      "End": 5505128,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CurrentFile",
+      "Start": 6446076,
+      "End": 6446080,
+      "File": ":memory:"
+    },
+    {
+      "Name": "D3D_TextureType",
+      "Start": 6447216,
+      "End": 6447217,
+      "File": ":memory:"
+    },
+    {
+      "Name": "xRight",
+      "Start": 6488364,
+      "End": 6488368,
+      "File": ":memory:"
+    },
+    {
+      "Name": "yBottom",
+      "Start": 6488368,
+      "End": 6488372,
+      "File": ":memory:"
+    },
+    {
+      "Name": "FullScreenMode?",
+      "Start": 6488388,
+      "End": 6488392,
+      "File": ":memory:"
+    },
+    {
+      "Name": "NativeSoftwareRenderMode?",
+      "Start": 6488392,
+      "End": 6488396,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DDrawFailStatus",
+      "Start": 6548880,
+      "End": 6548884,
+      "File": ":memory:"
+    },
+    {
+      "Name": "lpDD",
+      "Start": 6552740,
+      "End": 6552744,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ppDI",
+      "Start": 6772900,
+      "End": 6772904,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F1Pushed",
+      "Start": 6772999,
+      "End": 6773000,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F2Pushed",
+      "Start": 6773000,
+      "End": 6773001,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F3Pushed",
+      "Start": 6773001,
+      "End": 6773002,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F4Pushed",
+      "Comment": "Note that Alt+F4 is included here",
+      "Start": 6773002,
+      "End": 6773003,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F5Pushed",
+      "Start": 6773003,
+      "End": 6773004,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F6Pushed",
+      "Start": 6773004,
+      "End": 6773005,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F7Pushed",
+      "Start": 6773005,
+      "End": 6773006,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F8Pushed",
+      "Start": 6773006,
+      "End": 6773007,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F9Pushed",
+      "Start": 6773007,
+      "End": 6773008,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Keys_F10Pushed",
+      "Start": 6773008,
+      "End": 6773009,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CharDif_X??",
+      "Start": 6854600,
+      "End": 6854604,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CharDif_Y??",
+      "Start": 6854604,
+      "End": 6854608,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CharDif_Z??",
+      "Start": 6854608,
+      "End": 6854612,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ppv",
+      "Start": 6859816,
+      "End": 6859820,
+      "File": ":memory:"
+    },
+    {
+      "Name": "hThread",
+      "Start": 6859884,
+      "End": 6859888,
+      "File": ":memory:"
+    },
+    {
+      "Name": "hEvent",
+      "Start": 6859888,
+      "End": 6859892,
+      "File": ":memory:"
+    },
+    {
+      "Name": "hHandle",
+      "Start": 6859892,
+      "End": 6859896,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SoundTestSelection",
+      "Start": 6860596,
+      "End": 6860600,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MusicTestSelection",
+      "Start": 6860600,
+      "End": 6860604,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GroundMapStart",
+      "Start": 6861504,
+      "End": 6861505,
+      "File": ":memory:"
+    },
+    {
+      "Name": "hAccTable",
+      "Start": 7182460,
+      "End": 7182464,
+      "File": ":memory:"
+    },
+    {
+      "Name": "hInstance",
+      "Start": 7182464,
+      "End": 7182468,
+      "File": ":memory:"
+    },
+    {
+      "Name": "hWnd",
+      "Start": 7182480,
+      "End": 7182484,
+      "File": ":memory:"
+    },
+    {
+      "Name": "hinst",
+      "Start": 7182592,
+      "End": 7182596,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_SecondsSinceRaceStart",
+      "Start": 7182904,
+      "End": 7182908,
+      "File": ":memory:"
+    },
+    {
+      "Name": "phkResult",
+      "Start": 7183044,
+      "End": 7183048,
+      "File": ":memory:"
+    },
+    {
+      "Name": "The256TexBuff",
+      "Start": 7183048,
+      "End": 7183052,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SoundBools",
+      "Start": 7184512,
+      "End": 7184516,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CDExists2",
+      "Start": 7185032,
+      "End": 7185036,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mciId",
+      "Start": 7185036,
+      "End": 7185038,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Unused_3",
+      "Start": 7185040,
+      "End": 7185044,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec1",
+      "Start": 7185756,
+      "End": 7185760,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec2",
+      "Start": 7185760,
+      "End": 7185764,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec3",
+      "Start": 7185764,
+      "End": 7185768,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec4",
+      "Start": 7185768,
+      "End": 7185772,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec5",
+      "Start": 7185772,
+      "End": 7185776,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_LoopsPtr",
+      "Start": 7185776,
+      "End": 7185780,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec7",
+      "Start": 7185780,
+      "End": 7185784,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec10",
+      "Start": 7185784,
+      "End": 7185788,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec8",
+      "Start": 7185788,
+      "End": 7185792,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Sec9",
+      "Start": 7185792,
+      "End": 7185796,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var1",
+      "Start": 7185852,
+      "End": 7185856,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var2",
+      "Start": 7185856,
+      "End": 7185860,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var3",
+      "Start": 7185860,
+      "End": 7185864,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var4",
+      "Start": 7185864,
+      "End": 7185868,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var5",
+      "Start": 7185868,
+      "End": 7185872,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_NoLoops",
+      "Start": 7185872,
+      "End": 7185876,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var7",
+      "Start": 7185876,
+      "End": 7185880,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var8",
+      "Start": 7185880,
+      "End": 7185884,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var9",
+      "Start": 7185884,
+      "End": 7185888,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var10",
+      "Start": 7185888,
+      "End": 7185892,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var11",
+      "Start": 7185892,
+      "End": 7185896,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var12",
+      "Start": 7185896,
+      "End": 7185900,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_Var13",
+      "Start": 7185900,
+      "End": 7185904,
+      "File": ":memory:"
+    },
+    {
+      "Name": "RenderMode",
+      "Comment": "0 = 16-Bit RGB, 1 = \"Null\", 2 = 8-bit Pallete",
+      "Start": 7198816,
+      "End": 7198820,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ScreenWidth",
+      "Start": 7248016,
+      "End": 7248020,
+      "File": ":memory:"
+    },
+    {
+      "Name": "T?Width",
+      "Start": 7248024,
+      "End": 7248028,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ScreenBPP",
+      "Start": 7248028,
+      "End": 7248032,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ScreenHeight",
+      "Start": 7248052,
+      "End": 7248056,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ScreenWidth_2",
+      "Start": 7248092,
+      "End": 7248096,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_WindowCount",
+      "Comment": "Best not to do more than screen space allots more",
+      "Start": 7248136,
+      "End": 7248140,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_NoVisChars",
+      "Start": 7248140,
+      "End": 7248144,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_HUDSplitStyle",
+      "Start": 7248156,
+      "End": 7248160,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ViewPortX",
+      "Start": 7249040,
+      "End": 7249044,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ViewPortY",
+      "Start": 7249044,
+      "End": 7249048,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ViewPortZ",
+      "Start": 7249048,
+      "End": 7249052,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_CurrentFPS",
+      "Start": 7249116,
+      "End": 7249120,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_FramesRenderedLife",
+      "Start": 7249152,
+      "End": 7249156,
+      "File": ":memory:"
+    },
+    {
+      "Name": "FrameSkipped?",
+      "Start": 7249160,
+      "End": 7249164,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_CurrentFPS2",
+      "Comment": "Typically 15 for some reason",
+      "Start": 7249164,
+      "End": 7249168,
+      "File": ":memory:"
+    },
+    {
+      "Name": "NoLvlParts",
+      "Start": 7253296,
+      "End": 7253300,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TrackGouradableParts",
+      "Start": 7253300,
+      "End": 7253304,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TrackGouradOffset",
+      "Start": 7417160,
+      "End": 7417164,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_ModelCount",
+      "Start": 7417952,
+      "End": 7417956,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_VertexCount",
+      "Start": 7417960,
+      "End": 7417964,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_TriCount",
+      "Start": 7417964,
+      "End": 7417968,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_QuadCount",
+      "Start": 7417968,
+      "End": 7417972,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_AnimFrameCount",
+      "Start": 7417972,
+      "End": 7417976,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Sonic_GouradCount",
+      "Start": 7418024,
+      "End": 7418028,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_DefHeight",
+      "Start": 7418060,
+      "End": 7418064,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Tails_GouradCount",
+      "Start": 7418104,
+      "End": 7418108,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Tails_AnimStartIdx",
+      "Start": 7418124,
+      "End": 7418128,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Tails_ShadowSize",
+      "Start": 7418136,
+      "End": 7418140,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Tails_ModelHeight",
+      "Start": 7418140,
+      "End": 7418144,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Knux_GouradCount",
+      "Start": 7418184,
+      "End": 7418188,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Knux_AnimStartIdx",
+      "Start": 7418204,
+      "End": 7418208,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Knux_ShadowSize",
+      "Start": 7418216,
+      "End": 7418220,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Knux_ModelHeight",
+      "Start": 7418220,
+      "End": 7418224,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Amy_GouradCount",
+      "Start": 7418264,
+      "End": 7418268,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Amy_AnimStartIdx",
+      "Start": 7418284,
+      "End": 7418288,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Amy_ShadowSize",
+      "Start": 7418296,
+      "End": 7418300,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Amy_ModelHeight",
+      "Start": 7418300,
+      "End": 7418304,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Robotnik_GouradCount",
+      "Start": 7418344,
+      "End": 7418348,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Robotnik_AnimStartIdx",
+      "Start": 7418364,
+      "End": 7418368,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Robotnik_ShadowSize",
+      "Start": 7418376,
+      "End": 7418380,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Robotnik_ModelHeight",
+      "Start": 7418380,
+      "End": 7418384,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MSonic_GouradCount",
+      "Start": 7418424,
+      "End": 7418428,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MSonic_AnimStartIdx",
+      "Start": 7418444,
+      "End": 7418448,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MSonic_ShadowSize",
+      "Start": 7418456,
+      "End": 7418460,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MSonic_ModelHeight",
+      "Start": 7418460,
+      "End": 7418464,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TailsD_GouradCount",
+      "Start": 7418504,
+      "End": 7418508,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TailsD_AnimStartIdx",
+      "Start": 7418524,
+      "End": 7418528,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TailsD_ShadowSize",
+      "Start": 7418536,
+      "End": 7418540,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TailsD_ModelHeight",
+      "Start": 7418540,
+      "End": 7418544,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MKnux_GouradCount",
+      "Start": 7418584,
+      "End": 7418588,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MKnux_AnimStartIdx",
+      "Start": 7418604,
+      "End": 7418608,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MKnux_ShadowSize",
+      "Start": 7418616,
+      "End": 7418620,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MKnux_ModelHeight",
+      "Start": 7418620,
+      "End": 7418624,
+      "File": ":memory:"
+    },
+    {
+      "Name": "EggRobo_GouradCount",
+      "Start": 7418664,
+      "End": 7418668,
+      "File": ":memory:"
+    },
+    {
+      "Name": "EggRobo_AnimStartIdx",
+      "Start": 7418684,
+      "End": 7418688,
+      "File": ":memory:"
+    },
+    {
+      "Name": "EggRobo_ShadowSize",
+      "Start": 7418696,
+      "End": 7418700,
+      "File": ":memory:"
+    },
+    {
+      "Name": "EggRobo_ModelHeight",
+      "Start": 7418700,
+      "End": 7418704,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Super_GouradCount",
+      "Start": 7418744,
+      "End": 7418748,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Super_AnimStartIdx",
+      "Start": 7418764,
+      "End": 7418768,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Super_ShadowSize",
+      "Start": 7418776,
+      "End": 7418780,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Super_ModelHeight",
+      "Start": 7418780,
+      "End": 7418784,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CharMdlXOff_BasePtr",
+      "Start": 7513580,
+      "End": 7513584,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CharMdlYOff_BasePtr",
+      "Start": 7513584,
+      "End": 7513588,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CharMdlZOff_BasePtr",
+      "Start": 7513588,
+      "End": 7513592,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ShadowFootstepTexPage",
+      "Start": 9399336,
+      "End": 9399340,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TexturePage_3",
+      "Start": 9399352,
+      "End": 9399356,
+      "File": ":memory:"
+    },
+    {
+      "Name": "HUDTexPage",
+      "Start": 9399356,
+      "End": 9399360,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TilesetPage",
+      "Comment": "Tileset page offset.\nList for Menu HUD icons:\n    0 = SEGA screen?\n    1 = Regal Ruin\n    2 = Strange gold objects\n    3 = Strange silver objects\n    4 = Reactive Factory\n    5 = Resort Island?\n    6 = Flags and other stuff?\n    7 = Gates and other stuff?\n    8 = More other stuff\n    9 = Radical City?\n    A = Radical City\n    B = Radiant Emerald\n    C = Blank?\n    D = Weird metal doodads\n    E = Closed Character Eyes\n    F = Race Status Icons\n    10 = Menu BG\n    11 = Menu Icons\n    12+ = Transparent?",
+      "Start": 9399368,
+      "End": 9399372,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DrawDistanceTemp1",
+      "Start": 9417564,
+      "End": 9417568,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DrawDistanceTemp2",
+      "Start": 9417568,
+      "End": 9417572,
+      "File": ":memory:"
+    },
+    {
+      "Name": "FogDistance",
+      "Start": 9417572,
+      "End": 9417576,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_FramesRenderedScene",
+      "Start": 9418380,
+      "End": 9418384,
+      "File": ":memory:"
+    },
+    {
+      "Name": "FrameLimiterOpt",
+      "Start": 9418764,
+      "End": 9418768,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Course",
+      "Start": 9418988,
+      "End": 9418992,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_HudStyle",
+      "Comment": "This is a bit funky.\n0 = GP Mode\n1 = Multiplayer\n2 = Time Attack\n3 = VS. Challenge\n4+ = Time Attack",
+      "Start": 9419088,
+      "End": 9419092,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_HUDTTStyle",
+      "Comment": "The current time attack submode\n0 - Normal\n1 - Reverse\n2 - Tag 4\n3 - Balloon Hunt",
+      "Start": 9419092,
+      "End": 9419096,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CoinCollection",
+      "Start": 9419380,
+      "End": 9419384,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Difficulty",
+      "Start": 9425988,
+      "End": 9425992,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CatchUpOpt",
+      "Start": 9426000,
+      "End": 9426004,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MinimapOpt",
+      "Start": 9426008,
+      "End": 9426012,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ScreenResolution",
+      "Start": 9426024,
+      "End": 9426028,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ColorDepth",
+      "Start": 9426028,
+      "End": 9426032,
+      "File": ":memory:"
+    },
+    {
+      "Name": "AlphaBlend",
+      "Start": 9426032,
+      "End": 9426036,
+      "File": ":memory:"
+    },
+    {
+      "Name": "InterlaceOpt",
+      "Start": 9426040,
+      "End": 9426044,
+      "File": ":memory:"
+    },
+    {
+      "Name": "UnusedOpt1",
+      "Start": 9426044,
+      "End": 9426048,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DrawDistance",
+      "Start": 9426048,
+      "End": 9426052,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ScreenSize",
+      "Start": 9426052,
+      "End": 9426056,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TrackShading",
+      "Start": 9426056,
+      "End": 9426060,
+      "File": ":memory:"
+    },
+    {
+      "Name": "UnusedOpt2",
+      "Start": 9426060,
+      "End": 9426064,
+      "File": ":memory:"
+    },
+    {
+      "Name": "StereoOpt",
+      "Start": 9426068,
+      "End": 9426072,
+      "File": ":memory:"
+    },
+    {
+      "Name": "VocalsOpt",
+      "Start": 9426072,
+      "End": 9426076,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SFXVolume",
+      "Start": 9426076,
+      "End": 9426080,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MusicOpt",
+      "Start": 9426080,
+      "End": 9426084,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3XPos",
+      "Start": 9426164,
+      "End": 9426168,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3YPos",
+      "Start": 9426168,
+      "End": 9426172,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3ZPos",
+      "Start": 9426172,
+      "End": 9426176,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3YZRot",
+      "Start": 9426176,
+      "End": 9426180,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3XZRot",
+      "Start": 9426180,
+      "End": 9426184,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3XYRot",
+      "Start": 9426184,
+      "End": 9426188,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3RingCount",
+      "Start": 9426188,
+      "End": 9426190,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3XMomentum",
+      "Start": 9426208,
+      "End": 9426212,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3YMomentum",
+      "Start": 9426212,
+      "End": 9426216,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3ZMomentum",
+      "Start": 9426216,
+      "End": 9426220,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3Lap1Time",
+      "Start": 9426244,
+      "End": 9426248,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char3Place",
+      "Comment": "Typically player character",
+      "Start": 9426256,
+      "End": 9426258,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Char3_CollisionLayer",
+      "Comment": "This variable... is so weird!\n\nEverything non-infintely-high wall is a floor.\nAny floor above this value is treated as a wall/ceiling.\n\nAlso ceilings are actually floors on different layers.",
+      "Start": 9426328,
+      "End": 9426332,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_PlayerModel",
+      "Start": 9426644,
+      "End": 9426646,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char2XPos_0",
+      "Start": 9427984,
+      "End": 9427988,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char2YPos",
+      "Start": 9427988,
+      "End": 9427992,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char2ZPos",
+      "Start": 9427992,
+      "End": 9427996,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char2YZRot",
+      "Start": 9427996,
+      "End": 9428000,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char2XZRot",
+      "Start": 9428000,
+      "End": 9428004,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char2ZYRot",
+      "Start": 9428004,
+      "End": 9428008,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char2Place",
+      "Start": 9428076,
+      "End": 9428078,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char2Identity",
+      "Start": 9428226,
+      "End": 9428228,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char4XPos_0",
+      "Start": 9429804,
+      "End": 9429808,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char4YPos",
+      "Start": 9429808,
+      "End": 9429812,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char4ZPos",
+      "Start": 9429812,
+      "End": 9429816,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char4Place",
+      "Start": 9429896,
+      "End": 9429898,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char4Identity",
+      "Start": 9430046,
+      "End": 9430048,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char1XPos_0",
+      "Start": 9431624,
+      "End": 9431628,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char1YPos",
+      "Start": 9431628,
+      "End": 9431632,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char1ZPos",
+      "Start": 9431632,
+      "End": 9431636,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char1Place",
+      "Comment": "Leftmost character",
+      "Start": 9431716,
+      "End": 9431718,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char1Indentity",
+      "Comment": "Collsion/Icon for player on left\nduring beginning lienup.",
+      "Start": 9431866,
+      "End": 9431868,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char5XPos",
+      "Start": 9433444,
+      "End": 9433448,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char5Place",
+      "Start": 9433536,
+      "End": 9433538,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Char5Identity",
+      "Start": 9433686,
+      "End": 9433688,
+      "File": ":memory:"
+    },
+    {
+      "Name": "PauseMenuSelection",
+      "Start": 9444368,
+      "End": 9444372,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_PauseFlag",
+      "Start": 9444400,
+      "End": 9444404,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Menu_FadeCoverage",
+      "Start": 9444420,
+      "End": 9444424,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_ScreenTransitionState",
+      "Start": 9444424,
+      "End": 9444428,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_TaggedCharCount",
+      "Start": 9444464,
+      "End": 9444468,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_VictoryTimer",
+      "Start": 9444484,
+      "End": 9444488,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TimeToRaceStart",
+      "Start": 9444548,
+      "End": 9444552,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GOImageSize",
+      "Start": 9444552,
+      "End": 9444556,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Track_HeaderLen",
+      "Start": 9445100,
+      "End": 9445104,
+      "File": ":memory:"
+    },
+    {
+      "Name": "P1Keys",
+      "Start": 9445576,
+      "End": 9445578,
+      "File": ":memory:"
+    },
+    {
+      "Name": "P2Keys",
+      "Start": 9445578,
+      "End": 9445580,
+      "File": ":memory:"
+    },
+    {
+      "Name": "P3Keys",
+      "Start": 9445580,
+      "End": 9445582,
+      "File": ":memory:"
+    },
+    {
+      "Name": "P4Keys",
+      "Start": 9445582,
+      "End": 9445584,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DInput_Keys",
+      "Start": 9445592,
+      "End": 9445594,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Course_PlaceOffset",
+      "Start": 9446568,
+      "End": 9446572,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_OptionsMenuSelect",
+      "Start": 9589388,
+      "End": 9589392,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_MainMenuSelect",
+      "Comment": "Also used for rotation data\non menus when not in use.",
+      "Start": 9589428,
+      "End": 9589432,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Menu_State?",
+      "Start": 9589784,
+      "End": 9589788,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Terrain_BasePtr",
+      "Start": 9631372,
+      "End": 9631376,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Weather",
+      "Comment": "0 is Clear\n1 is Rain\n2 is Snow",
+      "Start": 9747700,
+      "End": 9747704,
+      "File": ":memory:"
+    },
+    {
+      "Name": "Game_Time",
+      "Comment": "1 is Day\n2 is Dusk\n3 is Night",
+      "Start": 9747704,
+      "End": 9747708,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TrackRedTint",
+      "Start": 9754944,
+      "End": 9754948,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TrackGreenTint",
+      "Start": 9754948,
+      "End": 9754952,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TrackBlueTint",
+      "Start": 9754952,
+      "End": 9754956,
+      "File": ":memory:"
+    },
+    {
+      "Name": "lpTlsValue",
+      "Start": 9755208,
+      "End": 9755212,
+      "File": ":memory:"
+    },
+    {
+      "Name": "RegCloseKey",
+      "Start": 9765148,
+      "End": 9765152,
+      "File": ":memory:"
+    },
+    {
+      "Name": "RegFlushKey",
+      "Start": 9765152,
+      "End": 9765156,
+      "File": ":memory:"
+    },
+    {
+      "Name": "RegOpenKeyExA",
+      "Start": 9765156,
+      "End": 9765160,
+      "File": ":memory:"
+    },
+    {
+      "Name": "RegQueryValueExA",
+      "Start": 9765160,
+      "End": 9765164,
+      "File": ":memory:"
+    },
+    {
+      "Name": "RegSetValueExA",
+      "Start": 9765164,
+      "End": 9765168,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CoCreateInstance",
+      "Start": 9765188,
+      "End": 9765192,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CoInitialize",
+      "Start": 9765192,
+      "End": 9765196,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CoUninitialize",
+      "Start": 9765196,
+      "End": 9765200,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CloseHandle",
+      "Start": 9765288,
+      "End": 9765292,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CreateEventA",
+      "Start": 9765292,
+      "End": 9765296,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CreateThread",
+      "Start": 9765296,
+      "End": 9765300,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetDriveTypeA",
+      "Start": 9765300,
+      "End": 9765304,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetExitCodeThread",
+      "Start": 9765304,
+      "End": 9765308,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetModuleFileNameA",
+      "Start": 9765308,
+      "End": 9765312,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GlobalAlloc",
+      "Start": 9765312,
+      "End": 9765316,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GlobalFree",
+      "Start": 9765316,
+      "End": 9765320,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GlobalHandle",
+      "Start": 9765320,
+      "End": 9765324,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GlobalLock",
+      "Start": 9765324,
+      "End": 9765328,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GlobalUnlock",
+      "Start": 9765328,
+      "End": 9765332,
+      "File": ":memory:"
+    },
+    {
+      "Name": "OutputDebugStringA",
+      "Start": 9765332,
+      "End": 9765336,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ResetEvent",
+      "Start": 9765336,
+      "End": 9765340,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetCurrentDirectoryA",
+      "Start": 9765340,
+      "End": 9765344,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetEvent",
+      "Start": 9765344,
+      "End": 9765348,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TerminateThread",
+      "Start": 9765348,
+      "End": 9765352,
+      "File": ":memory:"
+    },
+    {
+      "Name": "WaitForSingleObject",
+      "Start": 9765352,
+      "End": 9765356,
+      "File": ":memory:"
+    },
+    {
+      "Name": "lstrcatA",
+      "Start": 9765356,
+      "End": 9765360,
+      "File": ":memory:"
+    },
+    {
+      "Name": "lstrcpyA",
+      "Start": 9765360,
+      "End": 9765364,
+      "File": ":memory:"
+    },
+    {
+      "Name": "lstrlenA",
+      "Start": 9765364,
+      "End": 9765368,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CreateFontA",
+      "Start": 9765428,
+      "End": 9765432,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DeleteObject",
+      "Start": 9765432,
+      "End": 9765436,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ExtTextOutA",
+      "Start": 9765436,
+      "End": 9765440,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetPixel",
+      "Start": 9765440,
+      "End": 9765444,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetStockObject",
+      "Start": 9765444,
+      "End": 9765448,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetSystemPaletteEntries",
+      "Start": 9765448,
+      "End": 9765452,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetTextExtentPoint32A",
+      "Start": 9765452,
+      "End": 9765456,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetTextExtentPointA",
+      "Start": 9765456,
+      "End": 9765460,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SelectObject",
+      "Start": 9765460,
+      "End": 9765464,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetBkColor",
+      "Start": 9765464,
+      "End": 9765468,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetBkMode",
+      "Start": 9765468,
+      "End": 9765472,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetPixel",
+      "Start": 9765472,
+      "End": 9765476,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetTextColor",
+      "Start": 9765476,
+      "End": 9765480,
+      "File": ":memory:"
+    },
+    {
+      "Name": "AdjustWindowRectEx",
+      "Start": 9765656,
+      "End": 9765660,
+      "File": ":memory:"
+    },
+    {
+      "Name": "AppendMenuA",
+      "Start": 9765660,
+      "End": 9765664,
+      "File": ":memory:"
+    },
+    {
+      "Name": "BeginPaint",
+      "Start": 9765664,
+      "End": 9765668,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ClientToScreen",
+      "Start": 9765668,
+      "End": 9765672,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CreatePopupMenu",
+      "Start": 9765672,
+      "End": 9765676,
+      "File": ":memory:"
+    },
+    {
+      "Name": "CreateWindowExA",
+      "Start": 9765676,
+      "End": 9765680,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DefWindowProcA",
+      "Start": 9765680,
+      "End": 9765684,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DestroyWindow",
+      "Start": 9765684,
+      "End": 9765688,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DialogBoxParamA",
+      "Start": 9765688,
+      "End": 9765692,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DispatchMessageA",
+      "Start": 9765692,
+      "End": 9765696,
+      "File": ":memory:"
+    },
+    {
+      "Name": "DrawMenuBar",
+      "Start": 9765696,
+      "End": 9765700,
+      "File": ":memory:"
+    },
+    {
+      "Name": "EndDialog",
+      "Start": 9765700,
+      "End": 9765704,
+      "File": ":memory:"
+    },
+    {
+      "Name": "EndPaint",
+      "Start": 9765704,
+      "End": 9765708,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetClientRect",
+      "Start": 9765708,
+      "End": 9765712,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetDC",
+      "Start": 9765712,
+      "End": 9765716,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetMenu",
+      "Start": 9765716,
+      "End": 9765720,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetMenuItemCount",
+      "Start": 9765720,
+      "End": 9765724,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetMessageA",
+      "Start": 9765724,
+      "End": 9765728,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetSystemMetrics",
+      "Start": 9765728,
+      "End": 9765732,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetWindowLongA",
+      "Start": 9765732,
+      "End": 9765736,
+      "File": ":memory:"
+    },
+    {
+      "Name": "GetWindowRect",
+      "Start": 9765736,
+      "End": 9765740,
+      "File": ":memory:"
+    },
+    {
+      "Name": "LoadAcceleratorsA",
+      "Start": 9765740,
+      "End": 9765744,
+      "File": ":memory:"
+    },
+    {
+      "Name": "LoadCursorA",
+      "Start": 9765744,
+      "End": 9765748,
+      "File": ":memory:"
+    },
+    {
+      "Name": "LoadIconA",
+      "Start": 9765748,
+      "End": 9765752,
+      "File": ":memory:"
+    },
+    {
+      "Name": "MessageBoxA",
+      "Start": 9765752,
+      "End": 9765756,
+      "File": ":memory:"
+    },
+    {
+      "Name": "PeekMessageA",
+      "Start": 9765756,
+      "End": 9765760,
+      "File": ":memory:"
+    },
+    {
+      "Name": "PostQuitMessage",
+      "Start": 9765760,
+      "End": 9765764,
+      "File": ":memory:"
+    },
+    {
+      "Name": "RedrawWindow",
+      "Start": 9765764,
+      "End": 9765768,
+      "File": ":memory:"
+    },
+    {
+      "Name": "RegisterClassA",
+      "Start": 9765768,
+      "End": 9765772,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ReleaseDC",
+      "Start": 9765772,
+      "End": 9765776,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SendMessageA",
+      "Start": 9765776,
+      "End": 9765780,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetCursor",
+      "Start": 9765780,
+      "End": 9765784,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetFocus",
+      "Start": 9765784,
+      "End": 9765788,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetRect",
+      "Start": 9765788,
+      "End": 9765792,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetWindowPos",
+      "Start": 9765792,
+      "End": 9765796,
+      "File": ":memory:"
+    },
+    {
+      "Name": "SetWindowTextA",
+      "Start": 9765796,
+      "End": 9765800,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ShowCursor",
+      "Start": 9765800,
+      "End": 9765804,
+      "File": ":memory:"
+    },
+    {
+      "Name": "ShowWindow",
+      "Start": 9765804,
+      "End": 9765808,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TranslateAcceleratorA",
+      "Start": 9765808,
+      "End": 9765812,
+      "File": ":memory:"
+    },
+    {
+      "Name": "TranslateMessage",
+      "Start": 9765812,
+      "End": 9765816,
+      "File": ":memory:"
+    },
+    {
+      "Name": "UpdateWindow",
+      "Start": 9765816,
+      "End": 9765820,
+      "File": ":memory:"
+    },
+    {
+      "Name": "WaitMessage",
+      "Start": 9765820,
+      "End": 9765824,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetActiveWindow",
+      "Start": 9765840,
+      "End": 9765844,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_wsprintfA",
+      "Start": 9765844,
+      "End": 9765848,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_CloseHandle_0",
+      "Start": 9766016,
+      "End": 9766020,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_CreateEventA_0",
+      "Start": 9766020,
+      "End": 9766024,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_CreateFileA",
+      "Start": 9766024,
+      "End": 9766028,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_CreateMutexA",
+      "Start": 9766028,
+      "End": 9766032,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_CreateThread_0",
+      "Start": 9766032,
+      "End": 9766036,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_DeleteFileA",
+      "Start": 9766036,
+      "End": 9766040,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_ExitProcess",
+      "Start": 9766040,
+      "End": 9766044,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_ExitThread",
+      "Start": 9766044,
+      "End": 9766048,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetCommandLineA",
+      "Start": 9766048,
+      "End": 9766052,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetConsoleMode",
+      "Start": 9766052,
+      "End": 9766056,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetCurrentProcessId",
+      "Start": 9766056,
+      "End": 9766060,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetCurrentThreadId",
+      "Start": 9766060,
+      "End": 9766064,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetCurrentThread",
+      "Start": 9766064,
+      "End": 9766068,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetEnvironmentStrings",
+      "Start": 9766068,
+      "End": 9766072,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetFileType",
+      "Start": 9766072,
+      "End": 9766076,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetLastError",
+      "Start": 9766076,
+      "End": 9766080,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetModuleFileNameA_0",
+      "Start": 9766080,
+      "End": 9766084,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetModuleHandleA",
+      "Start": 9766084,
+      "End": 9766088,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetProcAddress",
+      "Start": 9766088,
+      "End": 9766092,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetStdHandle",
+      "Start": 9766092,
+      "End": 9766096,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_GetVersion",
+      "Start": 9766096,
+      "End": 9766100,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_LoadLibraryA",
+      "Start": 9766100,
+      "End": 9766104,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_ReadConsoleInputA",
+      "Start": 9766104,
+      "End": 9766108,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_ReadFile",
+      "Start": 9766108,
+      "End": 9766112,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_ReleaseMutex",
+      "Start": 9766112,
+      "End": 9766116,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_RtlUnwind",
+      "Start": 9766116,
+      "End": 9766120,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_SetConsoleCtrlHandler",
+      "Start": 9766120,
+      "End": 9766124,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_SetConsoleMode",
+      "Start": 9766124,
+      "End": 9766128,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_SetEvent_0",
+      "Start": 9766128,
+      "End": 9766132,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_SetFilePointer",
+      "Start": 9766132,
+      "End": 9766136,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_SetStdHandle",
+      "Start": 9766136,
+      "End": 9766140,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_TlsAlloc",
+      "Start": 9766140,
+      "End": 9766144,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_TlsFree",
+      "Start": 9766144,
+      "End": 9766148,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_TlsGetValue",
+      "Start": 9766148,
+      "End": 9766152,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_TlsSetValue",
+      "Start": 9766152,
+      "End": 9766156,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_VirtualAlloc",
+      "Start": 9766156,
+      "End": 9766160,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_VirtualFree",
+      "Start": 9766160,
+      "End": 9766164,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_WaitForSingleObject_0",
+      "Start": 9766164,
+      "End": 9766168,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_WriteConsoleA",
+      "Start": 9766168,
+      "End": 9766172,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_WriteFile",
+      "Start": 9766172,
+      "End": 9766176,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mciSendCommandA",
+      "Start": 9766236,
+      "End": 9766240,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioAdvance",
+      "Start": 9766240,
+      "End": 9766244,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioAscend",
+      "Start": 9766244,
+      "End": 9766248,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioClose",
+      "Start": 9766248,
+      "End": 9766252,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioCreateChunk",
+      "Start": 9766252,
+      "End": 9766256,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioDescend",
+      "Start": 9766256,
+      "End": 9766260,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioGetInfo",
+      "Start": 9766260,
+      "End": 9766264,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioOpenA",
+      "Start": 9766264,
+      "End": 9766268,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioRead",
+      "Start": 9766268,
+      "End": 9766272,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioSeek",
+      "Start": 9766272,
+      "End": 9766276,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioSetInfo",
+      "Start": 9766276,
+      "End": 9766280,
+      "File": ":memory:"
+    },
+    {
+      "Name": "mmioWrite",
+      "Start": 9766280,
+      "End": 9766284,
+      "File": ":memory:"
+    },
+    {
+      "Name": "timeGetTime",
+      "Start": 9766284,
+      "End": 9766288,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_DirectSoundCreate",
+      "Start": 9766304,
+      "End": 9766308,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_DirectSoundEnumerateA",
+      "Start": 9766308,
+      "End": 9766312,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_DirectPlayLobbyCreateA",
+      "Start": 9766324,
+      "End": 9766328,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_DirectInputCreateA",
+      "Start": 9766340,
+      "End": 9766344,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_DirectDrawCreate",
+      "Start": 9766360,
+      "End": 9766364,
+      "File": ":memory:"
+    },
+    {
+      "Name": "__imp_DirectDrawEnumerateA",
+      "Start": 9766364,
+      "End": 9766368,
+      "File": ":memory:"
+    },
+    {
+      "Start": 0,
+      "End": "22144",
+      "File": "ai/aistuffc.bin",
+      "UUID": "ai/aistuffc.bin"
+    },
+    {
+      "Start": 0,
+      "End": "21664",
+      "File": "ai/aistuffe.bin",
+      "UUID": "ai/aistuffe.bin"
+    },
+    {
+      "Start": 0,
+      "End": "22144",
+      "File": "ai/aistufff.bin",
+      "UUID": "ai/aistufff.bin"
+    },
+    {
+      "Start": 0,
+      "End": "22304",
+      "File": "ai/aistuffi.bin",
+      "UUID": "ai/aistuffi.bin"
+    },
+    {
+      "Start": 0,
+      "End": "22144",
+      "File": "ai/aistuffr.bin",
+      "UUID": "ai/aistuffr.bin"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "city/city00.raw",
+      "UUID": "city/city00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "city/city01.raw",
+      "UUID": "city/city01.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "city/city02.raw",
+      "UUID": "city/city02.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "city/city03.raw",
+      "UUID": "city/city03.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "city/city06.raw",
+      "UUID": "city/city06.raw"
+    },
+    {
+      "Start": 0,
+      "End": "673288",
+      "File": "city/city_b.bin",
+      "UUID": "city/city_b.bin"
+    },
+    {
+      "Start": 0,
+      "End": "65536",
+      "File": "city/city.map",
+      "UUID": "city/city.map"
+    },
+    {
+      "Start": 0,
+      "End": "368640",
+      "File": "city/city.ply",
+      "UUID": "city/city.ply"
+    },
+    {
+      "Start": 0,
+      "End": "23040",
+      "File": "city/map_c.raw",
+      "UUID": "city/map_c.raw"
+    },
+    {
+      "Start": 0,
+      "End": "127488",
+      "File": "directx/dsetup.dll",
+      "UUID": "directx/dsetup.dll"
+    },
+    {
+      "Start": 0,
+      "End": "157696",
+      "File": "directx/setup.exe",
+      "UUID": "directx/setup.exe"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "emerald/cas00.256",
+      "UUID": "emerald/cas00.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "emerald/cas00.raw",
+      "UUID": "emerald/cas00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "emerald/cas01.raw",
+      "UUID": "emerald/cas01.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "emerald/cas02.raw",
+      "UUID": "emerald/cas02.raw"
+    },
+    {
+      "Start": 0,
+      "End": "575524",
+      "File": "emerald/emrald_b.bin",
+      "UUID": "emerald/emrald_b.bin"
+    },
+    {
+      "Start": 0,
+      "End": "23040",
+      "File": "emerald/map_e.raw",
+      "UUID": "emerald/map_e.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "factory/fact00.raw",
+      "UUID": "factory/fact00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "factory/fact01.raw",
+      "UUID": "factory/fact01.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "factory/fact02.256",
+      "UUID": "factory/fact02.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "factory/fact02.raw",
+      "UUID": "factory/fact02.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "factory/fact03.raw",
+      "UUID": "factory/fact03.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "factory/fact04.raw",
+      "UUID": "factory/fact04.raw"
+    },
+    {
+      "Start": 0,
+      "End": "65536",
+      "File": "factory/factory.map",
+      "UUID": "factory/factory.map"
+    },
+    {
+      "Start": 0,
+      "End": "368640",
+      "File": "factory/factory.ply",
+      "UUID": "factory/factory.ply"
+    },
+    {
+      "Start": 0,
+      "End": "674028",
+      "File": "factory/factry_e.bin",
+      "UUID": "factory/factry_e.bin"
+    },
+    {
+      "Start": 0,
+      "End": "23040",
+      "File": "factory/map_f.raw",
+      "UUID": "factory/map_f.raw"
+    },
+    {
+      "Start": 0,
+      "End": "21504",
+      "File": "general/flake2.raw",
+      "UUID": "general/flake2.raw"
+    },
+    {
+      "Start": 0,
+      "End": "21504",
+      "File": "general/flake.raw",
+      "UUID": "general/flake.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/icon00.raw",
+      "UUID": "general/icon00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/icon01.raw",
+      "UUID": "general/icon01.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/misc00.raw",
+      "UUID": "general/misc00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "general/misc01.256",
+      "UUID": "general/misc01.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/misc01.raw",
+      "UUID": "general/misc01.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "general/player00.256",
+      "UUID": "general/player00.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/player00.raw",
+      "UUID": "general/player00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "general/player01.256",
+      "UUID": "general/player01.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/player01.raw",
+      "UUID": "general/player01.raw"
+    },
+    {
+      "Start": 0,
+      "End": "21504",
+      "File": "general/plop2.raw",
+      "UUID": "general/plop2.raw"
+    },
+    {
+      "Start": 0,
+      "End": "21504",
+      "File": "general/plop.raw",
+      "UUID": "general/plop.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/rainbow.raw",
+      "UUID": "general/rainbow.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "general/sonicr.256",
+      "UUID": "general/sonicr.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/sonicr.bit",
+      "UUID": "general/sonicr.bit"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/sonicr.raw",
+      "UUID": "general/sonicr.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/switch00.raw",
+      "UUID": "general/switch00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "general/water.raw",
+      "UUID": "general/water.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "island/island00.raw",
+      "UUID": "island/island00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "island/island01.raw",
+      "UUID": "island/island01.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "island/island02.256",
+      "UUID": "island/island02.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "island/island02.raw",
+      "UUID": "island/island02.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "island/island03.256",
+      "UUID": "island/island03.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "island/island03.raw",
+      "UUID": "island/island03.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "island/island04.256",
+      "UUID": "island/island04.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "island/island04.raw",
+      "UUID": "island/island04.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "island/island05.raw",
+      "UUID": "island/island05.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "island/island06.raw",
+      "UUID": "island/island06.raw"
+    },
+    {
+      "Start": 0,
+      "End": "538998",
+      "File": "island/island_e.bin",
+      "UUID": "island/island_e.bin"
+    },
+    {
+      "Start": 0,
+      "End": "65536",
+      "File": "island/island.map",
+      "UUID": "island/island.map"
+    },
+    {
+      "Start": 0,
+      "End": "368640",
+      "File": "island/island.ply",
+      "UUID": "island/island.ply"
+    },
+    {
+      "Start": 0,
+      "End": "23040",
+      "File": "island/map_i.raw",
+      "UUID": "island/map_i.raw"
+    },
+    {
+      "Start": 0,
+      "End": "23040",
+      "File": "ruin/map_r.raw",
+      "UUID": "ruin/map_r.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "ruin/ruin00.raw",
+      "UUID": "ruin/ruin00.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "ruin/ruin01.raw",
+      "UUID": "ruin/ruin01.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "ruin/ruin02.raw",
+      "UUID": "ruin/ruin02.raw"
+    },
+    {
+      "Start": 0,
+      "End": "66308",
+      "File": "ruin/ruin03.256",
+      "UUID": "ruin/ruin03.256"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "ruin/ruin03.raw",
+      "UUID": "ruin/ruin03.raw"
+    },
+    {
+      "Start": 0,
+      "End": "196608",
+      "File": "ruin/ruin04.raw",
+      "UUID": "ruin/ruin04.raw"
+    },
+    {
+      "Start": 0,
+      "End": "734588",
+      "File": "ruin/ruin_d.bin",
+      "UUID": "ruin/ruin_d.bin"
+    },
+    {
+      "Start": 0,
+      "End": "65536",
+      "File": "ruin/ruin.map",
+      "UUID": "ruin/ruin.map"
+    },
+    {
+      "Start": 0,
+      "End": "368640",
+      "File": "ruin/ruin.ply",
+      "UUID": "ruin/ruin.ply"
+    },
+    {
+      "Start": 0,
+      "End": "2216",
+      "File": "save/r01.sav",
+      "UUID": "save/r01.sav"
+    },
+    {
+      "Start": 0,
+      "End": "18",
+      "File": "save/readme.txt",
+      "UUID": "save/readme.txt"
+    }
+  ]
+}
